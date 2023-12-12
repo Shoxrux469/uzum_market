@@ -16,7 +16,7 @@ export async function postData(path, body) {
 
         return res
     } catch(e) {
-        console.log(e);
+        console.log(e.response.data);
     }
 }
 export async function deleteData(path) {

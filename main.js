@@ -1,7 +1,8 @@
-import { getData } from "./modules/https";
+import { getData, postData } from "./modules/https";
 import { header, footer, reload_products } from "./modules/ui";
 header();
 footer();
+let user = JSON.parse(localStorage.getItem("user")) || [];
 
 let show_all_btn = document.querySelector(".show_all_btn");
 let furniture_content = document.querySelector(".furniture_content");
@@ -23,11 +24,21 @@ let sign_in_form = document.querySelector(".sign_in_form");
 let log_in_form = document.querySelector(".log_in_form");
 let modal_title = document.querySelector(".modal_title");
 
+if (user.length !== 0) {
+  document.querySelector(".log_in_btn p").innerHTML = user.name;
+} else {
+  document.querySelector(".log_in_btn p").innerHTML = "Войти";
+}
+
 log_in_btn.onclick = () => {
-  log_in_modal.classList.remove("hidden");
-  log_in_modal.classList.add("block");
-  log_in_box.classList.add("opacity-100");
-  log_in_box.classList.remove("opacity-0");
+  if (user.length === 0) {
+    log_in_modal.classList.remove("hidden");
+    log_in_modal.classList.add("block");
+    log_in_box.classList.add("opacity-100");
+    log_in_box.classList.remove("opacity-0");
+  } else {
+	location.assign('/pages/profile/')
+  }
 };
 
 close_modal_btn.onclick = () => {
@@ -63,21 +74,79 @@ log_in_form.onsubmit = (e) => {
     user[key] = value;
   });
 
-  Promise.all([
-    getData(`/users?phone_num=` + user.phone_num),
-    getData(`'/users?password=` + user.password),
-  ]).then(([phone_num, password]) => {
-    console.log(password, phone_num);
-    if (!phone_num || !password) return;
-    if (phone_num !== 200 && phone_num !== 201) return;
-    if (password !== 200 && password !== 201) return;
-
-    if(phone_num.data.length === 0 || password.data.length === 0) {
-      console.log('error');
-      return
+  getData(`/users?phone_num=` + user.phone_num).then((res) => {
+    if (!res) return;
+    if (res.status !== 200 && res.status !== 201) {
+      console.log("this acc does not exist");
+      return;
+    }
+    if (res.data.length === 0) {
+      console.log("Этот номер не найден");
+      document.querySelector(".phone_num_log_in").classList.add("border-2");
+      document
+        .querySelector(".phone_num_log_in")
+        .classList.add("border-red-600");
+      return;
+    } else {
+      document.querySelector(".phone_num_log_in").classList.remove("border-2");
     }
 
+    let password_log_in = document.querySelector(".password_log_in");
+
+    let [res_user] = res.data;
+
+    if (password_log_in.value.length === 0) {
+      alert("Введите пароль");
+      password_log_in.classList.add("border-2");
+      password_log_in.classList.add("border-red-600");
+      return;
+    } else {
+    }
+
+    if (+res_user.password !== +user.password) {
+      alert("Неправильный пароль");
+      document.querySelector(".password_log_in").classList.add("border-2");
+      document
+        .querySelector(".password_log_in")
+        .classList.add("border-red-600");
+    } else {
+      delete res_user.password;
+      document.querySelector(".password_log_in").classList.remove("border-2");
+    }
+    // console.log(res.data);
+    localStorage.setItem("user", JSON.stringify(res_user));
+    log_in_modal.classList.add("hidden");
   });
+};
+
+sign_in_form.onsubmit = (e) => {
+  e.preventDefault();
+
+  let user = {};
+
+  let fm = new FormData(sign_in_form);
+
+  fm.forEach((value, key) => {
+    user[key] = value;
+  });
+  console.log(user);
+
+  getData("/users?phone_num=" + user.phone_num).then((res) => {
+    // console.log(res);
+    if (res.status !== 200 && res.status !== 201) return;
+    if (res.data.length > 0) {
+      alert("account already taken!");
+      return;
+    }
+
+    postData("/users", user).then((res) => {
+      if (res.status === 200 || res.status === 201) {
+		  log_in_modal.classList.add('hidden')
+		  localStorage.setItem("user", JSON.stringify(res.data));
+		  location.reload()
+		}
+    });
+});
 };
 
 getData("/goods").then((res) => {

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+</head>
+
+<body>
+    <section class="relative">
+        <header>
+        </header>
+
+        <div class="container mx-auto w-11/12 min-h-[73vh] flex flex-col">
+            <h2 class="mb-3 text-2xl font-semibold text-[#1f2026]">Шохрух</h2>
+            <div class="flex mt-5 mb-10">
+                <aside class="w-3/12 h-full">
+                    <ul class="flex flex-col gap-3">
+                        <li class="my_orders_btn active text-[rgba(54,54,64,.35)] hover:text-slate-500 text-lg">Мои
+                            заказы</li>
+                        <li class="settings_btn text-[rgba(54,54,64,.35)] hover:text-slate-500 text-lg">Настройки</li>
+                    </ul>
+                </aside>
+                <div class="flex flex-col w-9/12 h-fit">
+
+                    <div class="my_orders flex flex-col justify-center">
+                        <div class="btns flex">
+                            <button class="border-[1px] py-[5px] px-[20px] text-[#595b66] ">Все заказы</button>
+                            <button
+                                class="border-[1px] py-[5px] px-[20px] text-[#595b66] border-x-0">Неоплаченные</button>
+                            <button class="border-[1px] py-[5px] px-[20px] text-[#595b66]">Активные</button>
+                        </div>
+                        <div class="active_orders py-12 flex flex-col items-center">
+                            <h1 class="text-[rgba(54,54,64,.35)] mb-4 text-3xl font-bold">Здесь пусто :(</h1>
+                            <p class="text-lg">У вас отсутствуют активные заказы!</p>
+                            <p class="text-lg">Воспользуйтесь поиском, чтобы найти всё что нужно.</p>
+                            <button
+                                class="bg-[#7000ff] padding text-[#fff] rounded-xl font-semibold mt-4 text-[18px] h-[45px] px-5">Начать
+                                покупки</button>
+                            <div class="line w-11/12 h-[1px] bg-gray-200 mt-4">
+
+                            </div>
+                            <a href="#" class="mt-4 text-lg underline text-[#1f2026]">Вернуться на главную</a>
+                        </div>
+                    </div>
+                    <div class="settings p-5 h-fit hidden border-[1px] rounded-[2px]">
+                        <h2>Мои данные</h2>
+                        <div class="flex gap-2 my-5">
+                            <div>
+                                <p>Фамилия</p>
+                                <input class="surname mb-5 rounded border-[rgba(54,54,64,.2)]" type="text"
+                                    name="surname">
+                            </div>
+                            <div>
+                                <p>Имя</p>
+                                <input class="name mb-5 rounded border-[rgba(54,54,64,.2)]" type="text" name="name">
+                            </div>
+                            <div>
+                                <p>Отчество</p>
+                                <input class="middle-name mb-5 rounded border-[rgba(54,54,64,.2)]" placeholder="Отчество" type="text"
+                                    name="middle-name">
+                            </div>
+                        </div>
+                        <div class="line my-2 w-full h-[1px] bg-gray-200"></div>
+                        <div class="flex gap-2 my-5">
+                            <div>
+                                <p>Электронная почта</p>
+                                <input class="email mb-5 rounded border-[rgba(54,54,64,.2)]" type="email" name="email">
+                            </div>
+                            <div>
+                                <p>Номер телефона</p>
+                                <input class="phone_num mb-5 rounded border-[rgba(54,54,64,.2)]" type="number"
+                                    name="phone_num">
+                            </div>
+                        </div>
+                        <div class="line my-2 w-full h-[1px] bg-gray-200"></div>
+                        <div class="flex flex-col my-5">
+                            <div class="mt-5">
+                                <p>Пол</p>
+                                <div class="flex">
+                                    <button
+                                        class="w-fit py-[5px] text-[#4d4f59] px-[20px] border border-r-0 border-[rgba(54,54,64,.2)] male">Мужской</button>
+                                    <button
+                                        class="w-fit py-[5px] text-[#4d4f59] px-[20px] border border-[rgba(54,54,64,.2)] female">Женский</button>
+                                </div>
+                            </div>
+                            <div class="mt-5 flex flex-col gap-1">
+                                <p>Дата рождения</p>
+                                <input class="w-fit birthday rounded border-[rgba(54,54,64,.2)]" placeholder="дд/мм/гггг" type="text">
+                            </div>
+                        </div>
+                        <div class="flex justify-between my-5">
+                            <button class="ease-in-out duration-300 hover:bg-gray-300 rounded-xl py-2 text-lg font-normal px-4">Выйти из системы</button>
+                            <button class="">Сохранить</button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <footer>
+        </footer>
+
+    </section>
+
+    <script type="module" src="./script.js"></script>
+</body>
+
+</html>

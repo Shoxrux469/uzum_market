@@ -6,7 +6,7 @@ export function header() {
   <div class="top_header py-[6px] flex bg-[#F4F5F5] w-full">
   <div class="top_header justify-between items-center w-11/12 flex mx-auto">
       <div class="flex items-center">
-          <img src="./public/compass-icon.svg" alt="">
+          <img src="/public/compass-icon.svg" alt="">
           <p class="text-[#141415] cursor-pointer">Город:<span class="font-medium">Ташкент</span></p>
           <p class="ml-5 font-medium cursor-pointer">Пункты выдачи</p>
       </div>
@@ -15,7 +15,7 @@ export function header() {
           <li class="text-[#62656A] hover:text-black cursor-pointer">Продавайте на Uzum</li>
           <li class="text-[#62656A] hover:text-black cursor-pointer">Вопрос-ответ</li>
           <li class="text-[#62656A] hover:text-black cursor-pointer">Мои заказы</li>
-          <li class="flex text-[#62656A] gap-1 cursor-pointer"><img src="./public/ru_lang_icon.svg" alt=""> Русский</li>
+          <li class="flex text-[#62656A] gap-1 cursor-pointer"><img src="/public/ru_lang_icon.svg" alt=""> Русский</li>
       </ul>
   </div>
 </div>
@@ -84,44 +84,44 @@ export function header() {
   <div class="header_btns flex items-center gap-2">
       <button
           class="catalog flex items-center gap-2 h-11/12 px-7 text-[#7000ff] hover:bg-[#ceccff] ease-in-out duration-150 justify-center bg-[#f0f0ff] rounded p-2">
-          <img src="./public/catalog_icon.svg" alt="">
+          <img src="/public/catalog_icon.svg" alt="">
           <p class="text-#33С">Каталог</p>
       </button>
       <div
           class="searcher_div flex justify-between pl-1 items-center w-fit border border-gray-300 w-full rounded-md">
           <input class="w-96 border-none h-8 text-gray-500" type="text"
               placeholder="Искать товары и категории">
-          <img class="bg-gray-100 px-6 py-2 rounded-r" src="./public/searcher_icon.svg" alt="">
+          <img class="bg-gray-100 px-6 py-2 rounded-r" src="/public/searcher_icon.svg" alt="">
       </div>
   </div>
   <div class="header_right flex items-center gap-3">
       <button class="log_in_btn h-10 gap-2 hover:bg-gray-200 px-2 flex items-center rounded">
-          <img src="./public/log_in_icon.svg" alt="">
+          <img src="/public/log_in_icon.svg" alt="">
           <p>Войти</p>
       </button>
       <button class="h-10 gap-2 hover:bg-gray-200 px-2 flex items-center rounded">
-          <img src="./public/heart_icon.svg" alt="">
+          <img src="/public/heart_icon.svg" alt="">
           <p>Избранное</p>
       </button>
       <button class="h-10 gap-2 hover:bg-gray-200 px-2 flex items-center rounded">
-      <img src="./public/bag_icon.svg" alt="">
+      <img src="/public/bag_icon.svg" alt="">
       <p>Корзина</p>
       </button>
       </div>
       </div>
       <ol class="header_bottom mb-3 flex gap-[14px] w-12/12 mx-auto justify-center">
-          <li class="text-[#000000B2] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Электроника</li>
-          <li class="text-[#000000B2] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Бытовая техника</li>
-          <li class="text-[#000000B2] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Одежда</li>
-          <li class="text-[#000000B2] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Обувь</li>
-          <li class="text-[#000000B2] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Аксессуары</li>
-          <li class="text-[#000000B2] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Красота</li>
-          <li class="text-[#000000B2] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Здоровье</li>
-          <li class="text-[#000000B2] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Товары для дома</li>
-          <li class="text-[#000000B2] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Строительство и ремонт</li>
-          <li class="text-[#000000B2] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Автотовары</li>
-          <li class="text-[#000000B2] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Детские товары</li>
-          <li class="text-[#000000B2] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black flex items-center gap-1">Еще <img src="./public/arrow_bottom.svg" alt=""></li>
+          <li class="text-[#595b66] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Электроника</li>
+          <li class="text-[#595b66] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Бытовая техника</li>
+          <li class="text-[#595b66] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Одежда</li>
+          <li class="text-[#595b66] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Обувь</li>
+          <li class="text-[#595b66] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Аксессуары</li>
+          <li class="text-[#595b66] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Красота</li>
+          <li class="text-[#595b66] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Здоровье</li>
+          <li class="text-[#595b66] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Товары для дома</li>
+          <li class="text-[#595b66] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Строительство и ремонт</li>
+          <li class="text-[#595b66] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Автотовары</li>
+          <li class="text-[#595b66] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Детские товары</li>
+          <li class="text-[#595b66] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black flex items-center gap-1">Еще <img src="/public/arrow_bottom.svg" alt=""></li>
       </ol>
         `;
 }
@@ -150,19 +150,19 @@ export function footer() {
         <li class="flex flex-col gap-4">
             <p class="font-semibold">Скачать приложение</p>
             <div class="flex gap-3">
-                <a class="flex items-center gap-1" href="#"> <img src="./public/apple.svg" alt="">
+                <a class="flex items-center gap-1" href="#"> <img src="/public/apple.svg" alt="">
                     <span>AppStore</span></a>
-                <a class="flex items-center gap-1" href="#"> <img src="./public/google_play.svg" alt="">
+                <a class="flex items-center gap-1" href="#"> <img src="/public/google_play.svg" alt="">
                     <span>Google Play</span></a>
             </div>
         </li>
         <li class="flex flex-col gap-4">
             <p class="font-semibold">Uzum в соцсетях</p>
             <nav class="flex gap-3">
-                <a href="#"><img src="./public/insta.svg" alt=""></a>
-                <a href="#"><img src="./public/telegram.svg" alt=""></a>
-                <a href="#"><img src="./public/youtube.svg" alt=""></a>
-                <a href="#"><img src="./public/facebook.svg" alt=""></a>
+                <a href="#"><img src="/public/insta.svg" alt=""></a>
+                <a href="#"><img src="/public/telegram.svg" alt=""></a>
+                <a href="#"><img src="/public/youtube.svg" alt=""></a>
+                <a href="#"><img src="/public/facebook.svg" alt=""></a>
             </nav>
         </li>
     </ul>

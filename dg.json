@@ -4,8 +4,17 @@
       "email": "dsarifkulo021@gmail.com",
       "name": "Daler",
       "surname": "Sharifkulov",
-      "phone_num": 901939993,
-      "password": "1234"
+      "phone_num": 905047494,
+      "password": "1234",
+      "id": 1
+    },
+    {
+      "name": "Шохрух",
+      "surname": "Мамадсаидов",
+      "phone_num": "901939993",
+      "email": "mamadsaidovsohruh07@gmail.com",
+      "password": "4444",
+      "id": 2
     }
   ],
   "goods": [
