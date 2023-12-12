@@ -169,7 +169,6 @@ export function footer() {
 </div>
     `
 }
-
 export function reload_products(arr, place) {
   place.innerHTML = "";
   for (let item of arr) {

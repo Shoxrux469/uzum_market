@@ -30,7 +30,7 @@
             <div class="flex mt-5 mb-10">
                 <aside class="w-3/12 h-full">
                     <ul class="flex flex-col gap-3">
-                        <li class="my_orders_btn active text-[rgba(54,54,64,.35)] hover:text-slate-500 text-lg">Мои
+                        <li class="my_orders_btn active text-[#1f2026] hover:text-slate-500 text-lg">Мои
                             заказы</li>
                         <li class="settings_btn text-[rgba(54,54,64,.35)] hover:text-slate-500 text-lg">Настройки</li>
                     </ul>
@@ -57,7 +57,7 @@
                             <a href="#" class="mt-4 text-lg underline text-[#1f2026]">Вернуться на главную</a>
                         </div>
                     </div>
-                    <div class="settings p-5 h-fit hidden border-[1px] rounded-[2px]">
+                    <form name="profile_info" class="settings p-5 h-fit hidden border-[1px] rounded-[2px]">
                         <h2>Мои данные</h2>
                         <div class="flex gap-2 my-5">
                             <div>
@@ -71,8 +71,8 @@
                             </div>
                             <div>
                                 <p>Отчество</p>
-                                <input class="middle-name mb-5 rounded border-[rgba(54,54,64,.2)]" placeholder="Отчество" type="text"
-                                    name="middle-name">
+                                <input class="middle-name mb-5 rounded border-[rgba(54,54,64,.2)]"
+                                    placeholder="Отчество" type="text" name="middle-name">
                             </div>
                         </div>
                         <div class="line my-2 w-full h-[1px] bg-gray-200"></div>
@@ -91,23 +91,27 @@
                         <div class="flex flex-col my-5">
                             <div class="mt-5">
                                 <p>Пол</p>
-                                <div class="flex">
-                                    <button
+                                <div class="flex sex_btns">
+                                    <button type="button" name="male"
                                         class="w-fit py-[5px] text-[#4d4f59] px-[20px] border border-r-0 border-[rgba(54,54,64,.2)] male">Мужской</button>
-                                    <button
+                                    <button type="button" name="female"
                                         class="w-fit py-[5px] text-[#4d4f59] px-[20px] border border-[rgba(54,54,64,.2)] female">Женский</button>
                                 </div>
                             </div>
                             <div class="mt-5 flex flex-col gap-1">
                                 <p>Дата рождения</p>
-                                <input class="w-fit birthday rounded border-[rgba(54,54,64,.2)]" placeholder="дд/мм/гггг" type="text">
+                                <input class="w-fit birthday rounded border-[rgba(54,54,64,.2)]" name="birthday"
+                                    placeholder="дд/мм/гггг" type="text">
                             </div>
                         </div>
                         <div class="flex justify-between my-5">
-                            <button class="ease-in-out duration-300 hover:bg-gray-300 rounded-xl py-2 text-lg font-normal px-4">Выйти из системы</button>
-                            <button class="">Сохранить</button>
+                            <button type="button"
+                                class="ease-in-out duration-300 hover:bg-gray-300 rounded-xl py-2 text-lg font-normal px-4">Выйти
+                                из системы</button>
+                            <button
+                                class="bg-[#7000ff] text-[#fff] py-2 px-5 rounded-xl font-semibold">Сохранить</button>
                         </div>
-                    </div>
+                    </form>
 
 
                 </div>
