@@ -85,7 +85,7 @@ export function header() {
       <button
           class="catalog flex items-center gap-2 h-11/12 px-7 text-[#7000ff] hover:bg-[#ceccff] ease-in-out duration-150 justify-center bg-[#f0f0ff] rounded p-2">
           <img src="/public/catalog_icon.svg" alt="">
-          <p class="text-#33С">Каталог</p>
+          <p class="text-[#7000ff]">Каталог</p>
       </button>
       <div
           class="searcher_div flex justify-between pl-1 items-center w-fit border border-gray-300 w-full rounded-md">
@@ -110,20 +110,19 @@ export function header() {
       </div>
       </div>
       <ol class="header_bottom mb-3 flex gap-[14px] w-12/12 mx-auto justify-center">
-          <li class="text-[#595b66] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Электроника</li>
-          <li class="text-[#595b66] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Бытовая техника</li>
-          <li class="text-[#595b66] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Одежда</li>
-          <li class="text-[#595b66] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Обувь</li>
-          <li class="text-[#595b66] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Аксессуары</li>
-          <li class="text-[#595b66] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Красота</li>
-          <li class="text-[#595b66] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Здоровье</li>
-          <li class="text-[#595b66] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Товары для дома</li>
-          <li class="text-[#595b66] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Строительство и ремонт</li>
-          <li class="text-[#595b66] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Автотовары</li>
-          <li class="text-[#595b66] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Детские товары</li>
-          <li class="text-[#595b66] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black flex items-center gap-1">Еще <img src="/public/arrow_bottom.svg" alt=""></li>
-      </ol>
-        `;
+          <li class="text-[#595b66] h-[28px] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Электроника</li>
+          <li class="text-[#595b66] h-[28px] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Бытовая техника</li>
+          <li class="text-[#595b66] h-[28px] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Одежда</li>
+          <li class="text-[#595b66] h-[28px] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Обувь</li>
+          <li class="text-[#595b66] h-[28px] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Аксессуары</li>
+          <li class="text-[#595b66] h-[28px] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Красота</li>
+          <li class="text-[#595b66] h-[28px] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Здоровье</li>
+          <li class="text-[#595b66] h-[28px] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Товары для дома</li>
+          <li class="text-[#595b66] h-[28px] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Строительство и ремонт</li>
+          <li class="text-[#595b66] h-[28px] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Автотовары</li>
+          <li class="text-[#595b66] h-[28px] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black">Детские товары</li>
+          <li class="text-[#595b66] h-[28px] cursor-pointer hover:border-b-2 hover:text-black ease-in-out border-black flex items-center gap-1">Еще <img src="/public/arrow_bottom.svg" alt=""></li>
+           `;
 }
 
 export function footer() {

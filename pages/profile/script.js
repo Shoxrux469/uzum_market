@@ -20,6 +20,44 @@ let settings_btn = document.querySelector(".settings_btn");
 let settings = document.querySelector(".settings");
 let my_orders = document.querySelector(".my_orders");
 let sex_btns = document.querySelectorAll(".sex_btns button");
+let all_orders = document.querySelector(".all_orders");
+let active_orders = document.querySelector(".active_orders");
+let btns = document.querySelectorAll(".btns button");
+
+if (user.length !== 0) {
+  document.querySelector(".log_in_btn p").innerHTML = user.name;
+} else {
+  document.querySelector(".log_in_btn p").innerHTML = "Войти";
+}
+
+let start_shopping = document.querySelectorAll('.start_shopping')
+start_shopping.forEach(res => {
+	res.onclick = () => {
+		location.assign("/")
+	}
+
+})
+
+btns.forEach((res) => {
+  res.onclick = (e) => {
+    let chosen = document.querySelectorAll(".chosen");
+    for (let item of chosen) {
+      item.classList.remove("chosen");
+      item.classList.remove("bg-gray-300");
+    }
+    res.classList.add("chosen");
+    res.classList.add("bg-gray-300");
+    for (let item of chosen) {
+      if (e.target.innerHTML === "Все заказы") {
+        all_orders.classList.remove("hidden");
+        active_orders.classList.add("hidden");
+      } else {
+        active_orders.classList.remove("hidden");
+        all_orders.classList.add("hidden");
+      }
+    }
+  };
+});
 
 sex_btns.forEach((res) => {
   res.onclick = () => {
@@ -57,10 +95,11 @@ profile_info.onsubmit = (e) => {
 
   let user_arr = {
     gender: chosen.innerHTML || "",
+    id: user.id,
   };
 
   let fm = new FormData(profile_info);
-
+  //   console.log(user_arr);
   fm.forEach((value, key) => {
     user_arr[key] = value;
   });
@@ -69,33 +108,32 @@ profile_info.onsubmit = (e) => {
     document.querySelector(".phone_num").classList.add("border-red-400");
     alert("Укажите номер телефона пожалуйста!");
     return;
-  } else if (user_arr.phone_num !== user.phone_num) {
-    getData("/users?phone_num=" + user_arr.phone).then((res) => {
-    //   console.log(res.data);
+  } else if (+user_arr.phone_num !== +user.phone_num) {
+    getData("/users?phone_num=" + +user_arr.phone).then((res) => {
+      // console.log(res.data);
       if (res.data.length > 0) {
         document.querySelector(".phone_num").classList.add("border-2");
         document.querySelector(".phone_num").classList.add("border-red-400");
         alert("Аккаунт с таким номером уже существует");
         return;
-      } else {
-        document.querySelector(".phone_num").classList.remove("border-2");
-        document.querySelector(".phone_num").classList.remove("border-red-400");
-        getData("/users?phone_num=" + user.phone_num).then((res) => {
-          for (let item of res.data) {
-            console.log(item);
-            // editData('/users?phone_num=' + item.phone_num, {
-            //   name: user_arr.name,
-            //   surname: user_arr.surname,
-            //   phone_num: user_arr.phone_num,
-            //   email: user_arr.email,
-            //   middle_name: user_arr.middle_name,
-            //   gender: user_arr.gender,
-            //   birthday: user_arr.birthday,
-            // })
-            // .then(res => {
-            //     if(res.status !== 200 && res.status !== 201) return
-            // })
-          }
+      }
+    });
+  } else {
+    document.querySelector(".phone_num").classList.remove("border-2");
+    document.querySelector(".phone_num").classList.remove("border-red-400");
+    getData("/users?phone_num=" + +user.phone_num).then((res) => {
+      // console.log(res.data);
+      for (let item of res.data) {
+        console.log(item.phone_num);
+        // console.log(user_arr);
+        editData("/users?phone_num=" + item.phone_num, user_arr).then((res) => {
+          console.log(res);
+          if (res.status !== 200 && res.status !== 201) return;
+
+          postData("/users", user_arr).then((res) => {
+            if (res.status !== 200 && res.status !== 201) return;
+            // console.log(res);
+          });
         });
       }
     });
