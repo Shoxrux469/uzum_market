@@ -1,6 +1,6 @@
 import { getData, postData } from "./modules/https";
 import { header, footer, reload_products } from "./modules/ui";
-header();
+// header();
 footer();
 let user = JSON.parse(localStorage.getItem("user")) || [];
 
@@ -11,6 +11,12 @@ let techno_content = document.querySelector(".techno_content");
 let audio_content = document.querySelector(".audio_content");
 let kitchen_content = document.querySelector(".kitchen_content");
 let log_in_btn = document.querySelector(".log_in_btn");
+// let like_btn = document.querySelectorAll(".like_btn");
+
+// like_btn.forEach(res => {
+//   console.log(res);
+// })
+
 // console.log(log_in_btn);
 let discounts_content = document.querySelector(".discounts_content");
 let discount_box = [];
@@ -30,6 +36,8 @@ if (user.length !== 0) {
   document.querySelector(".log_in_btn p").innerHTML = "Войти";
 }
 
+// localStorage.removeItem("user")
+
 log_in_btn.onclick = () => {
   if (user.length === 0) {
     log_in_modal.classList.remove("hidden");
@@ -37,7 +45,7 @@ log_in_btn.onclick = () => {
     log_in_box.classList.add("opacity-100");
     log_in_box.classList.remove("opacity-0");
   } else {
-	location.assign('/pages/profile/')
+    location.assign("/pages/profile/");
   }
 };
 
@@ -116,6 +124,7 @@ log_in_form.onsubmit = (e) => {
     // console.log(res.data);
     localStorage.setItem("user", JSON.stringify(res_user));
     log_in_modal.classList.add("hidden");
+    location.reload();
   });
 };
 
@@ -141,12 +150,12 @@ sign_in_form.onsubmit = (e) => {
 
     postData("/users", user).then((res) => {
       if (res.status === 200 || res.status === 201) {
-		  log_in_modal.classList.add('hidden')
-		  localStorage.setItem("user", JSON.stringify(res.data));
-		  location.reload()
-		}
+        log_in_modal.classList.add("hidden");
+        localStorage.setItem("user", JSON.stringify(res.data));
+        location.reload();
+      }
     });
-});
+  });
 };
 
 getData("/goods").then((res) => {
@@ -227,3 +236,21 @@ getData("/goods").then((res) => {
     }
   }
 });
+
+let mySwiper = new Swiper(".swiper", {
+  // Опции (по желанию)
+  slidesPerView: 1, // Количество видимых слайдов
+  spaceBetween: 10, // Расстояние между слайдами
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  autoplay: {
+    delay: 5000,
+  },
+  speed: 400
+});
+
+const swiper = document.querySelector('.swiper').swiper;
+
+swiper.slideNext();
