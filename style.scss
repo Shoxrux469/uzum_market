@@ -7,7 +7,14 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+// body {
+  // @apply bg-red-500;
+// }
+
+
 .header_bottom {
+    // @apply bg-red-500;
   li {
     position: relative;
   }
@@ -16,7 +23,7 @@
 
     width: 0%;
     height: 2px;
-    transition: 0.4 s ease;
+    transition: 0.4s ease;
 
     background-color: #00000010;
     position: absolute;
@@ -33,14 +40,14 @@
     width: 100%;
   }
 }
-.log_in_modal{
-    z-index: 2147483647;
+.log_in_modal {
+  z-index: 2147483647;
 }
 
 .swiper {
   width: 100%;
   position: relative;
-//   z-index: 1 !important;
+  //   z-index: 1 !important;
   border-radius: 20px;
 }
 
@@ -48,8 +55,4 @@
   text-align: center;
   font-size: 18px;
   background: #fff;
-  img{
-    height: 300px;
-    width: 100%;
-  }
 }

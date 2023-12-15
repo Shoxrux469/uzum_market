@@ -1,7 +1,7 @@
 import { getData, postData } from "./modules/https";
-import { header, footer, reload_products } from "./modules/ui";
-// header();
-footer();
+import { header, reload_products } from "./modules/ui";
+header();
+// footer();
 let user = JSON.parse(localStorage.getItem("user")) || [];
 
 let show_all_btn = document.querySelector(".show_all_btn");
@@ -11,13 +11,47 @@ let techno_content = document.querySelector(".techno_content");
 let audio_content = document.querySelector(".audio_content");
 let kitchen_content = document.querySelector(".kitchen_content");
 let log_in_btn = document.querySelector(".log_in_btn");
-// let like_btn = document.querySelectorAll(".like_btn");
+let footer_ul = document.querySelectorAll(".footer_ul");
 
-// like_btn.forEach(res => {
-//   console.log(res);
-// })
+footer_ul.forEach((res) => {
+  console.log(res);
+  res.onclick = (e) => {
+    let opened = document.querySelectorAll(".opened");
 
-// console.log(log_in_btn);
+    // opened.forEach((res) => {
+    //   res.onclick = () => {
+    //     res.classList.remove("opened");
+    //     res.parentElement.classList.remove("h-[60px]");
+    //     res.nextElementSibling.nextElementSibling.classList.add("hidden");
+    //     res.nextElementSibling.classList.add("hidden");
+    //     for (let child of el.children) {
+    //       child.classList.remove("rotate-180");
+    //     }
+    //   };
+    // });
+
+    for (let el of opened) {
+      el.classList.remove("opened");
+      el.parentElement.classList.remove("h-[60px]");
+      el.nextElementSibling.nextElementSibling.classList.add("hidden");
+      el.nextElementSibling.classList.add("hidden");
+      for (let child of el.children) {
+        child.classList.remove("rotate-180");
+      }
+    }
+    res.classList.add("opened");
+    res.parentElement.classList.add("duration-300");
+    e.target.parentElement.classList.add("h-[60px]");
+    e.target.nextElementSibling.nextElementSibling.classList.remove("hidden");
+    e.target.nextElementSibling.classList.remove("hidden");
+
+    for (let child of e.target.children) {
+      child.classList.add("duration-300");
+      child.classList.add("rotate-180");
+    }
+  };
+});
+
 let discounts_content = document.querySelector(".discounts_content");
 let discount_box = [];
 
@@ -248,9 +282,9 @@ let mySwiper = new Swiper(".swiper", {
   autoplay: {
     delay: 5000,
   },
-  speed: 400
+  speed: 400,
 });
 
-const swiper = document.querySelector('.swiper').swiper;
+const swiper = document.querySelector(".swiper").swiper;
 
 swiper.slideNext();
