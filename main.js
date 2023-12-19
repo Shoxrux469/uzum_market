@@ -1,7 +1,7 @@
 import { getData, postData } from "./modules/https";
-import { header, reload_products } from "./modules/ui";
+import { header, footer, reload_products } from "./modules/ui";
 header();
-// footer();
+footer();
 let user = JSON.parse(localStorage.getItem("user")) || [];
 
 let show_all_btn = document.querySelector(".show_all_btn");
@@ -12,9 +12,41 @@ let audio_content = document.querySelector(".audio_content");
 let kitchen_content = document.querySelector(".kitchen_content");
 let log_in_btn = document.querySelector(".log_in_btn");
 let footer_ul = document.querySelectorAll(".footer_ul");
+let searcher_inp = document.querySelector(".searcher_inp");
+let logo = document.querySelector(".logo");
+
+logo.onclick = () => {
+  location.assign('/')
+}
+
+
+
+// searcher_inp.onkeyup = () => {
+  //   getData("/goods").then((res) => {
+    //     for (let item of res.data) {
+      //       // console.log(item);
+      //       if (searcher_inp.value === item.title) {
+        //         console.log(item);
+        //         // item.scrollIntoView({
+          //         //   behavior: "smooth",
+          //         // });
+          //       }
+          //     }
+          //   });
+          // };
+
+searcher_inp.onkeydown = (e) => {
+  if(e.key === "Enter") {
+    localStorage.setItem(`searcher_value`, JSON.stringify(searcher_inp.value))
+    location.assign('/pages/searcher_page/')
+    // searcher_inp.value
+
+  }
+  // console.log(searcher_inp.value);
+}
 
 footer_ul.forEach((res) => {
-  console.log(res);
+  // console.log(res);
   res.onclick = (e) => {
     let opened = document.querySelectorAll(".opened");
 
@@ -39,12 +71,12 @@ footer_ul.forEach((res) => {
         child.classList.remove("rotate-180");
       }
     }
+
     res.classList.add("opened");
-    res.parentElement.classList.add("duration-300");
+    e.target.parentElement.classList.add("duration-300");
     e.target.parentElement.classList.add("h-[60px]");
     e.target.nextElementSibling.nextElementSibling.classList.remove("hidden");
     e.target.nextElementSibling.classList.remove("hidden");
-
     for (let child of e.target.children) {
       child.classList.add("duration-300");
       child.classList.add("rotate-180");
@@ -158,7 +190,12 @@ log_in_form.onsubmit = (e) => {
     // console.log(res.data);
     localStorage.setItem("user", JSON.stringify(res_user));
     log_in_modal.classList.add("hidden");
-    location.reload();
+    setTimeout(() => {
+      loader();
+    }, 200);
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
   });
 };
 
@@ -172,7 +209,7 @@ sign_in_form.onsubmit = (e) => {
   fm.forEach((value, key) => {
     user[key] = value;
   });
-  console.log(user);
+  // console.log(user);
 
   getData("/users?phone_num=" + user.phone_num).then((res) => {
     // console.log(res);

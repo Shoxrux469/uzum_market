@@ -7,13 +7,12 @@ let user = JSON.parse(localStorage.getItem("user")) || [];
 // console.log(user.);
 
 let profile_info = document.forms.profile_info;
-document.querySelector(".surname").value = user.surname;
-document.querySelector(".name").value = user.name;
-document.querySelector(".email").value = user.email;
-document.querySelector(".phone_num").value = user.phone_num;
-document.querySelector(".logo").onclick = () => {
-  location.assign("/");
-};
+document.querySelector(".surname").value = user.surname || [];
+document.querySelector(".name").value = user.name || [];
+document.querySelector(".email").value = user.email || [];
+document.querySelector(".phone_num").value = user.phone_num || [];
+document.querySelector(".birthday").value = user.birthday || [];
+document.querySelector(".middle_name").value = user.middle_name || [];
 
 let my_orders_btn = document.querySelector(".my_orders_btn");
 let settings_btn = document.querySelector(".settings_btn");
@@ -23,6 +22,22 @@ let sex_btns = document.querySelectorAll(".sex_btns button");
 let all_orders = document.querySelector(".all_orders");
 let active_orders = document.querySelector(".active_orders");
 let btns = document.querySelectorAll(".btns button");
+let searcher_inp = document.querySelector(".searcher_inp");
+
+// if (user.gender == "Мужской") {
+//   document.querySelector(".male").classList.add("bg-gray-200");
+// } else if(user.gender == "Женский") {
+//   document.querySelector(".female").classList.add("bg-gray-200");
+// } else {
+//   sex_btns.forEach(res => {
+//     res.classList.remove("chosen");
+//     res.classList.remove("bg-gray-200");
+//   })
+// }
+
+document.querySelector(".logo").onclick = () => {
+  location.assign("/");
+};
 
 if (user.length !== 0) {
   document.querySelector(".log_in_btn p").innerHTML = user.name;
@@ -30,13 +45,22 @@ if (user.length !== 0) {
   document.querySelector(".log_in_btn p").innerHTML = "Войти";
 }
 
-let start_shopping = document.querySelectorAll('.start_shopping')
-start_shopping.forEach(res => {
-	res.onclick = () => {
-		location.assign("/")
-	}
+let start_shopping = document.querySelectorAll(".start_shopping");
+start_shopping.forEach((res) => {
+  res.onclick = () => {
+    location.assign("/");
+  };
+});
 
-})
+searcher_inp.onkeydown = (e) => {
+  if(e.key === "Enter") {
+    localStorage.setItem(`searcher_value`, JSON.stringify(searcher_inp.value))
+    location.assign('/pages/searcher_page/')
+    // searcher_inp.value
+
+  }
+  // console.log(searcher_inp.value);
+}
 
 btns.forEach((res) => {
   res.onclick = (e) => {
@@ -60,6 +84,11 @@ btns.forEach((res) => {
 });
 
 sex_btns.forEach((res) => {
+  if(user.gender === res.innerHTML) {
+    res.classList.add("bg-gray-200");
+    res.classList.add("chosen");
+  }
+
   res.onclick = () => {
     let chosen = document.querySelectorAll(".chosen");
     for (let item of chosen) {
@@ -123,17 +152,15 @@ profile_info.onsubmit = (e) => {
     document.querySelector(".phone_num").classList.remove("border-red-400");
     getData("/users?phone_num=" + +user.phone_num).then((res) => {
       // console.log(res.data);
+      // console.log(user_arr);
       for (let item of res.data) {
-        console.log(item.phone_num);
+        // console.log(item);
         // console.log(user_arr);
-        editData("/users?phone_num=" + item.phone_num, user_arr).then((res) => {
-          console.log(res);
+        editData("/users/" + item.id, user_arr).then((res) => {
           if (res.status !== 200 && res.status !== 201) return;
-
-          postData("/users", user_arr).then((res) => {
-            if (res.status !== 200 && res.status !== 201) return;
-            // console.log(res);
-          });
+          console.log(res.data);
+          localStorage.removeItem("user");
+          localStorage.setItem("user", JSON.stringify(res.data));
         });
       }
     });

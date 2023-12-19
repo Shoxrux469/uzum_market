@@ -5,7 +5,7 @@ export function header() {
   header.innerHTML = `
   <div class="media_top_head lg:hidden w-11/12 mx-auto flex justify-between items-center">
   <div class=" flex">
-      <img src="./public/Без названия.svg" alt="">
+      <img src="/public/Без названия.svg" alt="">
       <div class="ml-4">
           <p>Uzum Market</p>
           <p class="text-sm">Скачать приложение</p>
@@ -20,9 +20,9 @@ export function header() {
           <p class="text-[#141415] cursor-pointer">Город:<span class="font-medium">Ташкент</span></p>
           <p class="ml-5 font-medium cursor-pointer">Пункты выдачи</p>
       </div>
-      <div class="text-[#62656A]">Доставим ваш заказ бесплатно — всего за 1 день!</div>
+      <div class="text-[#62656A] hidden xl:block">Доставим ваш заказ бесплатно — всего за 1 день!</div>
       <ul class="flex gap-[15px] items-center">
-          <li class="text-[#62656A] hover:text-black cursor-pointer">Продавайте на Uzum</li>
+          <li class="text-[#62656A] hover:text-black cursor-pointer hidden xl:block">Продавайте на Uzum</li>
           <li class="text-[#62656A] hover:text-black cursor-pointer">Вопрос-ответ</li>
           <li class="text-[#62656A] hover:text-black cursor-pointer">Мои заказы</li>
           <li class="flex text-[#62656A] gap-1 cursor-pointer"><img src="/public/ru_lang_icon.svg" alt="">
@@ -31,7 +31,7 @@ export function header() {
   </div>
 </div>
 <div class="header my-4 mb-[10px] flex justify-between w-11/12 mx-auto">
-  <svg class="logo hidden cursor-pointer xl:w-2/12 lg:block" data-v-aa1700bc="" viewBox="0 0 215 32"
+  <svg class="logo hidden cursor-pointer xl:w-2/12 lg:w-3/12 lg:block" data-v-aa1700bc="" viewBox="0 0 215 32"
       fill="none" xmlns="http://www.w3.org/2000/svg" alt="Uzum" class="ui-icon  logo">
       <rect width="31.9764" height="31.9764" rx="15.9882" fill="#FFFF00"></rect>
       <path
@@ -99,27 +99,27 @@ export function header() {
           <p class="text-[#7000ff]">Каталог</p>
       </button>
       <div
-          class="searcher_div relative flex lg:justify-between bg-[#edeff2] pl-1 items-center rounded-lg w-fit lg:border lg:border-gray-300 w-full lg:rounded-md">
+          class="searcher_div lg:bg-white relative flex lg:justify-between bg-[#edeff2] pl-1 items-center rounded-lg lg:border lg:border-gray-300 w-full lg:rounded-md">
           <img class="ml-4 my-1 lg:hidden" src="/public/searcher_icon.svg" alt="">
           <input
-              class="w-fit lg:w-96 rounded-lg lg:rounded-none bg-[#edeff2] text-sm lg:text-base border-none lg:h-8 text-gray-500"
+              class="searcher_inp w-full lg:bg-white lg:w-96 rounded-lg lg:rounded-none bg-[#edeff2] text-sm lg:text-base border-none lg:h-8 text-gray-500"
               type="text" placeholder="Искать товары и категории">
           <img class="hidden lg:block bg-gray-100 px-6 py-2 rounded-r" src="/public/searcher_icon.svg"
               alt="">
       </div>
   </div>
-  <div class="header_right hidden lg:flex items-center gap-3">
-      <button class="log_in_btn h-10 gap-2 hover:bg-gray-200 px-2 flex items-center rounded">
-          <img src="/public/log_in_icon.svg" alt="">
-          <p>Войти</p>
+  <div class="header_right lg:ml-4 hidden lg:flex items-center xl:gap-3">
+      <button class="log_in_btn w-12 xl:w-auto h-10 xl:gap-2 hover:bg-gray-200 xl:px-2 flex items-center rounded">
+          <img class="block" src="/public/log_in_icon.svg" alt="">
+          <p class="hidden xl:block">Войти</p>
       </button>
-      <button class="h-10 gap-2 hover:bg-gray-200 px-2 flex items-center rounded">
+      <button class="h-10 xl:gap-2 w-12 xl:w-auto hover:bg-gray-200 xl:px-2 flex items-center rounded">
           <img src="/public/heart_icon.svg" alt="">
-          <p>Избранное</p>
+          <p class="hidden xl:block">Избранное</p>
       </button>
-      <button class="h-10 gap-2 hover:bg-gray-200 px-2 flex items-center rounded">
+      <button class="h-10 xl:gap-2 w-12 xl:w-auto hover:bg-gray-200 xl:px-2 flex items-center rounded">
           <img src="/public/bag_icon.svg" alt="">
-          <p>Корзина</p>
+          <p class="hidden xl:block">Корзина</p>
       </button>
   </div>
 </div>
@@ -141,53 +141,78 @@ export function header() {
            `;
 }
 
-// export function footer() {
-//   let footer = document.querySelector("footer");
+export function footer() {
+  let footer = document.querySelector("footer");
 
-//   footer.innerHTML = `
-//     <div class="footer my-8 flex justify-between mx-auto w-11/12">
-//     <ul class="flex flex-col gap-4">
-//         <li class="font-semibold"><a href="">О нас</a></li>
-//         <li class="text-[#4D4E59]"><a href="">Пункты выдачи</a></li>
-//         <li class="text-[#4D4E59]"><a href="">Вакансии</a></li>
-//     </ul>
-//     <ul class="flex flex-col gap-4">
-//         <li class="font-semibold"> <a href="">Пользователям</a></li>
-//         <li class="text-[#4D4E59]"><a href="">Связаться с нами</a></li>
-//         <li class="text-[#4D4E59]"><a href="">Вопрос - Ответ</a></li>
-//     </ul>
-//     <ul class="flex flex-col gap-4">
-//         <li class="font-semibold"><a href="">Для предпринимателей</a></li>
-//         <li class="text-[#4D4E59]"><a href="">Продавайте на Uzuma</a></li>
-//         <li class="text-[#4D4E59]"><a href="">Вход для продавцов</a></li>
-//     </ul>
-//     <ul class="flex flex-col gap-8">
-//         <li class="flex flex-col gap-4">
-//             <p class="font-semibold">Скачать приложение</p>
-//             <div class="flex gap-3">
-//                 <a class="flex items-center gap-1" href="#"> <img src="/public/apple.svg" alt="">
-//                     <span>AppStore</span></a>
-//                 <a class="flex items-center gap-1" href="#"> <img src="/public/google_play.svg" alt="">
-//                     <span>Google Play</span></a>
-//             </div>
-//         </li>
-//         <li class="flex flex-col gap-4">
-//             <p class="font-semibold">Uzum в соцсетях</p>
-//             <nav class="flex gap-3">
-//                 <a href="#"><img src="/public/insta.svg" alt=""></a>
-//                 <a href="#"><img src="/public/telegram.svg" alt=""></a>
-//                 <a href="#"><img src="/public/youtube.svg" alt=""></a>
-//                 <a href="#"><img src="/public/facebook.svg" alt=""></a>
-//             </nav>
-//         </li>
-//     </ul>
-// </div>
-//     `;
-// }
+  footer.innerHTML = `
+  <div class="footer my-24 flex justify-between flex-col lg:flex-row items-center lg:items-start mx-auto w-11/12">
+  <ul class="flex_daddy flex flex-col h-[20px] items-center lg:items-start mb-4 lg:gap-4">
+      <li class="font-semibold flex items-center gap-3 footer_ul">О нас <img class="w-6 lg:hidden" src="/public/arrow_bottom.svg" alt=""></li>
+      <li class="hiddens text-[#4D4E59] lg:opacity-100 hidden lg:block"><a href="">Пункты выдачи</a></li>
+      <li class="hiddens text-[#4D4E59] lg:opacity-100 hidden lg:block"><a href="">Вакансии</a></li>
+  </ul>
+  <div class="line border-[1px] lg:hidden my-4 border-gray-200 w-full">
+
+  </div>
+  <ul class="flex_daddy flex flex-col items-center lg:items-start h-[20px] mb-4 lg:gap-4">
+      <li class="font-semibold flex gap-3 items-center footer_ul">Пользователям <img class="w-6 lg:hidden" src="/public/arrow_bottom.svg" alt=""></li>
+      <li class="hiddens text-[#4D4E59] lg:opacity-100 hidden lg:block"><a href="">Связаться с нами</a></li>
+      <li class="hiddens text-[#4D4E59] lg:opacity-100 hidden lg:block"><a href="">Вопрос - Ответ</a></li>
+  </ul>
+  <div class="line border-[1px] my-4 lg:hidden border-gray-200 w-full">
+
+  </div>
+  <ul class="flex_daddy flex mb-3 flex-col items-center lg:items-start h-[20px] mb-4 lg:gap-4">
+      <li class="font-semibold flex gap-3 items-center footer_ul">Для предпринимателей <img class="w-6 lg:hidden" src="/public/arrow_bottom.svg" alt=""></li>
+      <li class="hiddens text-[#4D4E59] lg:opacity-100 hidden lg:block"><a href="">Продавайте на Uzuma</a></li>
+      <li class="hiddens text-[#4D4E59] lg:opacity-100 hidden lg:block"><a href="">Вход для продавцов</a></li>
+  </ul>	
+  <ul class="flex flex-col gap-8 mb-4">
+      <li class="flex flex-col items-center lg:items-start gap-4">
+          <p class="font-semibold flex gap-3 items-center">Скачать приложение</p>
+          <div class="flex gap-3">
+              <a class="flex items-center gap-1" href="#"> <img src="/public/apple.svg" alt="">
+                  <span>AppStore</span></a>
+              <a class="flex items-center gap-1" href="#"> <img src="/public/google_play.svg" alt="">
+                  <span>Google Play</span></a>
+          </div>
+      </li>
+      <li class="flex flex-col lg:items-start items-center gap-4">
+          <p class="font-semibold">Uzum в соцсетях</p>
+          <nav class="flex gap-3 w-28 lg:w-auto flex-wrap">
+              <a href="#"><img class="w-12 lg:w-auto" src="/public/insta.svg" alt=""></a>
+              <a href="#"><img class="w-12 lg:w-auto" src="/public/telegram.svg" alt=""></a>
+              <a href="#"><img class="w-12 lg:w-auto" src="/public/youtube.svg" alt=""></a>
+              <a href="#"><img class="w-12 lg:w-auto" src="/public/facebook.svg" alt=""></a>
+          </nav>
+      </li>
+  </ul>
+</div> 
+<div class="px-11 flex pb-4 justify-between items-center">
+<p class="font-semibold text-[15px]">Соглашение о конфиденциональности <span class="ml-4">Пользовательсвое
+        соглашение</span></p>
+<p class="text-xs opacity-50">«2023© ООО «UZUM MARKET». ИНН 309376127. Все права защищены»</p>
+</div>
+    `;
+}
+
+export function loader() {
+  let box = document.querySelector(".box");
+
+  box.innerHTML = `
+    <div class="loader_box bg-slate-950 bg-opacity-30">
+    <div class="loader bg-white bg-opacity-60 animate-pulse">
+        <div class="inner_loader bg-white animate-pulse bg-opacity-60">
+        </div>
+    </div>
+</div>
+    `;
+}
+
 export function reload_products(arr, place) {
   place.innerHTML = "";
   for (let item of arr) {
-    // console.log(item.id);
+    // console.log(item);
     let product_card = document.createElement("div");
     let img_box = document.createElement("div");
     let discount = document.createElement("div");
@@ -201,8 +226,10 @@ export function reload_products(arr, place) {
     let prices_box = document.createElement("div");
     let salePrice = document.createElement("span");
     let price = document.createElement("p");
+    let bag_img_btn = document.createElement("button");
     let bag_img = document.createElement("img");
 
+    product_card.classList.add("product_card");
     product_card.classList.add("flex");
     product_card.classList.add("w-[200px]");
     product_card.classList.add("md:w-[220px]");
@@ -217,7 +244,10 @@ export function reload_products(arr, place) {
     discount.classList.add("text-slate-50");
     discount.classList.add("rounded");
     discount.classList.add("px-1");
-    img_box.classList.add("w-full");
+    img_box.classList.add("w-[200px]");
+    img_box.classList.add("md:w-[220px]");
+    img_box.classList.add("lg:w-[220px]");
+    img_box.classList.add("xl:w-[230px]");
     img_box.classList.add("relative");
     like.classList.add("absolute");
     like.classList.add("top-2");
@@ -244,15 +274,14 @@ export function reload_products(arr, place) {
     price.classList.add("text-xs");
     salePrice.classList.add("text-sm");
     bag_img.classList.add("cursor-pointer");
-
     // console.log(item);
 
     img.src = item.media[0];
-    like.src = "./public/like_icon.svg";
+    like.src = "/public/like_icon.svg";
     like.onclick = (e) => {
-      like.src = "./public/purple_heart.svg";
+      like.src = "/public/purple_heart.svg";
       like.classList.add("liked_product");
-      like.classList.add("scale-125");  
+      like.classList.add("scale-125");
       like.classList.add("duration-200");
 
       setTimeout(() => {
@@ -264,7 +293,7 @@ export function reload_products(arr, place) {
       console.log(liked_product);
 
       liked_product.onclick = () => {
-        liked_product.src = "./public/like_icon.svg";
+        liked_product.src = "/public/like_icon.svg";
         like.classList.remove("liked_product");
       };
     };
@@ -286,20 +315,35 @@ export function reload_products(arr, place) {
         Math.floor((item.price * item.salePercentage) / 100) +
         " руб";
     }
+    bag_img_btn.onclick = (e) => {
+      console.log(e.target);
+      if (e.target === product_card) {
+        e.stopPropagation();
+      } else {
+        console.log(item);
+      }
+    };
     product_card.onclick = () => {
-      location.assign(`/pages/product_page/?id=${item.id}`);
+      setTimeout(() => {
+        loader();
+      }, 200);
+      setTimeout(() => {
+        location.assign(`/pages/product_page/?id=${item.id}`);
+      }, 1000);
     };
 
     price.innerHTML = Math.round(item.price) + " руб";
-    bag_img.src = "./public/product_bag_icon.svg";
+    bag_img.src = "/public/product_bag_icon.svg";
+    // bag_img_btn.innerHTML = "X";
     discount.innerHTML = "Акция";
-    star_icon.src = "./public/start_icon.svg";
+    star_icon.src = "/public/start_icon.svg";
 
     place.append(product_card);
     product_card.append(img_box, title, rating, monthly_price, down_div);
     img_box.append(img, discount, like);
     rating.prepend(star_icon);
-    down_div.append(prices_box, bag_img);
+    bag_img_btn.append(bag_img);
+    down_div.append(prices_box, bag_img_btn);
     prices_box.append(price, salePrice);
   }
 }

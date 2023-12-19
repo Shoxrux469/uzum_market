@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.scss">
     <script>
         tailwind.config = {
             theme: {
@@ -17,24 +18,154 @@
             }
         }
     </script>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script> 
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
 </head>
+
 <body>
 
     <section>
         <header></header>
 
-        <div class="container w-11/12 mx-auto flex justify-between items-center">
-            <div class="left flex">
-                <div class="product_imgs w-1/12 h-full">
+        <div class="container w-11/12 mx-auto flex flex-col justify-between">
+            <p class="mb-5 text-sm">Main
+                <span class="opacity-80"> / All categories / </span>
+                <span class="prod_type opacity-80">
 
+                </span>
+                <span class="opacity-80 title">
+
+                </span>
+            </p>
+            <div class="flex mb-16">
+                <div class="left_img_box flex w-6/12 h-fit sticky top-[12px]">
+                    <div class="product_imgs flex flex-col gap-3 w-2/12 h-[100vh] overflow-y-scroll">
+
+                    </div>
+                    <div class="selected_img w-8/12">
+
+                    </div>
                 </div>
-                <div class="selected_img w-5/12">
-                    
+                <div class="right w-6/12">
+                    <div class="flex justify-between items-center">
+                        <div class="flex text-xs opacity-80 gap-3">
+                            <span class="flex w-36 items-center"><img src="/public/start_yellow.svg" alt="">
+                                5.0 (34 оценки)
+                            </span>
+                            <span>
+                                Более 200 заказов
+                            </span>
+                        </div>
+                        <div>
+                            <img src="/public/like_icon.svg" alt="">
+                        </div>
+                    </div>
+                    <h2 class="prod_name text-2xl">
+
+                    </h2>
+                    <ul>
+                        <li class="flex gap-16 mt-3">
+                            <p>Продавец: </p>
+                            <p class="ml-3 underline">Uzum</p>
+                        </li>
+                        <li class="flex gap-16 mt-3">
+                            <p class="flex gap-2">Доставка: <img src="/public/exclamation.svg" alt=""></p> <span
+                                class="opacity-80">1 день, бесплатно</span>
+                        </li>
+                    </ul>
+                    <div class="line my-8 w-full h-[1px] bg-gray-300 "></div>
+
+                    <div class="flex">
+                        <p>Цвет: <span class="colors"></span></p>
+                        <div class="color_img ml-2 font-semibold">
+
+                        </div>
+                    </div>
+                    <div>
+                        <p class="mb-3">Количество:</p>
+                        <div class="flex w-fit mb-4">
+                            <div class="flex border w-fit items-center">
+                                <button class="minus text-4xl"><img src="/public/minus_btn.svg" alt=""></button>
+                                <p class="quantity text-lg mx-4"></p>
+                                <button class="plus text-3xl"><img src="/public/plus_btn.svg" alt=""></button>
+                            </div>
+                            <p class="flex w-56 ml-4 items-center text-[#7000FF]"><img class="w-6"
+                                    src="/public/purple_fire.svg" alt=""> Осталось всего 5</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <p>Цена:</p>
+                        <div class="flex gap-4">
+                            <span class="price text-xl font-semibold"> </span>
+                            <span
+                                class="bg-[#5000AA] w-fit px-2 text-sm text-white font-medium rounded flex items-center justify-center">Распродажа</span>
+                        </div>
+                    </div>
+                    <div
+                        class="muttaham_btn py-[12px] my-8 px-3 flex items-center bg-[#f2f4f7] rounded-xl justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="monthly_price bg-[#FF0] h-fit font-semibold px-2 py-1 rounded-lg"></span>
+                            <p>в рассрочку</p>
+                        </div>
+                        <img class="w-[30px]" src="/public/arrow_right.svg" alt="">
+                    </div>
+                    <div class="flex gap-2 mb-5">
+                        <button
+                            class="add_at_bag bg-[#7000FF] text-white flex items-center justify-center py-[14px] font-semibold text-lg w-1/2 rounded-xl">
+                            Добавить в корзину
+                        </button>
+                        <button
+                            class="buy_product  text-[#7000FF] border border-[#7000FF] flex items-center justify-center py-[14px] font-semibold text-lg w-1/2 rounded-xl">
+                            Купить в 1 клик
+                        </button>
+                    </div>
+                    <p class="flex items-center gap-1 text-sm opacity-95 bg-[#fff8e6] rounded-lg px-6 py-2">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M14 4.5C12.2402 4.5 11 5.88779 11 7.5H17C17 5.88779 15.7598 4.5 14 4.5ZM9.5 11.5V9H7.5V14.25C7.5 14.6642 7.16421 15 6.75 15C6.33578 15 6 14.6642 6 14.25V8.25V7.5H6.75H9.5C9.5 5.11221 11.3598 3 14 3C16.6402 3 18.5 5.11221 18.5 7.5H21.25H22V8.25V21.75C22 22.9926 20.9926 24 19.75 24H15.25C14.8358 24 14.5 23.6642 14.5 23.25C14.5 22.8358 14.8358 22.5 15.25 22.5H19.75C20.1642 22.5 20.5 22.1642 20.5 21.75V9H18.5V11.5H17V9H11V11.5H9.5ZM14.2738 18.0323C14.5667 17.7395 14.5667 17.2646 14.2738 16.9717C13.9809 16.6788 13.506 16.6788 13.2131 16.9717L7.99548 22.1893L5.78034 19.9742C5.48744 19.6813 5.01257 19.6813 4.71967 19.9741C4.42678 20.267 4.42677 20.7419 4.71966 21.0348L7.46513 23.7803C7.60579 23.921 7.79655 24 7.99547 24C8.19438 24 8.38515 23.921 8.5258 23.7803L14.2738 18.0323Z"
+                                fill="#141415"></path>
+                        </svg>
+                        24 человека купили на этой неделе
+                    </p>
+                    <div class="mt-16 flex flex-col">
+                        <p>Коротко о товаре:</p>
+                        <ul class="opacity-80 mt-2 flex pl-5 flex-col gap-2" style="list-style-type:disc">
+                            <li>Красивый дезайн</li>
+                            <li>бесплатная гарантия в течении 1 года</li>
+                            <li>Выгодная покупка в рассрочку</li>
+                            <li>Доступность возврата в случае недоразумений</li>
+                            <li>Приемлемая цена</li>
+                            <li>Большой ассортимент продукции</li>
+                            <li>Высокое качество сырья</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="right">
+        </div>
+        <div class="border-y">
+            <div class="points flex gap-4 pt-4 w-[830px] mx-auto">
+                <div class="flex flex-col">
+                    <span class="mb-4">Описание товара</span>
+                    <div class="line border hidden border-[#7000FF] h-[2px]"></div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="mb-4">Инструкция</span>
+                    <div class="line hidden border border-[#7000FF] h-[2px]"></div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="mb-4">Отзывы</span>
+                    <div class="line hidden border border-[#7000FF] h-[2px]"></div>
+                </div>
+            </div>
+        </div>
+        <div class="container w-11/12 mx-auto flex flex-col justify-between">
+            <div class="description">
 
+            </div>
+            <div>
+                <h2 class="text-2xl font-semibold">Похожие товары</h2>
+                <div class="similar_products flex mt-4 overflow-x-scroll w-full gap-8">
+
+                </div>
             </div>
         </div>
         <footer></footer>

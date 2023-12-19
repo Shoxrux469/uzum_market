@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+</head>
+
+<body>
+
+    <section>
+        <header></header>
+
+        <div class="container w-11/12 mx-auto flex">
+            <aside class="w-[25%]">
+                <div class="inner_aside w-10/12 h-fit sticky top-[12px] bottom-[12px]">
+                    <p class="text-sm mb-8">Главная <span class="opacity-80">/ Все категории</span></p>
+                    <div>
+                        <h2 class="text-lg opacity-90">Категории</h2>
+                        <p class="prod_title mt-4 mb-10"></p>
+                        <div>
+                            <p class="font-semibold opacity-95 mb-4">Цена</p>
+                            <div class="flex gap-2">
+                                <button
+                                    class="border text-sm opacity-80 flex justify-start gap-1 items-center pl-2 h-10 w-1/2">
+                                    от <span class="min_price"></span>
+                                </button>
+                                <button
+                                    class="border text-sm opacity-80 flex justify-start gap-1 items-center pl-2 h-10 w-1/2">
+                                    до <span class="max_price"></span>
+                                </button>
+                            </div>
+                            <div class="mt-4">
+                                <div class="w-3/3 h-[2px] bg-[#7000ff] relative">
+                                    <div
+                                        class="w-3 h-3 border bg-white border-[#7000ff] rounded-full absolute left-[-2px] top-1/2 translate-y-[-50%]">
+                                    </div>
+                                    <div
+                                        class="w-3 h-3 border bg-white border-[#7000ff] rounded-full absolute right-[-2px] top-1/2 translate-y-[-50%]">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-8">
+                        <p class="font-semibold text-lg mb-4 opacity-80 my-10">Цвет</p>
+                        <ul class="flex flex-col gap-3">
+                            <li class="flex items-center text-sm">
+                                <img class="w-6 rounded-full mr-3" src="/public/brown.png" alt="">
+                                Коричневый
+                            </li>
+                            <li class="flex items-center text-sm">
+                                <img class="w-6 rounded-full mr-3" src="/public/red.webp" alt="">
+                                Красный
+                            </li>
+                            <li class="flex items-center text-sm">
+                                <img class="w-6 rounded-full mr-3" src="/public/green.webp" alt="">
+                                Зеленый
+                            </li>
+                            <li class="flex items-center text-sm">
+                                <img class="w-6 rounded-full mr-3" src="/public/khaki.webp" alt="">
+                                Хаки
+                            </li>
+                            <li class="flex items-center text-sm">
+                                <img class="w-6 rounded-full mr-3" src="/public/purple.webp" alt="">
+                                Фиолетовый
+                            </li>
+                            <li class="flex items-center text-sm">
+                                <img class="w-6 rounded-full mr-3" src="/public/pink.webp" alt="">
+                                Розовый
+                            </li>
+                            <p class="opacity-50 text-sm underline decoration-dashed">Еще 13</p>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-lg mb-3 opacity-80 mt-2">Бренд</p>
+                        <ol class="flex flex-col gap-3">
+                            <li class="flex items-center text-sm opacity-95">
+                                <input class="rounded mr-3" type="checkbox">
+                                Latt liv
+                            </li>
+                            <li class="flex items-center text-sm opacity-95">
+                                <input class="rounded mr-3" type="checkbox">
+                                SSMART
+                            </li>
+                            <li class="flex items-center text-sm opacity-95">
+                                <input class="rounded mr-3" type="checkbox">
+                                1MORE
+                            </li>
+                            <li class="flex items-center text-sm opacity-95">
+                                <input class="rounded mr-3" type="checkbox">
+                                7saber
+                            </li>
+                            <li class="flex items-center text-sm opacity-95">
+                                <input class="rounded mr-3" type="checkbox">
+                                HAGIBIS
+                            </li>
+                            <li class="flex items-center text-sm opacity-95">
+                                <input class="rounded mr-3" type="checkbox">
+                                NOVEY
+                            </li>
+                            <p class="opacity-50 text-sm underline decoration-dashed mt-2">Ещё 418</p>
+                        </ol>
+                    </div>
+                    <button class="mt-12 text-lg opacity-95 border py-2 w-full rounded-xl">Очистить все</button>
+                </div>
+            </aside>
+            <div class="searcher_content w-[75%]">
+                <h2 class="text-2xl mt-10 font-bold opacity-90">Найдено <span class="prod_num"></span> товаров в 1
+                    категории</h2>
+                <p class="text-sm mb-10 mt-4 flex items-center"><span class="opacity-80 mr-1">Сначала
+                        показывать:</span>Популярные
+                    <img class="w-5 mt-1" src="/public/arrow_bottom.svg" alt="">
+                </p>
+                <div class="product_content flex flex-wrap justify-center">
+
+                </div>
+            </div>
+        </div>
+
+        <footer></footer>
+    </section>
+
+    <script type="module" src="./script.js"></script>
+</body>
+
+</html>
