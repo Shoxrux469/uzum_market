@@ -293,10 +293,16 @@ export function reload_products(arr, place) {
     img.src = item.media[0];
     like.src = "/public/like_icon.svg";
     like.onclick = (e) => {
+      let liked_arr = {
+        prod_id: item.id,
+      };
       like.src = "/public/purple_heart.svg";
       like.classList.add("liked_product");
       like.classList.add("scale-125");
       like.classList.add("duration-200");
+      postData("/liked", liked_arr).then((res) => {
+        if (res.status !== 200 && res.status !== 201) return;
+      });
 
       setTimeout(() => {
         like.classList.remove("scale-125");
@@ -305,13 +311,6 @@ export function reload_products(arr, place) {
 
       let liked_product = document.querySelector(".liked_product");
       //   console.log(liked_product);
-
-      product_card.onclick = (e) => {
-        if (e.target.classList[5] !== "liked_product") {
-          location.assign(`/pages/product_page/${item.id}`);
-        }
-        // console.log(e.target);
-      };
 
       liked_product.onclick = () => {
         liked_product.src = "/public/like_icon.svg";
@@ -425,14 +424,17 @@ export function reload_products(arr, place) {
       pop_up_modal.append(pop_up_img, pop_up_div, pop_up_close, pop_up_btn);
       pop_up_div.append(pop_up_h2, pop_up_p);
     };
-    // product_card.onclick = () => {
-    //   setTimeout(() => {
-    //     loader();
-    //   }, 200);
-    //   setTimeout(() => {
-    //     location.assign(`/pages/product_page/?id=${item.id}`);
-    //   }, 1000);
-    // };
+    product_card.onclick = (e) => {
+      // console.log(e.target.classList);
+      if (e.target.classList[4] !== "like_btn") {
+        setTimeout(() => {
+          loader();
+        }, 200);
+        setTimeout(() => {
+          location.assign(`/pages/product_page/?id=${item.id}`);
+        }, 1000);
+      }
+    };
 
     price.innerHTML =
       Math.round(item.price)
@@ -524,25 +526,9 @@ export function reload_favorites(arr, place) {
     // console.log(item);
 
     img.src = item.media[0];
-    like.src = "/public/like_icon.svg";
+    like.src = "/public/purple_heart.svg";
     like.onclick = (e) => {
-      like.src = "/public/purple_heart.svg";
-      like.classList.add("liked_product");
-      like.classList.add("scale-125");
-      like.classList.add("duration-200");
-
-      setTimeout(() => {
-        like.classList.remove("scale-125");
-        like.classList.add("duration-200");
-      }, 300);
-
-      let liked_product = document.querySelector(".liked_product");
-      console.log(liked_product);
-
-      liked_product.onclick = () => {
-        liked_product.src = "/public/like_icon.svg";
-        like.classList.remove("liked_product");
-      };
+      like.src = "/public/like_icon.svg";
     };
 
     title.innerHTML = item.title.slice(0, 48) + "..";
@@ -575,14 +561,17 @@ export function reload_favorites(arr, place) {
         console.log(item);
       }
     };
-    // product_card.onclick = () => {
-    //   setTimeout(() => {
-    //     loader();
-    //   }, 200);
-    //   setTimeout(() => {
-    //     location.assign(`/pages/product_page/?id=${item.id}`);
-    //   }, 1000);
-    // };
+    product_card.onclick = (e) => {
+      // console.log(e.target.classList);
+      if (e.target.classList[4] !== "like_btn") {
+        setTimeout(() => {
+          loader();
+        }, 200);
+        setTimeout(() => {
+          location.assign(`/pages/product_page/?id=${item.id}`);
+        }, 1000);
+      }
+    };
 
     price.innerHTML =
       Math.round(item.price)
@@ -669,7 +658,7 @@ export function reload_bag_modal(arr, place) {
       }
     };
 
-    prod_h2.innerHTML = item.title;
+    prod_h2.innerHTML = item.title.slice(0, 40) + '..';
     // span.innerHTML = item.
     prod_p.innerHTML =
       item.price -

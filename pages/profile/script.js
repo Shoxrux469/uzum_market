@@ -24,8 +24,6 @@ let sex_btns = document.querySelectorAll(".sex_btns button");
 let all_orders = document.querySelector(".all_orders");
 let active_orders = document.querySelector(".active_orders");
 let btns = document.querySelectorAll(".btns button");
-let searcher_inp = document.querySelector(".searcher_inp");
-let favorites_btn = document.querySelector(".favorites_btn");
 let log_out = document.querySelector(".log_out");
 
 log_out.onclick = () => {
@@ -44,15 +42,6 @@ log_out.onclick = () => {
 //     res.classList.remove("bg-gray-200");
 //   })
 // }
-
-document.querySelector(".logo").onclick = () => {
-  location.assign("/");
-};
-
-favorites_btn.onclick = () => {
-  location.assign("/pages/favorites_page/");
-};
-
 if (user.length !== 0) {
   document.querySelector(".log_in_btn p").innerHTML = user.name;
 } else {
@@ -65,15 +54,6 @@ start_shopping.forEach((res) => {
     location.assign("/");
   };
 });
-
-searcher_inp.onkeydown = (e) => {
-  if (e.key === "Enter") {
-    localStorage.setItem(`searcher_value`, JSON.stringify(searcher_inp.value));
-    location.assign("/pages/searcher_page/");
-    // searcher_inp.value
-  }
-  // console.log(searcher_inp.value);
-};
 
 btns.forEach((res) => {
   res.onclick = (e) => {

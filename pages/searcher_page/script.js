@@ -10,16 +10,7 @@ let product_content = document.querySelector(".product_content");
 let searcher_inp = document.querySelector(".searcher_inp");
 let min_price = document.querySelector(".min_price");
 let max_price = document.querySelector(".max_price");
-let log_in_btn = document.querySelector(".log_in_btn");
 let prod_num = document.querySelector(".prod_num");
-let log_in_modal = document.querySelector(".log_in_modal");
-let log_in_box = document.querySelector(".log_in_box");
-
-if (user.length !== 0) {
-  document.querySelector(".log_in_btn p").innerHTML = user.name;
-} else {
-  document.querySelector(".log_in_btn p").innerHTML = "Войти";
-}
 
 searcher_inp.onkeydown = (e) => {
   if (e.key === "Enter") {
@@ -31,23 +22,6 @@ searcher_inp.onkeydown = (e) => {
   }
   // console.log(searcher_inp.value);
 };
-
-log_in_btn.onclick = () => {
-  if (user.length === 0) {
-    log_in_modal.classList.remove("hidden");
-    log_in_modal.classList.add("block");
-    log_in_box.classList.add("opacity-100");
-    log_in_box.classList.remove("opacity-0");
-  } else {
-    location.assign("/pages/profile/");
-  }
-};
-
-document.querySelector(".logo").onclick = () => {
-  location.assign("/");
-};
-// localStorage.removeItem("searcher_value")
-
 let found_items = [];
 
 let searcher_value = JSON.parse(localStorage.getItem("searcher_value")) || [];
@@ -55,11 +29,9 @@ let searcher_value = JSON.parse(localStorage.getItem("searcher_value")) || [];
 searcher_inp.value = searcher_value;
 
 getData("/goods").then((res) => {
-  // console.log(res.data);
   for (let item of res.data) {
-    // console.log(searcher_value);
+
     let item_title = item.title.toLowerCase();
-    // console.log(item_title.includes(searcher_value));
     if (item_title.includes(searcher_value)) {
       found_items.push(item);
     }

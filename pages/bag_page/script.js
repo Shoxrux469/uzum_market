@@ -7,15 +7,9 @@ header();
 footer();
 
 let main_page_btn = document.querySelector(".main_page_btn");
-let log_in_btn = document.querySelector(".log_in_btn");
-let logo = document.querySelector(".logo");
-let log_in_box = document.querySelector(".log_in_box");
-let log_in_modal = document.querySelector(".log_in_modal");
 let swiper_wrapper = document.querySelector(".swiper-wrapper");
 let footer_ul = document.querySelectorAll(".footer_ul");
-let favorites_btn = document.querySelector(".favorites_btn");
 let bag_btn = document.querySelector(".bag_btn");
-let searcher_inp = document.querySelector(".searcher_inp");
 
 main_page_btn.onclick = () => {
   location.assign("/");
@@ -23,40 +17,6 @@ main_page_btn.onclick = () => {
 
 bag_btn.onclick = () => {
   location.assign("/pages/bag_page/");
-};
-
-favorites_btn.onclick = () => {
-  location.assign("/pages/favorites_page/");
-};
-
-if (user.length !== 0) {
-  document.querySelector(".log_in_btn p").innerHTML = user.name;
-} else {
-  document.querySelector(".log_in_btn p").innerHTML = "Войти";
-}
-
-logo.onclick = () => {
-  location.assign("/");
-};
-
-log_in_btn.onclick = () => {
-  if (user.length === 0) {
-    log_in_modal.classList.remove("hidden");
-    log_in_modal.classList.add("block");
-    log_in_box.classList.add("opacity-100");
-    log_in_box.classList.remove("opacity-0");
-  } else {
-    location.assign("/pages/profile/");
-  }
-};
-
-searcher_inp.onkeydown = (e) => {
-  if (e.key === "Enter") {
-    localStorage.setItem(`searcher_value`, JSON.stringify(searcher_inp.value));
-    location.assign("/pages/searcher_page/");
-    // searcher_inp.value
-  }
-  // console.log(searcher_inp.value);
 };
 
 footer_ul.forEach((res) => {

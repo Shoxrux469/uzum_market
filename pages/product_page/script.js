@@ -5,36 +5,7 @@ import { user } from "/modules/user";
 
 header();
 footer();
-let log_in_btn = document.querySelector(".log_in_btn");
-let log_in_modal = document.querySelector(".log_in_modal");
-let log_in_box = document.querySelector(".log_in_box");
 let similar_products = document.querySelector(".similar_products");
-let favorites_btn = document.querySelector(".favorites_btn");
-
-document.querySelector(".logo").onclick = () => {
-  location.assign("/");
-};
-
-if (user.length !== 0) {
-  document.querySelector(".log_in_btn p").innerHTML = user.name;
-} else {
-  document.querySelector(".log_in_btn p").innerHTML = "Войти";
-}
-
-log_in_btn.onclick = () => {
-  if (user.length === 0) {
-    log_in_modal.classList.remove("hidden");
-    log_in_modal.classList.add("block");
-    log_in_box.classList.add("opacity-100");
-    log_in_box.classList.remove("opacity-0");
-  } else {
-    location.assign("/pages/profile/");
-  }
-};
-
-favorites_btn.onclick = () => {
-  location.assign("/pages/favorites_page/");
-};
 
 let id = location.search.split("=").at(-1);
 // console.log(id);
