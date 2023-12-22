@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/style.scss">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -26,7 +27,7 @@
         <header></header>
 
         <div class="container w-11/12 mx-auto flex">
-            <aside class="w-[25%]">
+            <aside class="w-[22%]">
                 <div class="inner_aside w-10/12 h-fit sticky top-[12px] bottom-[12px]">
                     <p class="text-sm mb-8">Главная <span class="opacity-80">/ Все категории</span></p>
                     <div>
@@ -119,14 +120,14 @@
                     <button class="mt-12 text-lg opacity-95 border py-2 w-full rounded-xl">Очистить все</button>
                 </div>
             </aside>
-            <div class="searcher_content w-[75%]">
+            <div class="searcher_content w-[78%]">
                 <h2 class="text-2xl mt-10 font-bold opacity-90">Найдено <span class="prod_num"></span> товаров в 1
                     категории</h2>
                 <p class="text-sm mb-10 mt-4 flex items-center"><span class="opacity-80 mr-1">Сначала
                         показывать:</span>Популярные
                     <img class="w-5 mt-1" src="/public/arrow_bottom.svg" alt="">
                 </p>
-                <div class="product_content flex flex-wrap justify-center">
+                <div class="product_content flex gap-4 flex-wrap justify-center">
 
                 </div>
             </div>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.scss">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+</head>
+
+<body>
+
+    <section>
+        <header></header>
+        <div class="container mt-5 pt-3 pb-10 mx-auto">
+            <div class="innner_content mx-auto flex flex-col items-center my-20">
+                <img class="w-32" src="/public/shopocat.png" alt="">
+                <h2 class="text-2xl mt-5 font-semibold text-center opacity-95">В корзине пока нет товаров</h2>
+                <p class="mt-3 text-sm opacity-95 text-center">Начните с подборок на главной странице или найдите нужный
+                    товар через поиск</p>
+                <button class="main_page_btn bg-[#7000ff] rounded-lg border text-white py-2 px-4 font-semibold mt-3">На
+                    главную</button>
+            </div>
+            <div class="pop_products mt-5">
+                <h2 class="text-2xl font-semibold py-4">Популярные товары</h2>
+                <div class="pop_content flex items-center w-full gap-5">
+
+                    <div class="swiper">
+
+                        <div class="swiper-wrapper">
+
+                        </div>
+
+                        <div class="swiper-pagination"></div>
+                        <!-- Если нужно, добавьте навигацию (например, стрелки) -->
+                        <div class="swiper-button-next p-[25px] lg:p-[30px]"></div>
+                        <div class="swiper-button-prev p-[25px] lg:p-[30px]"></div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <footer></footer>
+    </section>
+
+    <script type="module" src="./script.js"></script>
+</body>
+
+</html>

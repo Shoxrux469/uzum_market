@@ -1,8 +1,15 @@
 import { getData, postData } from "./modules/https";
-import { header, footer, reload_products } from "./modules/ui";
+import {
+  loader,
+  header,
+  footer,
+  reload_products,
+  reload_bag_modal,
+} from "./modules/ui";
+import { user } from "/modules/user";
+
 header();
 footer();
-let user = JSON.parse(localStorage.getItem("user")) || [];
 
 let show_all_btn = document.querySelector(".show_all_btn");
 let furniture_content = document.querySelector(".furniture_content");
@@ -13,37 +20,117 @@ let kitchen_content = document.querySelector(".kitchen_content");
 let log_in_btn = document.querySelector(".log_in_btn");
 let footer_ul = document.querySelectorAll(".footer_ul");
 let searcher_inp = document.querySelector(".searcher_inp");
+let favorites_btn = document.querySelector(".favorites_btn");
 let logo = document.querySelector(".logo");
+let header_div = document.querySelector("header");
+let arrow_top = document.querySelector(".arrow_top");
+let bag_btn = document.querySelector(".bag_btn");
+let bag_main_btn = document.querySelector(".bag_main_btn");
+let pop_up_modal = document.querySelector(".pop_up_modal");
+let prod_quantity = document.querySelector(".prod_quantity");
+let bag_modal = document.querySelector(".bag_modal");
+let bag_main_modal = document.querySelector(".bag_main_modal");
+
+bag_main_btn.onclick = (e) => {
+  console.log(e.target);
+  if (e.target.classList[0] == "bag_btn") {
+    location.assign("/pages/bag_page/");
+  }
+};
+
+bag_main_btn.onmouseenter = () => {
+  bag_main_modal.classList.remove("hidden");
+  bag_main_modal.onmouseenter = () => {
+    bag_main_modal.classList.remove("hidden");
+  };
+};
+bag_main_btn.onmouseleave = () => {
+  bag_main_modal.classList.add("hidden");
+};
+bag_main_modal.onmouseleave = () => {
+  bag_main_modal.classList.add("hidden");
+};
+
+function openArrow() {
+  let window_height = window.scrollY;
+  // console.log(window_height);
+  if (window_height >= 570) {
+    arrow_top.classList.remove("bottom-[-55px]");
+    arrow_top.classList.add("ease-in-out");
+    arrow_top.classList.add("duration-200");
+    arrow_top.classList.add("bottom-8");
+  } else {
+    arrow_top.classList.remove("bottom-8");
+    arrow_top.classList.add("bottom-[-55px]");
+  }
+}
+
+arrow_top.onclick = () => {
+  header_div.scrollIntoView({
+    behavior: "smooth",
+  });
+};
+
+window.onscroll = () => {
+  openArrow();
+};
 
 logo.onclick = () => {
-  location.assign('/')
-}
+  location.assign("/");
+};
 
-
+favorites_btn.onclick = () => {
+  location.assign("/pages/favorites_page/");
+};
 
 // searcher_inp.onkeyup = () => {
-  //   getData("/goods").then((res) => {
-    //     for (let item of res.data) {
-      //       // console.log(item);
-      //       if (searcher_inp.value === item.title) {
-        //         console.log(item);
-        //         // item.scrollIntoView({
-          //         //   behavior: "smooth",
-          //         // });
-          //       }
-          //     }
-          //   });
-          // };
+//   getData("/goods").then((res) => {
+//     for (let item of res.data) {
+//       // console.log(item);
+//       if (searcher_inp.value === item.title) {
+//         console.log(item);
+//         // item.scrollIntoView({
+//         //   behavior: "smooth",
+//         // });
+//       }
+//     }
+//   });
+// };
+
+getData("/bag").then((res) => {
+  let bag_arr = [];
+  for (let item of res.data) {
+    // console.log(item);
+    getData("/goods").then((res) => {
+      for (let good of res.data) {
+        if (good.id === item.prod_id) {
+          bag_arr.push(good);
+        }
+      }
+      // console.log(bag_arr);
+      reload_bag_modal(bag_arr, bag_modal);
+    });
+  }
+});
+
+getData("/bag").then((res) => {
+  if (res.data.length === 0) {
+    prod_quantity.classList.add("hidden");
+  } else {
+    prod_quantity.classList.remove("hidden");
+    prod_quantity.innerHTML = res.data.length;
+  }
+  // console.log(res.data.length);
+});
 
 searcher_inp.onkeydown = (e) => {
-  if(e.key === "Enter") {
-    localStorage.setItem(`searcher_value`, JSON.stringify(searcher_inp.value))
-    location.assign('/pages/searcher_page/')
+  if (e.key === "Enter") {
+    localStorage.setItem(`searcher_value`, JSON.stringify(searcher_inp.value));
+    location.assign("/pages/searcher_page/");
     // searcher_inp.value
-
   }
   // console.log(searcher_inp.value);
-}
+};
 
 footer_ul.forEach((res) => {
   // console.log(res);
@@ -111,7 +198,12 @@ log_in_btn.onclick = () => {
     log_in_box.classList.add("opacity-100");
     log_in_box.classList.remove("opacity-0");
   } else {
-    location.assign("/pages/profile/");
+    setTimeout(() => {
+      location.assign("/pages/profile/");
+    }, 1000);
+    setTimeout(() => {
+      loader();
+    }, 200);
   }
 };
 

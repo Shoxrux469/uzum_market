@@ -44,7 +44,11 @@
   }
 }
 .log_in_modal {
-  z-index: 2147483647;
+  z-index: 2147483640;
+}
+.arrow_top{
+  z-index: 2147483641;
+  border: 0;
 }
 
 .swiper-button-next,
@@ -62,6 +66,20 @@
   position: relative;
   //   z-index: 1 !important;
   border-radius: 20px;
+}
+.bag_modal{
+  position: absolute;
+  z-index: 2147483641;
+  box-shadow: 0px 5px 15px -6px black;
+}
+
+.pop_up_modal {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2147483641;
+  box-shadow: 0px 2px 10px -4px black;
 }
 
 .product_card:hover {
@@ -127,6 +145,7 @@
 
 .swiper-slide {
   text-align: center;
+  width: fit-content;
   font-size: 18px;
   background: #fff;
 }

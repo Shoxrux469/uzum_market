@@ -1,14 +1,15 @@
 import { header, footer } from "/modules/ui";
 import { getData } from "/modules/https";
 import { reload_products } from "../../modules/ui";
+import { user } from "/modules/user";
 
 header();
 footer();
-let user = JSON.parse(localStorage.getItem("user")) || [];
 let log_in_btn = document.querySelector(".log_in_btn");
 let log_in_modal = document.querySelector(".log_in_modal");
 let log_in_box = document.querySelector(".log_in_box");
 let similar_products = document.querySelector(".similar_products");
+let favorites_btn = document.querySelector(".favorites_btn");
 
 document.querySelector(".logo").onclick = () => {
   location.assign("/");
@@ -31,6 +32,10 @@ log_in_btn.onclick = () => {
   }
 };
 
+favorites_btn.onclick = () => {
+  location.assign("/pages/favorites_page/");
+};
+
 let id = location.search.split("=").at(-1);
 // console.log(id);
 let product_imgs = document.querySelector(".product_imgs");
@@ -38,8 +43,8 @@ let selected_img = document.querySelector(".selected_img");
 
 getData(`/goods/${id}`).then((res) => {
   let quantity = document.querySelector(".quantity");
-  document.querySelector(".title").innerHTML = res.data.title
-  document.querySelector(".prod_type").innerHTML = res.data.type + '/'
+  document.querySelector(".title").innerHTML = res.data.title;
+  document.querySelector(".prod_type").innerHTML = res.data.type + "/";
   quantity.innerHTML = 1;
   document.querySelector(".monthly_price").innerHTML =
     "От " +

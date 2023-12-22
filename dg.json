@@ -1,6 +1,60 @@
 {
   "bag": [
-
+    {
+      "prod_id": 4,
+      "num": 8,
+      "id": 1
+    },
+    {
+      "prod_id": 0.30766659663183327,
+      "num": 1,
+      "id": 2
+    },
+    {
+      "prod_id": 18,
+      "num": 2,
+      "id": 3
+    },
+    {
+      "prod_id": 0.1452291405255206,
+      "num": 1,
+      "id": 4
+    },
+    {
+      "prod_id": 3,
+      "num": 1,
+      "id": 5
+    },
+    {
+      "prod_id": 13,
+      "num": 1,
+      "id": 6
+    },
+    {
+      "prod_id": 20,
+      "num": 2,
+      "id": 7
+    },
+    {
+      "prod_id": 5,
+      "num": 1,
+      "id": 8
+    },
+    {
+      "prod_id": 9,
+      "num": 1,
+      "id": 9
+    },
+    {
+      "prod_id": 16,
+      "num": 1,
+      "id": 10
+    },
+    {
+      "prod_id": 12,
+      "num": 1,
+      "id": 11
+    }
   ],
   "users": [
     {
@@ -18,7 +72,7 @@
       "email": "mamadsaidovsohruh07@gmail.com",
       "password": "4444",
       "id": 2,
-      "gender": "Активные",
+      "gender": "Мужской",
       "middle_name": "Суръатович",
       "birthday": "26022006"
     }

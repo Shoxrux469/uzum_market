@@ -1,6 +1,7 @@
 import { header, footer } from "/modules/ui";
 import { getData } from "/modules/https";
 import { reload_products } from "../../modules/ui";
+import { user } from "/modules/user";
 
 header();
 footer();
@@ -11,7 +12,8 @@ let min_price = document.querySelector(".min_price");
 let max_price = document.querySelector(".max_price");
 let log_in_btn = document.querySelector(".log_in_btn");
 let prod_num = document.querySelector(".prod_num");
-let user = JSON.parse(localStorage.getItem("user")) || [];
+let log_in_modal = document.querySelector(".log_in_modal");
+let log_in_box = document.querySelector(".log_in_box");
 
 if (user.length !== 0) {
   document.querySelector(".log_in_btn p").innerHTML = user.name;
@@ -62,16 +64,26 @@ getData("/goods").then((res) => {
       found_items.push(item);
     }
   }
-  prod_num.innerHTML = found_items.length
+  prod_num.innerHTML = found_items.length;
   reload_products(found_items, product_content);
-  //   console.log(found_items);
+
   let nums = [];
+
   for (let item of found_items) {
-    nums.push(item.price);
-    item.price;
+    let salePrice =
+      item.price - Math.floor((item.price * item.salePercentage) / 100);
+
+    nums.push(salePrice);
   }
+
   let min_num = Math.min(...nums);
   let max_num = Math.max(...nums);
-  min_price.innerHTML = min_num;
-  max_price.innerHTML = max_num;
+
+  min_price.innerHTML = min_num
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+  max_price.innerHTML = max_num
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 });

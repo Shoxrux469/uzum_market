@@ -1,4 +1,4 @@
-import { getData } from "./https";
+import { deleteData, editData, getData, postData } from "./https";
 export function header() {
   let header = document.querySelector("header");
 
@@ -22,17 +22,17 @@ export function header() {
       </div>
       <div class="text-[#62656A] hidden xl:block">Доставим ваш заказ бесплатно — всего за 1 день!</div>
       <ul class="flex gap-[15px] items-center">
-          <li class="text-[#62656A] hover:text-black cursor-pointer hidden xl:block">Продавайте на Uzum</li>
-          <li class="text-[#62656A] hover:text-black cursor-pointer">Вопрос-ответ</li>
-          <li class="text-[#62656A] hover:text-black cursor-pointer">Мои заказы</li>
+          <li class="text-[#62656A] hover:text-black text-sm cursor-pointer">Вопрос-ответ</li>
+          <li class="text-[#62656A] hover:text-black text-sm cursor-pointer">Мои заказы</li>
           <li class="flex text-[#62656A] gap-1 cursor-pointer"><img src="/public/ru_lang_icon.svg" alt="">
               Русский</li>
       </ul>
   </div>
 </div>
 <div class="header my-4 mb-[10px] flex justify-between w-11/12 mx-auto">
-  <svg class="logo hidden cursor-pointer xl:w-2/12 lg:w-3/12 lg:block" data-v-aa1700bc="" viewBox="0 0 215 32"
-      fill="none" xmlns="http://www.w3.org/2000/svg" alt="Uzum" class="ui-icon  logo">
+  <svg class="logo hidden cursor-pointer xl:w-2/12 lg:w-3/12 lg:block" data-v-aa1700bc=""
+      viewBox="0 0 215 32" fill="none" xmlns="http://www.w3.org/2000/svg" alt="Uzum"
+      class="ui-icon  logo">
       <rect width="31.9764" height="31.9764" rx="15.9882" fill="#FFFF00"></rect>
       <path
           d="M3.75192 14.7933C3.27969 12.1152 3.04358 10.7761 3.38441 9.66131C3.68421 8.68069 4.28676 7.82017 5.1057 7.20306C6.0367 6.50149 7.37576 6.26538 10.0539 5.79316L18.144 4.36665C20.8221 3.89442 22.1612 3.65831 23.276 3.99914C24.2566 4.29894 25.1171 4.90149 25.7342 5.72043C26.4358 6.65143 26.6719 7.99049 27.1441 10.6686L28.2537 16.9611C28.7259 19.6393 28.962 20.9783 28.6212 22.0931C28.3214 23.0737 27.7188 23.9343 26.8999 24.5514C25.9689 25.2529 24.6298 25.489 21.9517 25.9613L13.8616 27.3878C11.1835 27.86 9.84441 28.0961 8.72961 27.7553C7.749 27.4555 6.88847 26.8529 6.27136 26.034C5.5698 25.103 5.33368 23.7639 4.86146 21.0858L3.75192 14.7933Z"
@@ -109,17 +109,31 @@ export function header() {
       </div>
   </div>
   <div class="header_right lg:ml-4 hidden lg:flex items-center xl:gap-3">
-      <button class="log_in_btn w-12 xl:w-auto h-10 xl:gap-2 hover:bg-gray-200 xl:px-2 flex items-center rounded">
+      <button
+          class="log_in_btn w-12 xl:w-auto h-10 xl:gap-2 hover:bg-gray-200 xl:px-2 flex items-center rounded">
           <img class="block" src="/public/log_in_icon.svg" alt="">
           <p class="hidden xl:block">Войти</p>
       </button>
-      <button class="h-10 xl:gap-2 w-12 xl:w-auto hover:bg-gray-200 xl:px-2 flex items-center rounded">
+      <button
+          class="favorites_btn h-10 xl:gap-2 w-12 xl:w-auto hover:bg-gray-200 xl:px-2 flex items-center rounded">
           <img src="/public/heart_icon.svg" alt="">
           <p class="hidden xl:block">Избранное</p>
       </button>
-      <button class="h-10 xl:gap-2 w-12 xl:w-auto hover:bg-gray-200 xl:px-2 flex items-center rounded">
+      <button
+          class="bag_main_btn h-10 xl:gap-2 w-12 xl:w-auto hover:bg-gray-200 xl:px-2 flex items-center rounded relative">
           <img src="/public/bag_icon.svg" alt="">
-          <p class="hidden xl:block">Корзина</p>
+          <p class="bag_btn hidden xl:block text-center">
+              Корзина
+              <span
+                  class="prod_quantity bg-[#7000ff] text-center text-white px-[7px] py-[1.5px] text-sm rounded">
+
+              </span>
+          </p>
+          <div class="bag_main_modal hidden absolute flex flex-col bottom-0 rounded left-[-207%]">
+              <div class="bag_modal flex w-[420px] bg-white flex-col">
+
+              </div>
+          </div>
       </button>
   </div>
 </div>
@@ -188,7 +202,7 @@ export function footer() {
       </li>
   </ul>
 </div> 
-<div class="px-11 flex pb-4 justify-between items-center">
+<div class="px-11 flex flex-col mb-20 text-center gap-4 lg:flex-row pb-4 justify-between items-center">
 <p class="font-semibold text-[15px]">Соглашение о конфиденциональности <span class="ml-4">Пользовательсвое
         соглашение</span></p>
 <p class="text-xs opacity-50">«2023© ООО «UZUM MARKET». ИНН 309376127. Все права защищены»</p>
@@ -228,7 +242,240 @@ export function reload_products(arr, place) {
     let price = document.createElement("p");
     let bag_img_btn = document.createElement("button");
     let bag_img = document.createElement("img");
+    let pop_up_modal = document.querySelector(".pop_up_modal");
+    product_card.classList.add("product_card");
+    product_card.classList.add("flex");
+    product_card.classList.add("w-[200px]");
+    product_card.classList.add("md:w-[220px]");
+    product_card.classList.add("lg:w-[220px]");
+    product_card.classList.add("xl:w-[230px]");
+    product_card.classList.add("cursor-pointer");
+    product_card.classList.add("flex-col");
+    discount.classList.add("absolute");
+    discount.classList.add("bottom-0");
+    discount.classList.add("left-0");
+    discount.classList.add("bg-[#5000AA]");
+    discount.classList.add("text-slate-50");
+    discount.classList.add("rounded");
+    discount.classList.add("px-1");
+    img_box.classList.add("w-[200px]");
+    img_box.classList.add("md:w-[220px]");
+    img_box.classList.add("lg:w-[220px]");
+    img_box.classList.add("xl:w-[230px]");
+    img_box.classList.add("relative");
+    like.classList.add("absolute");
+    like.classList.add("top-2");
+    like.classList.add("w-fit");
+    like.classList.add("right-2");
+    like.classList.add("like_btn");
+    monthly_price.classList.add("bg-[#FFFF00]");
+    monthly_price.classList.add("w-fit");
+    monthly_price.classList.add("rounded");
+    monthly_price.classList.add("px-1");
+    img.classList.add("w-full");
+    img.classList.add("rounded");
+    rating.classList.add("flex");
+    rating.classList.add("text-[#8A8D93]");
+    rating.classList.add("mb-2");
+    title.classList.add("w-full");
+    title.classList.add("mt-4");
+    down_div.classList.add("mt-4");
+    down_div.classList.add("flex");
+    down_div.classList.add("justify-between");
+    down_div.classList.add("align-center");
+    price.classList.add("text-[#757575]");
+    price.classList.add("line-through");
+    price.classList.add("text-xs");
+    salePrice.classList.add("text-sm");
+    bag_img.classList.add("cursor-pointer");
+    // console.log(item);
 
+    img.src = item.media[0];
+    like.src = "/public/like_icon.svg";
+    like.onclick = (e) => {
+      like.src = "/public/purple_heart.svg";
+      like.classList.add("liked_product");
+      like.classList.add("scale-125");
+      like.classList.add("duration-200");
+
+      setTimeout(() => {
+        like.classList.remove("scale-125");
+        like.classList.add("duration-200");
+      }, 300);
+
+      let liked_product = document.querySelector(".liked_product");
+      //   console.log(liked_product);
+
+      product_card.onclick = (e) => {
+        if (e.target.classList[5] !== "liked_product") {
+          location.assign(`/pages/product_page/${item.id}`);
+        }
+        // console.log(e.target);
+      };
+
+      liked_product.onclick = () => {
+        liked_product.src = "/public/like_icon.svg";
+        like.classList.remove("liked_product");
+      };
+    };
+
+    title.innerHTML = item.title.slice(0, 48) + "..";
+    // console.log(title.innerHTML.);
+    // console.log(item);
+
+    if (item.id == 12) {
+      title.innerHTML = item.title.slice(0, 47);
+    }
+    rating.innerHTML = item.rating;
+    monthly_price.innerHTML =
+      Math.round((item.price * 12) / 100)
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб/мес";
+    salePrice.innerHTML =
+      item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
+
+    if (item.salePercentage > 0) {
+      salePrice.innerHTML =
+        item.price -
+        Math.floor((item.price * item.salePercentage) / 100) +
+        " руб";
+    }
+    bag_img_btn.onclick = () => {
+      let bag_obj = {
+        prod_id: item.id,
+        num: 1,
+      };
+
+      pop_up_modal.innerHTML = "";
+      pop_up_modal.classList.remove("top-2");
+      pop_up_modal.classList.add("opacity-0");
+      pop_up_modal.classList.add("top-[-130px]");
+
+      getData("/bag").then((res) => {
+        let found = res.data.find((elem) => elem.prod_id === item.id);
+
+        console.log(found);
+
+        if (found) {
+          for (let elem of res.data) {
+            let edited_bag = {
+              num: (elem.num += 1),
+            };
+
+            if (elem.prod_id === found.prod_id) {
+              elem.num += 1;
+
+              editData("/bag/" + elem.id, edited_bag).then((res) => {
+                if (res.status !== 200 && res.status !== 201) return;
+              });
+            }
+          }
+        } else {
+          postData("/bag", bag_obj).then((res) => {
+            setTimeout(() => {
+              location.reload();
+            }, 3000);
+          });
+        }
+      });
+
+      setTimeout(() => {
+        pop_up_modal.classList.add("ease-out");
+        pop_up_modal.classList.add("duration-500");
+        pop_up_modal.classList.remove("opacity-0");
+        pop_up_modal.classList.remove("top-[-130px]");
+        pop_up_modal.classList.add("top-2");
+      }, 200);
+      setTimeout(() => {
+        pop_up_modal.innerHTML = "";
+        pop_up_modal.classList.remove("top-2");
+        pop_up_modal.classList.add("opacity-0");
+        pop_up_modal.classList.add("top-[-130px]");
+      }, 3000);
+
+      let pop_up_close = document.createElement("img");
+      let pop_up_img = document.createElement("img");
+      let pop_up_div = document.createElement("div");
+      let pop_up_h2 = document.createElement("h2");
+      let pop_up_p = document.createElement("p");
+      let pop_up_btn = document.createElement("button");
+
+      pop_up_img.classList.add("w-28");
+      pop_up_img.classList.add("h-28");
+      pop_up_h2.classList.add("text-2xl");
+      pop_up_h2.classList.add("font-semibold");
+      pop_up_close.classList.add("absolute");
+      pop_up_close.classList.add("top-3");
+      pop_up_close.classList.add("right-4");
+      pop_up_close.classList.add("w-4");
+      pop_up_close.classList.add("h-4");
+      pop_up_btn.classList.add("absolute");
+      pop_up_btn.classList.add("bottom-3");
+      pop_up_btn.classList.add("right-4");
+      pop_up_btn.classList.add("text-xl");
+      pop_up_btn.classList.add("font-semibold");
+      pop_up_btn.classList.add("text-[#7000ff]");
+
+      pop_up_img.src = item.media[0];
+      pop_up_close.src = "/public/close_icon.png";
+      pop_up_h2.innerHTML = "Товар добавлен в корзину";
+      pop_up_p.innerHTML = item.title;
+      pop_up_btn.innerHTML = "Перейти в корзину";
+
+      pop_up_modal.append(pop_up_img, pop_up_div, pop_up_close, pop_up_btn);
+      pop_up_div.append(pop_up_h2, pop_up_p);
+    };
+    // product_card.onclick = () => {
+    //   setTimeout(() => {
+    //     loader();
+    //   }, 200);
+    //   setTimeout(() => {
+    //     location.assign(`/pages/product_page/?id=${item.id}`);
+    //   }, 1000);
+    // };
+
+    price.innerHTML =
+      Math.round(item.price)
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
+    bag_img.src = "/public/product_bag_icon.svg";
+    // bag_img_btn.innerHTML = "X";
+    discount.innerHTML = "Акция";
+    star_icon.src = "/public/start_icon.svg";
+
+    place.append(product_card);
+    product_card.append(img_box, title, rating, monthly_price, down_div);
+    img_box.append(img, discount, like);
+    rating.prepend(star_icon);
+    bag_img_btn.append(bag_img);
+    down_div.append(prices_box, bag_img_btn);
+    prices_box.append(price, salePrice);
+  }
+}
+
+export function reload_favorites(arr, place) {
+  place.innerHTML = "";
+  for (let item of arr) {
+    // console.log(item);
+    let swiper_slide = document.createElement("div");
+    let product_card = document.createElement("div");
+    let img_box = document.createElement("div");
+    let discount = document.createElement("div");
+    let like = document.createElement("img");
+    let img = document.createElement("img");
+    let title = document.createElement("p");
+    let rating = document.createElement("span");
+    let star_icon = document.createElement("img");
+    let monthly_price = document.createElement("span");
+    let down_div = document.createElement("div");
+    let prices_box = document.createElement("div");
+    let salePrice = document.createElement("span");
+    let price = document.createElement("p");
+    let bag_img_btn = document.createElement("button");
+    let bag_img = document.createElement("img");
+
+    swiper_slide.classList.add("swiper-slide");
+    swiper_slide.classList.add("w-fit");
     product_card.classList.add("product_card");
     product_card.classList.add("flex");
     product_card.classList.add("w-[200px]");
@@ -306,8 +553,12 @@ export function reload_products(arr, place) {
       title.innerHTML = item.title.slice(0, 47);
     }
     rating.innerHTML = item.rating;
-    monthly_price.innerHTML = Math.round((item.price * 12) / 100) + " руб/мес";
-    salePrice.innerHTML = item.price + " руб";
+    monthly_price.innerHTML =
+      Math.round((item.price * 12) / 100)
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб/мес";
+    salePrice.innerHTML =
+      item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
 
     if (item.salePercentage > 0) {
       salePrice.innerHTML =
@@ -316,29 +567,34 @@ export function reload_products(arr, place) {
         " руб";
     }
     bag_img_btn.onclick = (e) => {
-      console.log(e.target);
+      //   console.log(e.target);
+      location.assign("/pages/bag_page/");
       if (e.target === product_card) {
         e.stopPropagation();
       } else {
         console.log(item);
       }
     };
-    product_card.onclick = () => {
-      setTimeout(() => {
-        loader();
-      }, 200);
-      setTimeout(() => {
-        location.assign(`/pages/product_page/?id=${item.id}`);
-      }, 1000);
-    };
+    // product_card.onclick = () => {
+    //   setTimeout(() => {
+    //     loader();
+    //   }, 200);
+    //   setTimeout(() => {
+    //     location.assign(`/pages/product_page/?id=${item.id}`);
+    //   }, 1000);
+    // };
 
-    price.innerHTML = Math.round(item.price) + " руб";
+    price.innerHTML =
+      Math.round(item.price)
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
     bag_img.src = "/public/product_bag_icon.svg";
     // bag_img_btn.innerHTML = "X";
     discount.innerHTML = "Акция";
     star_icon.src = "/public/start_icon.svg";
 
-    place.append(product_card);
+    place.append(swiper_slide);
+    swiper_slide.append(product_card);
     product_card.append(img_box, title, rating, monthly_price, down_div);
     img_box.append(img, discount, like);
     rating.prepend(star_icon);
@@ -346,4 +602,102 @@ export function reload_products(arr, place) {
     down_div.append(prices_box, bag_img_btn);
     prices_box.append(price, salePrice);
   }
+}
+
+export function reload_bag_modal(arr, place) {
+  place.innerHTML = "";
+  //   console.log(arr);
+  for (let item of arr) {
+    // console.log(item);
+    let prod_card = document.createElement("div");
+    let prod_img = document.createElement("img");
+    let left = document.createElement("div");
+    let span = document.createElement("span");
+    let prod_div = document.createElement("div");
+    let prod_h2 = document.createElement("h2");
+    let prod_p = document.createElement("span");
+    let trash_img = document.createElement("img");
+
+    prod_card.classList.add("rounded");
+    prod_card.classList.add("flex");
+    prod_card.classList.add("px-3");
+    prod_card.classList.add("py-6");
+    prod_card.classList.add("h-16");
+    prod_card.classList.add("hover:bg-gray-200");
+    prod_card.classList.add("items-center");
+    prod_card.classList.add("justify-between");
+    prod_div.classList.add("text-start");
+    left.classList.add("flex");
+    left.classList.add("justify-between");
+    left.classList.add("items-center");
+    left.classList.add("gap-2");
+    prod_img.classList.add("w-10");
+    prod_img.classList.add("h-10");
+    prod_h2.classList.add("prod_text");
+    prod_h2.classList.add("text-sm");
+    prod_p.classList.add("text-sm");
+    prod_p.classList.add("font-semibold");
+    span.classList.add("text-sm");
+    // prod_div.classList.add('w-[400px]')
+    trash_img.classList.add("w-[15px]");
+    getData("/bag").then((res) => {
+      for (let elem of res.data) {
+        if (item.id === elem.prod_id) {
+          if (elem.num > 1) {
+            span.innerHTML = " X " + elem.num;
+          }
+        }
+      }
+    });
+    trash_img.classList.add("h-[15px]");
+
+    trash_img.onclick = (e) => {
+      getData("/bag");
+      then((res) => {
+        for (let elem of res.data) {
+          if (elem.prod_id === item.id) {
+            deleteData(`/bag/` + elem.prod_id).then((res) => {});
+            elem.remove();
+          }
+        }
+      });
+    };
+    // if(e.target.classList === '')
+    prod_card.onclick = (e) => {
+      if (e.target.classList[0] === "prod_text") {
+        location.assign(`/pages/product_page/?id=${item.id}`);
+      }
+    };
+
+    prod_h2.innerHTML = item.title;
+    // span.innerHTML = item.
+    prod_p.innerHTML =
+      item.price -
+      Math.floor((item.price * item.salePercentage) / 100) +
+      " руб";
+    prod_img.src = item.media[0];
+    trash_img.src = "/public/trash_img.png";
+
+    place.prepend(prod_card);
+    prod_card.append(left, trash_img);
+    left.append(prod_img, prod_div);
+    prod_div.append(prod_h2, prod_p);
+    prod_p.append(span);
+  }
+  let div = document.createElement("div");
+  let button = document.createElement("button");
+
+  button.innerHTML = "Оформить заказ";
+  button.classList.add("font-semibold");
+  button.classList.add("text-white");
+  button.classList.add("bg-[#7000ff]");
+  button.classList.add("py-[5px]");
+  button.classList.add("rounded");
+  button.classList.add("w-full");
+  div.classList.add("px-4");
+  div.classList.add("py-4");
+  div.classList.add("bg-[#f0f0ff]");
+
+  place.append(div);
+  div.append(button);
 }
