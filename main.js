@@ -1,11 +1,5 @@
 import { getData, postData } from "./modules/https";
-import {
-  loader,
-  header,
-  footer,
-  reload_products,
-  reload_bag_modal,
-} from "./modules/ui";
+import { loader, header, footer, reload_products } from "./modules/ui";
 import { user } from "/modules/user";
 
 header();
@@ -18,9 +12,6 @@ let techno_content = document.querySelector(".techno_content");
 let audio_content = document.querySelector(".audio_content");
 let kitchen_content = document.querySelector(".kitchen_content");
 let log_in_btn = document.querySelector(".log_in_btn");
-let footer_ul = document.querySelectorAll(".footer_ul");
-let searcher_inp = document.querySelector(".searcher_inp");
-let favorites_btn = document.querySelector(".favorites_btn");
 let header_div = document.querySelector("header");
 let arrow_top = document.querySelector(".arrow_top");
 
@@ -47,46 +38,6 @@ arrow_top.onclick = () => {
 window.onscroll = () => {
   openArrow();
 };
-
-favorites_btn.onclick = () => {
-  location.assign("/pages/favorites_page/");
-};
-
-// searcher_inp.onkeydown = (e) => {
-//   if (e.key === "Enter") {
-//     localStorage.setItem(`searcher_value`, JSON.stringify(searcher_inp.value));
-//     location.assign("/pages/searcher_page/");
-//     // searcher_inp.value
-//   }
-//   // console.log(searcher_inp.value);
-// };
-
-footer_ul.forEach((res) => {
-  // console.log(res);
-  res.onclick = (e) => {
-    let opened = document.querySelectorAll(".opened");
-
-    for (let el of opened) {
-      el.classList.remove("opened");
-      el.parentElement.classList.remove("h-[60px]");
-      el.nextElementSibling.nextElementSibling.classList.add("hidden");
-      el.nextElementSibling.classList.add("hidden");
-      for (let child of el.children) {
-        child.classList.remove("rotate-180");
-      }
-    }
-
-    res.classList.add("opened");
-    e.target.parentElement.classList.add("duration-300");
-    e.target.parentElement.classList.add("h-[60px]");
-    e.target.nextElementSibling.nextElementSibling.classList.remove("hidden");
-    e.target.nextElementSibling.classList.remove("hidden");
-    for (let child of e.target.children) {
-      child.classList.add("duration-300");
-      child.classList.add("rotate-180");
-    }
-  };
-});
 
 let discounts_content = document.querySelector(".discounts_content");
 let discount_box = [];
@@ -149,7 +100,6 @@ log_in_form.onsubmit = (e) => {
   e.preventDefault();
 
   let user = {};
-  // console.log(user);
 
   let fm = new FormData(log_in_form);
 
@@ -181,7 +131,7 @@ log_in_form.onsubmit = (e) => {
     if (password_log_in.value.length === 0) {
       alert("Введите пароль");
       password_log_in.classList.add("border-2");
-      password_log_in.classList.add("border-red-600");
+      password_log_in.classList.add("border-red-400");
       return;
     } else {
     }
@@ -191,20 +141,20 @@ log_in_form.onsubmit = (e) => {
       document.querySelector(".password_log_in").classList.add("border-2");
       document
         .querySelector(".password_log_in")
-        .classList.add("border-red-600");
+        .classList.add("border-red-400");
     } else {
       delete res_user.password;
       document.querySelector(".password_log_in").classList.remove("border-2");
+      localStorage.setItem("user", JSON.stringify(res_user));
+      log_in_modal.classList.add("hidden");
+      setTimeout(() => {
+        loader();
+      }, 200);
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     }
     // console.log(res.data);
-    localStorage.setItem("user", JSON.stringify(res_user));
-    log_in_modal.classList.add("hidden");
-    setTimeout(() => {
-      loader();
-    }, 200);
-    setTimeout(() => {
-      location.reload();
-    }, 1000);
   });
 };
 
@@ -218,7 +168,6 @@ sign_in_form.onsubmit = (e) => {
   fm.forEach((value, key) => {
     user[key] = value;
   });
-  // console.log(user);
 
   getData("/users?phone_num=" + user.phone_num).then((res) => {
     // console.log(res);
@@ -239,7 +188,6 @@ sign_in_form.onsubmit = (e) => {
 };
 
 getData("/goods").then((res) => {
-  // console.log(res.data);
   for (let item of res.data) {
     let shown_num = 15;
 
@@ -262,7 +210,6 @@ getData("/goods").then((res) => {
 let furniture_box = [];
 getData("/goods").then((res) => {
   for (let item of res.data) {
-    // console.log(item);
     if (item.type === "furniture") {
       furniture_box.push(item);
       reload_products(furniture_box, furniture_content);
@@ -273,7 +220,6 @@ getData("/goods").then((res) => {
 let pc_box = [];
 getData("/goods").then((res) => {
   for (let item of res.data) {
-    // console.log(item);
     if (item.type === "PC") {
       pc_box.push(item);
       reload_products(pc_box, pc_content);
@@ -284,9 +230,7 @@ getData("/goods").then((res) => {
 let techno_box = [];
 getData("/goods").then((res) => {
   for (let item of res.data) {
-    // console.log(item);
     if (item.type === "TV") {
-      // console.log(item);
       techno_box.push(item);
       reload_products(techno_box, techno_content);
     }
@@ -296,9 +240,7 @@ getData("/goods").then((res) => {
 let audio_box = [];
 getData("/goods").then((res) => {
   for (let item of res.data) {
-    // console.log(item);
     if (item.type === "audio") {
-      // console.log(item);
       audio_box.push(item);
       reload_products(audio_box, audio_content);
     }
@@ -316,7 +258,6 @@ getData("/goods").then((res) => {
     }
   }
 });
-
 let mySwiper = new Swiper(".swiper", {
   // Опции (по желанию)
   slidesPerView: 1, // Количество видимых слайдов

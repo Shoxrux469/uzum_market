@@ -8,16 +8,11 @@
   box-sizing: border-box;
 }
 
-// body {
-// @apply bg-red-500;
-// }
 .left_img_box {
   position: sticky;
   top: 12px;
 }
-
 .header_bottom {
-  // @apply bg-red-500;
   li {
     position: relative;
   }
@@ -33,11 +28,6 @@
     left: 0;
     bottom: 0;
   }
-
-  //   li:hover  {
-  //     color: black;
-  //   }
-
   li:hover::before {
     background-color: #000;
     width: 100%;
@@ -64,13 +54,18 @@
 .swiper {
   width: 100%;
   position: relative;
-  //   z-index: 1 !important;
   border-radius: 20px;
 }
 .bag_modal{
   position: absolute;
   z-index: 2147483641;
   box-shadow: 0px 5px 15px -6px black;
+}
+.fake_header {
+  box-shadow: 0px 0px 13px -8px black;
+}
+.checkbox:checked{
+  background-color: #7000FF;
 }
 
 .pop_up_modal {

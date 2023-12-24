@@ -9,57 +9,58 @@
       "id": 2
     },
     {
-      "prod_id": 34,
-      "id": 3
-    },
-    {
-      "prod_id": 0.1452291405255206,
-      "id": 4
-    },
-    {
       "prod_id": 33,
       "id": 5
     },
     {
       "prod_id": 2,
       "id": 6
+    },
+    {
+      "prod_id": 16,
+      "id": 7
     }
   ],
   "bag": [
     {
-      "prod_id": 3,
-      "num": 2,
-      "id": 5
-    },
-    {
-      "prod_id": 13,
-      "num": 1,
-      "id": 6
-    },
-    {
-      "prod_id": 20,
-      "num": 2,
-      "id": 7
-    },
-    {
-      "prod_id": 5,
-      "num": 2,
-      "id": 8
-    },
-    {
-      "prod_id": 9,
-      "num": 1,
-      "id": 9
-    },
-    {
       "prod_id": 16,
-      "num": 1,
+      "num": 6,
       "id": 10
     },
     {
       "prod_id": 12,
-      "num": 1,
+      "num": 3,
       "id": 11
+    },
+    {
+      "prod_id": 33,
+      "num": 1,
+      "id": 12
+    },
+    {
+      "prod_id": "16",
+      "num": 1,
+      "id": 13
+    },
+    {
+      "prod_id": "16",
+      "num": 1,
+      "id": 14
+    },
+    {
+      "prod_id": "16",
+      "num": 1,
+      "id": 15
+    },
+    {
+      "prod_id": "16",
+      "num": 1,
+      "id": 16
+    },
+    {
+      "prod_id": "16",
+      "num": 1,
+      "id": 17
     }
   ],
   "users": [

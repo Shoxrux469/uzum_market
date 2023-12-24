@@ -4,9 +4,6 @@ import { user } from "/modules/user";
 
 header();
 footer();
-// console.log(user.);
-
-// loader()
 
 let profile_info = document.forms.profile_info;
 document.querySelector(".surname").value = user.surname || [];
@@ -27,21 +24,11 @@ let btns = document.querySelectorAll(".btns button");
 let log_out = document.querySelector(".log_out");
 
 log_out.onclick = () => {
-  localStorage.removeItem('user')
-  location.reload()
-  location.assign('/')
-}
+  localStorage.removeItem("user");
+  location.reload();
+  location.assign("/");
+};
 
-// if (user.gender == "Мужской") {
-//   document.querySelector(".male").classList.add("bg-gray-200");
-// } else if(user.gender == "Женский") {
-//   document.querySelector(".female").classList.add("bg-gray-200");
-// } else {
-//   sex_btns.forEach(res => {
-//     res.classList.remove("chosen");
-//     res.classList.remove("bg-gray-200");
-//   })
-// }
 if (user.length !== 0) {
   document.querySelector(".log_in_btn p").innerHTML = user.name;
 } else {

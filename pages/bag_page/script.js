@@ -1,5 +1,5 @@
 import { header, footer } from "/modules/ui";
-import { reload_favorites } from "../../modules/ui";
+import { reload_bag_prods, reload_favorites } from "../../modules/ui";
 import { getData, postData } from "/modules/https";
 import { user } from "/modules/user";
 
@@ -8,8 +8,90 @@ footer();
 
 let main_page_btn = document.querySelector(".main_page_btn");
 let swiper_wrapper = document.querySelector(".swiper-wrapper");
-let footer_ul = document.querySelectorAll(".footer_ul");
 let bag_btn = document.querySelector(".bag_btn");
+let inner_content = document.querySelector(".inner_content");
+let prod_container = document.querySelector(".prod_container");
+let prod_content = document.querySelector(".prod_content");
+let delivery_date = document.querySelectorAll(".delivery_date");
+let prod_number = document.querySelector(".prod_number");
+let general_sum = document.querySelector(".general_sum");
+let real_sum = document.querySelector(".real_sum");
+let prod_num = document.querySelector(".prod_num");
+let saved_money = document.querySelector(".saved_money");
+let checkout_btn = document.querySelector(".checkout_btn");
+let bag_arr = [];
+
+const currentDate = new Date();
+
+checkout_btn.onclick = () => {
+  location.assign('/pages/order_prod/')
+}
+
+const tomorrowDate = new Date();
+tomorrowDate.setDate(currentDate.getDate() + 1);
+const tomorrowDateFormat = tomorrowDate.toDateString();
+let real_price = [];
+
+getData("/bag").then((bag) => {
+  getData("/goods").then((goods) => {
+    for (let item of bag.data) {
+      if (bag.data.length > 0) {
+        inner_content.classList.add("hidden");
+        prod_container.classList.remove("hidden");
+      } else {
+        inner_content.classList.remove("hidden");
+        prod_container.classList.add("hidden");
+      }
+      for (let good of goods.data) {
+        if (item.prod_id === good.id) {
+          bag_arr.push(good);
+        }
+      }
+    }
+    // console.log(bag_arr);
+    for (let item of bag_arr) {
+      delivery_date.forEach((date) => {
+        date.innerHTML = "Доставка " + tomorrowDateFormat + " (Завтра)";
+      });
+      console.log(bag_arr);
+      real_price.push(
+        (item.price - Math.floor((item.price * item.salePercentage) / 100))
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+      );
+    }
+    let totalSum = bag_arr.reduce((sum, product) => sum + product.price, 0);
+    general_sum.innerHTML =
+      totalSum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
+    prod_number.innerHTML = `(${bag_arr.length}):`;
+
+    if (bag_arr.length === 1) {
+      prod_num.innerHTML = bag_arr.length + " товар";
+    } else if (bag_arr.length < 5 && bag_arr.length > 1) {
+      prod_num.innerHTML = bag_arr.length + " товара";
+    } else {
+      prod_num.innerHTML = bag_arr.length + " товаров";
+    }
+    
+    let realtotalSum = real_price.reduce((sum, priceString) => {
+      // Remove spaces from the string and convert to a number
+      let price = parseFloat(priceString.replace(/\s/g, ""));
+
+      // Add the price to the sum
+      return sum + price;
+    }, 0);
+
+    real_sum.innerHTML =
+      realtotalSum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
+
+    saved_money.innerHTML =
+      (totalSum - realtotalSum)
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
+    reload_bag_prods(bag_arr, prod_content);
+  });
+  // let sum = numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+});
 
 main_page_btn.onclick = () => {
   location.assign("/");
@@ -18,45 +100,6 @@ main_page_btn.onclick = () => {
 bag_btn.onclick = () => {
   location.assign("/pages/bag_page/");
 };
-
-footer_ul.forEach((res) => {
-  // console.log(res);
-  res.onclick = (e) => {
-    let opened = document.querySelectorAll(".opened");
-
-    // opened.forEach((res) => {
-    //   res.onclick = () => {
-    //     res.classList.remove("opened");
-    //     res.parentElement.classList.remove("h-[60px]");
-    //     res.nextElementSibling.nextElementSibling.classList.add("hidden");
-    //     res.nextElementSibling.classList.add("hidden");
-    //     for (let child of el.children) {
-    //       child.classList.remove("rotate-180");
-    //     }
-    //   };
-    // });
-
-    for (let el of opened) {
-      el.classList.remove("opened");
-      el.parentElement.classList.remove("h-[60px]");
-      el.nextElementSibling.nextElementSibling.classList.add("hidden");
-      el.nextElementSibling.classList.add("hidden");
-      for (let child of el.children) {
-        child.classList.remove("rotate-180");
-      }
-    }
-
-    res.classList.add("opened");
-    e.target.parentElement.classList.add("duration-300");
-    e.target.parentElement.classList.add("h-[60px]");
-    e.target.nextElementSibling.nextElementSibling.classList.remove("hidden");
-    e.target.nextElementSibling.classList.remove("hidden");
-    for (let child of e.target.children) {
-      child.classList.add("duration-300");
-      child.classList.add("rotate-180");
-    }
-  };
-});
 
 let furniture_box = [];
 getData("/goods").then((res) => {

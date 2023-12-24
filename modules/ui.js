@@ -122,7 +122,7 @@ export function header() {
       <button
           class="bag_main_btn h-10 xl:gap-2 w-12 xl:w-auto hover:bg-gray-200 xl:px-2 flex items-center rounded relative">
           <img src="/public/bag_icon.svg" alt="">
-          <p class="bag_btn hidden xl:block text-center">
+          <p class="bag_btn hidden xl:flex xl:gap-1 text-center">
               Корзина
               <span
                   class="prod_quantity bg-[#7000ff] text-center text-white px-[7px] py-[1.5px] text-sm rounded">
@@ -202,7 +202,7 @@ export function footer() {
       </li>
   </ul>
 </div> 
-<div class="px-11 flex flex-col mb-20 text-center gap-4 lg:flex-row pb-4 justify-between items-center">
+<div class="px-11 flex flex-col mb-20 md:mb-0 text-center gap-4 lg:flex-row pb-4 justify-between items-center">
 <p class="font-semibold text-[15px]">Соглашение о конфиденциональности <span class="ml-4">Пользовательсвое
         соглашение</span></p>
 <p class="text-xs opacity-50">«2023© ООО «UZUM MARKET». ИНН 309376127. Все права защищены»</p>
@@ -245,8 +245,8 @@ export function reload_products(arr, place) {
     let pop_up_modal = document.querySelector(".pop_up_modal");
     product_card.classList.add("product_card");
     product_card.classList.add("flex");
-    product_card.classList.add("w-[200px]");
-    product_card.classList.add("md:w-[220px]");
+    product_card.classList.add("w-[150px]");
+    product_card.classList.add("md:w-[200px]");
     product_card.classList.add("lg:w-[220px]");
     product_card.classList.add("xl:w-[230px]");
     product_card.classList.add("cursor-pointer");
@@ -258,8 +258,8 @@ export function reload_products(arr, place) {
     discount.classList.add("text-slate-50");
     discount.classList.add("rounded");
     discount.classList.add("px-1");
-    img_box.classList.add("w-[200px]");
-    img_box.classList.add("md:w-[220px]");
+    img_box.classList.add("w-[150px]");
+    img_box.classList.add("md:w-[200px]");
     img_box.classList.add("lg:w-[220px]");
     img_box.classList.add("xl:w-[230px]");
     img_box.classList.add("relative");
@@ -287,6 +287,7 @@ export function reload_products(arr, place) {
     price.classList.add("line-through");
     price.classList.add("text-xs");
     salePrice.classList.add("text-sm");
+    bag_img.classList.add("bag_img");
     bag_img.classList.add("cursor-pointer");
     // console.log(item);
 
@@ -426,7 +427,10 @@ export function reload_products(arr, place) {
     };
     product_card.onclick = (e) => {
       // console.log(e.target.classList);
-      if (e.target.classList[4] !== "like_btn") {
+      if (
+        e.target.classList[4] !== "like_btn" &&
+        e.target.classList[0] !== "bag_img"
+      ) {
         setTimeout(() => {
           loader();
         }, 200);
@@ -527,8 +531,17 @@ export function reload_favorites(arr, place) {
 
     img.src = item.media[0];
     like.src = "/public/purple_heart.svg";
-    like.onclick = (e) => {
-      like.src = "/public/like_icon.svg";
+    like.onclick = () => {
+      getData("/liked").then((res) => {
+        for (let elem of res.data) {
+          if (elem.prod_id === item.id) {
+            deleteData(`/liked/${elem.id}`).then((res) => {
+              console.log(res.data);
+            });
+            location.reload();
+          }
+        }
+      });
     };
 
     title.innerHTML = item.title.slice(0, 48) + "..";
@@ -563,11 +576,15 @@ export function reload_favorites(arr, place) {
     };
     product_card.onclick = (e) => {
       // console.log(e.target.classList);
-      if (e.target.classList[4] !== "like_btn") {
+      if (
+        e.target.classList[4] !== "like_btn" ||
+        e.target.classList[0] !== "bag_img"
+      ) {
         setTimeout(() => {
           loader();
         }, 200);
         setTimeout(() => {
+          console.log(e.target);
           location.assign(`/pages/product_page/?id=${item.id}`);
         }, 1000);
       }
@@ -595,9 +612,7 @@ export function reload_favorites(arr, place) {
 
 export function reload_bag_modal(arr, place) {
   place.innerHTML = "";
-  //   console.log(arr);
   for (let item of arr) {
-    // console.log(item);
     let prod_card = document.createElement("div");
     let prod_img = document.createElement("img");
     let left = document.createElement("div");
@@ -641,25 +656,24 @@ export function reload_bag_modal(arr, place) {
     trash_img.classList.add("h-[15px]");
 
     trash_img.onclick = (e) => {
-      getData("/bag");
-      then((res) => {
+      getData("/bag").then((res) => {
         for (let elem of res.data) {
           if (elem.prod_id === item.id) {
-            deleteData(`/bag/` + elem.prod_id).then((res) => {});
-            elem.remove();
+            deleteData(`/bag/${elem.id}`).then((res) => {
+              console.log(res.data);
+            });
+            location.reload();
           }
         }
       });
     };
-    // if(e.target.classList === '')
     prod_card.onclick = (e) => {
       if (e.target.classList[0] === "prod_text") {
         location.assign(`/pages/product_page/?id=${item.id}`);
       }
     };
 
-    prod_h2.innerHTML = item.title.slice(0, 40) + '..';
-    // span.innerHTML = item.
+    prod_h2.innerHTML = item.title.slice(0, 40) + "..";
     prod_p.innerHTML =
       item.price -
       Math.floor((item.price * item.salePercentage) / 100) +
@@ -676,6 +690,10 @@ export function reload_bag_modal(arr, place) {
   let div = document.createElement("div");
   let button = document.createElement("button");
 
+  button.onclick = () => {
+    location.assign("/pages/order_prod/");
+  };
+
   button.innerHTML = "Оформить заказ";
   button.classList.add("font-semibold");
   button.classList.add("text-white");
@@ -689,4 +707,162 @@ export function reload_bag_modal(arr, place) {
 
   place.append(div);
   div.append(button);
+}
+export function reload_bag_prods(arr, place) {
+  place.innerHTML = "";
+  for (let item of arr) {
+    let prod_card = document.createElement("div");
+    let left = document.createElement("div");
+    let right = document.createElement("div");
+    let top_div = document.createElement("div");
+    let down_div = document.createElement("div");
+    let saler = document.createElement("p");
+    let saler_span = document.createElement("span");
+    let prod_title = document.createElement("h2");
+    let delete_div = document.createElement("div");
+    let delete_img = document.createElement("img");
+    let delete_text = document.createElement("p");
+    let quantity_div = document.createElement("div");
+    let quantity_minus = document.createElement("p");
+    let quantity_num = document.createElement("p");
+    let quantity_plus = document.createElement("p");
+    let sum_div = document.createElement("div");
+    let real_sum = document.createElement("p");
+    let fake_sum = document.createElement("span");
+    let quantity_sum = document.createElement("span");
+    let input = document.createElement("input");
+    let prod_img = document.createElement("img");
+    let quantity_main_div = document.createElement("div");
+
+    getData("/bag").then((res) => {
+      for (let elem of res.data) {
+        if (elem.prod_id === item.id) {
+          quantity_num.innerHTML = elem.num;
+        }
+      }
+    });
+
+    if (item.salePercentage > 0) {
+      real_sum.innerHTML =
+        (item.price - Math.floor((item.price * item.salePercentage) / 100))
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
+      quantity_sum.innerHTML =
+        (item.price - Math.floor((item.price * item.salePercentage) / 100))
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб/ед";
+    } else {
+      real_sum.innerHTML =
+        item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
+      quantity_sum.innerHTML =
+        item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб/ед";
+    }
+    fake_sum.innerHTML =
+      item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
+    quantity_minus.innerHTML = "-";
+    quantity_plus.innerHTML = "+";
+    delete_text.innerHTML = "Удалить";
+    prod_img.src = item.media[0];
+    delete_img.src = "/public/trash_img.png";
+    prod_title.innerHTML = item.title;
+    input.type = "checkbox";
+    saler.innerHTML = "Продавец:";
+    saler_span.innerHTML = "Uzum";
+
+    prod_card.onclick = (e) => {
+      if (e.target.classList[0] !== "delete_text") {
+        setTimeout(() => {
+          loader();
+        }, 200);
+        setTimeout(() => {
+          location.assign(`/pages/product_page/?id=${item.id}`);
+        }, 1000);
+      }
+    };
+
+    delete_text.onclick = (e) => {
+      getData("/bag").then((res) => {
+        for (let elem of res.data) {
+          if (elem.prod_id === item.id) {
+            deleteData(`/bag/${elem.id}`).then((res) => {
+              console.log(res.data);
+            });
+            location.reload();
+          }
+        }
+      });
+    };
+
+    saler.classList.add("w-[21.875rem]");
+    prod_card.classList.add("border-t");
+    prod_card.classList.add("flex");
+    prod_card.classList.add("items-center");
+    prod_card.classList.add("gap-10");
+    prod_card.classList.add("py-4");
+    prod_card.classList.add("border-gray-200");
+    prod_img.classList.add("w-28");
+    left.classList.add("flex");
+    left.classList.add("items-center");
+    left.classList.add("gap-2");
+    right.classList.add("w-full");
+    top_div.classList.add("flex");
+    top_div.classList.add("w-full");
+    top_div.classList.add("items-center");
+    top_div.classList.add("justify-between");
+    prod_title.classList.add("w-10/12");
+    prod_title.classList.add("text-lg");
+    delete_div.classList.add("delete_div");
+    delete_div.classList.add("flex");
+    delete_div.classList.add("items-center");
+    delete_div.classList.add("gap-2");
+    delete_text.classList.add("delete_text");
+    delete_text.classList.add("font-semibold");
+    delete_text.classList.add("cursor-pointer");
+    delete_text.classList.add("ease-in-out");
+    delete_text.classList.add("duration-300");
+    delete_text.classList.add("hover:opacity-100");
+    delete_text.classList.add("opacity-50");
+    delete_img.classList.add("w-6");
+    delete_img.classList.add("h-6");
+    down_div.classList.add("flex");
+    down_div.classList.add("justify-between");
+    down_div.classList.add("items-center");
+    quantity_div.classList.add("border");
+    quantity_div.classList.add("px-5");
+    quantity_div.classList.add("pb-1");
+    quantity_div.classList.add("flex");
+    quantity_div.classList.add("items-center");
+    quantity_minus.classList.add("opacity-70");
+    quantity_minus.classList.add("text-2xl");
+    quantity_plus.classList.add("opacity-70");
+    quantity_main_div.classList.add("flex");
+    quantity_main_div.classList.add("flex-col");
+    quantity_main_div.classList.add("items-center");
+    quantity_plus.classList.add("text-2xl");
+    quantity_num.classList.add("text-sm");
+    quantity_num.classList.add("mt-1");
+    quantity_sum.classList.add("opacity-80");
+    quantity_div.classList.add("rounded");
+    quantity_div.classList.add("text-lg");
+    quantity_div.classList.add("gap-5");
+    sum_div.classList.add("flex");
+    sum_div.classList.add("flex-col");
+    sum_div.classList.add("items-end");
+    real_sum.classList.add("text-2xl");
+    real_sum.classList.add("font-semibold");
+    fake_sum.classList.add("line-through");
+    fake_sum.classList.add("opacity-60");
+
+    place.append(prod_card);
+    prod_card.append(left, right);
+    left.append(input, prod_img);
+    right.append(top_div, down_div);
+    top_div.append(prod_title, delete_div);
+    delete_div.append(delete_img, delete_text);
+    down_div.append(saler, quantity_main_div, sum_div);
+    quantity_main_div.append(quantity_div, quantity_sum);
+    saler.append(saler_span);
+    quantity_div.append(quantity_minus, quantity_num, quantity_plus);
+    sum_div.append(real_sum, fake_sum);
+  }
 }

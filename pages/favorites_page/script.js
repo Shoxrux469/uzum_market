@@ -1,17 +1,13 @@
 import {
   reload_favorites,
-  reload_products,
-  reload_bag_modal,
 } from "../../modules/ui";
 import { getData, postData } from "/modules/https";
 import { header, footer } from "/modules/ui";
-import { user } from "/modules/user";
 
 header();
 footer();
 
 let logo = document.querySelector(".logo");
-let footer_ul = document.querySelectorAll(".footer_ul");
 let swiper_wrapper = document.querySelector(".swiper-wrapper");
 let main_page_btn = document.querySelector(".main_page_btn");
 let bag_btn = document.querySelector(".bag_btn");
@@ -29,45 +25,6 @@ bag_btn.onclick = () => {
 logo.onclick = () => {
   location.assign("/");
 };
-
-footer_ul.forEach((res) => {
-  // console.log(res);
-  res.onclick = (e) => {
-    let opened = document.querySelectorAll(".opened");
-
-    // opened.forEach((res) => {
-    //   res.onclick = () => {
-    //     res.classList.remove("opened");
-    //     res.parentElement.classList.remove("h-[60px]");
-    //     res.nextElementSibling.nextElementSibling.classList.add("hidden");
-    //     res.nextElementSibling.classList.add("hidden");
-    //     for (let child of el.children) {
-    //       child.classList.remove("rotate-180");
-    //     }
-    //   };
-    // });
-
-    for (let el of opened) {
-      el.classList.remove("opened");
-      el.parentElement.classList.remove("h-[60px]");
-      el.nextElementSibling.nextElementSibling.classList.add("hidden");
-      el.nextElementSibling.classList.add("hidden");
-      for (let child of el.children) {
-        child.classList.remove("rotate-180");
-      }
-    }
-
-    res.classList.add("opened");
-    e.target.parentElement.classList.add("duration-300");
-    e.target.parentElement.classList.add("h-[60px]");
-    e.target.nextElementSibling.nextElementSibling.classList.remove("hidden");
-    e.target.nextElementSibling.classList.remove("hidden");
-    for (let child of e.target.children) {
-      child.classList.add("duration-300");
-      child.classList.add("rotate-180");
-    }
-  };
-});
 
 getData("/liked").then((res) => {
   let liked_arr = [];
@@ -87,9 +44,7 @@ getData("/liked").then((res) => {
         }
       });
     }
-    // console.log(liked_arr);
   }
-  // for()
 });
 
 

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.scss">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+</head>
+
+<body>
+    <section>
+        <div class="fake_header bg-white fixed top-0 w-full py-4">
+            <div class="flex mx-auto items-center w-11/12 justify-between">
+
+                <img class="logo" src="/public/logo_uzum.svg" alt="">
+                <div class="lg:flex items-center hidden gap-2">
+                    <img class="w-5" src="/public/lock.svg" alt="">
+                    <span class="text-sm opacity-80">Соединение защищено</span>
+                </div>
+                <ul class="lg:flex hidden gap-10">
+                    <li class="text-sm underline opacity-70">Правила возврата</li>
+                    <li class="text-sm underline opacity-70">Служба поддержки</li>
+                </ul>
+                <p class="user_name opacity-50 hidden lg:block text-sm font-semibold"></p>
+                <svg class="lg:hidden" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg" alt="icon-cabinet" class="ui-icon  cabinet-icon">
+                    <path fill="#595b66" fill-rule="evenodd" clip-rule="evenodd"
+                        d="M19.3379 17.8756C20.6282 16.2662 21.4 14.2232 21.4 12C21.4 6.80852 17.1915 2.6 12 2.6C6.80852 2.6 2.6 6.80852 2.6 12C2.6 14.2232 3.37183 16.2662 4.66214 17.8756C6.58788 16.0916 9.1672 15 12 15C14.8328 15 17.4121 16.0916 19.3379 17.8756ZM18.2348 19.0348C16.5949 17.5226 14.4059 16.6 12 16.6C9.59408 16.6 7.40509 17.5226 5.76516 19.0348C7.42434 20.5064 9.60782 21.4 12 21.4C14.3922 21.4 16.5757 20.5064 18.2348 19.0348ZM12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23ZM14.4 10V9C14.4 7.67452 13.3255 6.6 12 6.6C10.6745 6.6 9.6 7.67452 9.6 9V10C9.6 11.3255 10.6745 12.4 12 12.4C13.3255 12.4 14.4 11.3255 14.4 10ZM12 5C9.79086 5 8 6.79086 8 9V10C8 12.2091 9.79086 14 12 14C14.2091 14 16 12.2091 16 10V9C16 6.79086 14.2091 5 12 5Z"
+                        fill="black"></path>
+                </svg>
+            </div>
+        </div>
+
+        <div class="container mt-24 w-full lg:w-11/12 mx-auto">
+            <h1 class="text-2xl font-bold ml-2 sm:ml-0">Оформление заказа</h1>
+            <div class="flex flex-col lg:flex-row gap-5">
+                <div class="left flex flex-col gap-4 mt-8 w-full lg:w-[73%]">
+                    <div class="border px-6 py-3 rounded-lg">
+
+                        <h2 class="text-xl mb-6">Способ получения и адрес доставки:</h2>
+
+                        <div class="flex flex-col gap-2">
+                            <p>Город доставки</p>
+                            <button
+                                class="border rounded-lg flex justify-between items-center w-full lg:w-1/2 py-2 px-4">
+                                <p class="text-sm">Самарканд</p>
+                                <img src="/public/arrow_down.svg " alt="">
+                            </button>
+                        </div>
+                        <div class="flex mt-6 flex-col gap-4">
+
+                            <p>Способ получения</p>
+                            <div class="bg-[#f2f4f7] rounded-lg px-5 py-4 w-full lg:w-fit">
+                                <div class="flex items-center gap-3  font-semibold">
+                                    <input class="rounded-full w-5 h-5 custom-checkbox" type="checkbox">
+                                    <p>Пункт выдачи Uzum</p>
+                                </div>
+                                <p class="text-sm ml-8 my-2 opacity-80 font-semibold">Можно забрать 25 декабря (Завтра),
+                                    <span class="text-[#009c38]">бесплатно</span>
+                                </p>
+                                <ul class="flex flex-col gap-1">
+                                    <li class="flex gap-2">
+                                        <svg data-v-ef7732b6="" width="24" height="24" viewBox="0 0 20 20" fill="black"
+                                            xmlns="http://www.w3.org/2000/svg" class="ui-icon  marks-icon">
+                                            <path fill="#009c38" fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M16.7822 5.21772C17.0751 5.51061 17.0751 5.98548 16.7822 6.27838L8.03024 15.0303C7.73735 15.3232 7.26248 15.3232 6.96958 15.0303L3.21766 11.2784C2.92476 10.9855 2.92476 10.5107 3.21765 10.2178C3.51055 9.92488 3.98542 9.92487 4.27831 10.2178L7.49991 13.4393L15.7215 5.21772C16.0144 4.92482 16.4893 4.92482 16.7822 5.21772Z">
+                                            </path>
+                                        </svg>
+                                        <span class="opacity-70">Срок хранения заказа – 5 дней</span>
+                                    </li>
+                                    <li class="flex gap-2">
+                                        <svg data-v-ef7732b6="" width="24" height="24" viewBox="0 0 20 20" fill="black"
+                                            xmlns="http://www.w3.org/2000/svg" class="ui-icon  marks-icon">
+                                            <path fill="#009c38" fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M16.7822 5.21772C17.0751 5.51061 17.0751 5.98548 16.7822 6.27838L8.03024 15.0303C7.73735 15.3232 7.26248 15.3232 6.96958 15.0303L3.21766 11.2784C2.92476 10.9855 2.92476 10.5107 3.21765 10.2178C3.51055 9.92488 3.98542 9.92487 4.27831 10.2178L7.49991 13.4393L15.7215 5.21772C16.0144 4.92482 16.4893 4.92482 16.7822 5.21772Z">
+                                            </path>
+                                        </svg>
+                                        <p class="opacity-70">Можно проверить и примерить товар</p>
+                                    </li>
+                                    <li class="flex gap-2">
+                                        <svg data-v-ef7732b6="" width="24" height="24" viewBox="0 0 20 20" fill="black"
+                                            xmlns="http://www.w3.org/2000/svg" class="ui-icon  marks-icon">
+                                            <path fill="#009c38" fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M16.7822 5.21772C17.0751 5.51061 17.0751 5.98548 16.7822 6.27838L8.03024 15.0303C7.73735 15.3232 7.26248 15.3232 6.96958 15.0303L3.21766 11.2784C2.92476 10.9855 2.92476 10.5107 3.21765 10.2178C3.51055 9.92488 3.98542 9.92487 4.27831 10.2178L7.49991 13.4393L15.7215 5.21772C16.0144 4.92482 16.4893 4.92482 16.7822 5.21772Z">
+                                            </path>
+                                        </svg>
+                                        <span class="opacity-70">Возврат товара быстро и без проблем</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="bg-[#f2f4f7] rounded-lg px-5 py-4 w-full lg:w-fit">
+                                <div class="flex items-center gap-3 font-semibold">
+                                    <input class="rounded-full w-5 h-5 custom-checkbox" type="checkbox">
+                                    <p>Курьером до двери</p>
+                                </div>
+                                <p class="text-sm ml-8 my-2 opacity-80 font-semibold">Доставим завтра , <span
+                                        class="text-[#009c38]">бесплатно</span></p>
+                            </div>
+                            <div class="mt-10">
+                                <p>Выберите пункт выдачи</p>
+                                <div class="ml-7 mt-6 flex gap-3 items-start">
+                                    <input class="rounded-full mt-1 w-5 h-5" type="checkbox" name="" id="">
+                                    <ul class="flex flex-col">
+                                        <li class="font-semibold">г. Ташкент, Чиланзарский район, квартал-7, д 45б
+                                            (Катартал)</li>
+                                        <li class="text-sm">10:00 – 20:00, без выходных</li>
+                                        <li class="text-sm font-semibold">Можно забрать 25 декабря (Завтра)
+                                            самостоятельно.</li>
+                                        <li class="text-sm">Заказ будет ожидать Вас на пункте выдачи в течение 5 дней
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex border flex-col gap-6 rounded-lg px-6 py-3">
+                        <h2 class="text-xl">Получатель заказа:</h2>
+                        <ul class="flex flex-col lg:flex-row gap-4">
+                            <li>
+                                <p class="mb-2">Фамилия *</p>
+                                <input class="surname w-full lg:w-fit rounded-xl" type="text" name="" id="">
+                            </li>
+                            <li>
+                                <p class="mb-2">Имя *</p>
+                                <input class="name w-full lg:w-fit rounded-xl" type="text">
+                            </li>
+                        </ul>
+
+                        <p class="opacity-70 w-dull sm:w-9/12">
+                            Мы пришлем уведомление о статусе заказа на указанный вами телефон.
+                            Курьер свяжется с вами по телефону для уточнения времени доставки.
+                        </p>
+
+                        <div>
+                            <p class="mb-2">Номер телефона *</p>
+                            <input class="phone_num w-full lg:w-fit rounded-xl" type="text">
+                        </div>
+                        <div class="flex gap-2">
+                            <input class="w-5 mt-1 h-5 border-2 rounded-[2px] border-gray-400" type="checkbox" name=""
+                                id="">
+                            <p class="w-full lg:w-9/12">
+                                Подписаться на наши новости и акции. Вы будете одними из первых узнавать о новых
+                                скидках, акциях и распродажах.
+                            </p>
+                        </div>
+
+                    </div>
+                    <div class="border rounded-lg px-6 py-3">
+                        <h2 class="text-2xl mb-6 font-semibold">Способ оплаты</h2>
+                        <div class="bg-[#f2f4f7] w-full md:w-7/12 lg:w-full rounded-xl px-5 py-3">
+                            <div class="flex items-center gap-2">
+                                <input class="rounded-full w-5 h-5" type="checkbox" name="" id="">
+                                <p>Картой онлайн</p>
+                            </div>
+                            <span class="text-xs opacity-60 ml-7">UZCARD, HUMO, Visa, MasterCard</span>
+                            <nav class="flex gap-2 mt-6">
+                                <img src="/public/mastercard.svg" alt="">
+                                <img src="/public/uzcard.svg" alt="">
+                                <img src="/public/humo.svg" alt="">
+                                <img src="/public/visa.svg" alt="">
+                            </nav>
+                        </div>
+                        <div class="mt-4 bg-[#f2f4f7] w-full md:w-7/12 lg:w-full rounded-xl px-5 py-3">
+                            <div class="flex items-center gap-2">
+                                <input class="rounded-full w-5 h-5" type="checkbox" name="" id="">
+                                <p class="mb-3">Рассрочка Uzum Nasiya</p>
+                            </div>
+                            <ul class="flex flex-col gap-1 items-end">
+                                <li
+                                    class="bg-white w-11/12 py-2 text-sm sm:px-4 px-2 sm:text-base flex justify-between items-center rounded-xl">
+                                    <p>3 месяца</p>
+                                    <p>2 100 746 сум/мес</p>
+                                </li>
+                                <li
+                                    class="bg-white py-2 w-11/12 sm:px-4 px-2 text-sm sm:text-base flex justify-between items-center rounded-xl">
+                                    <p>6 месяцев</p>
+                                    <p>1 219 183 сум/мес</p>
+                                </li>
+                                <li
+                                    class="bg-white py-2 w-11/12 sm:px-4 px-2 text-sm sm:text-base flex justify-between items-center rounded-xl">
+                                    <p>12 месяцев</p>
+                                    <p>684 618 сум/мес</p>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div class="mt-4 bg-[#f2f4f7] w-full md:w-7/12 lg:w-full rounded-xl px-5 py-3">
+                            <div class="flex items-center gap-2">
+                                <input class="rounded-full w-5 h-5" type="checkbox" name="" id="">
+                                <p class="font-semibold">Наличными или картой при получении</p>
+                            </div>
+                            <p class="w-full flex pl-6 justify-end sm:justify-start">
+                                <span class="opacity-60 text-xs">
+                                    Оплата в пункте выдачи или курьеру при получении
+                                    заказа
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="border rounded-lg px-6 py-3">
+                        <div class="switcher flex items-center justify-between">
+                            <h1 class="text-2xl w-1/2 pb-4">Товары в заказе</h1>
+                            <img class="arrow_bottom w-7" src="/public/arrow_bottom.svg" alt="">
+                        </div>
+                        <div class="bag_prods hidden border-t">
+
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="right h-full lg:sticky top-20 w-full lg:w-[27%] h-fit mt-8 border px-5 py-3 flex flex-col gap-4 rounded-lg">
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-xl">Ваш заказ</h2>
+                        <p class="go_to_bag cursor-pointer opacity-60 underline">Перейти в корзину</p>
+                    </div>
+                    <ul>
+                        <li class="flex justify-between text-sm items-center">
+                            <p class="opacity-80">Товары <span class="prods_num text-sm"></span></p>
+                            <p class="prod_sum opacity-80"></p>
+                        </li>
+                        <li class="flex text-sm opacity-80 justify-between items-center text-sm">
+                            <p>Доставка:</p>
+                            <p>бесплатно</p>
+                        </li>
+                    </ul>
+                    <div class="flex justify-between items-center">
+                        <p class="opacity-80">Итого</p>
+                        <h2 class="prod_sum text-xl font-semibold"></h2>
+                    </div>
+                    <button class="bg-[#f2f4f7] flex items-center pl-5 gap-2 rounded-xl py-3">
+                        <img class="w-6 opacity-70" src="/public/arrow_bottom.svg" alt="">
+                        <p class="opacity-70">Есть промокод?</p>
+                    </button>
+                    <button class="rounded-xl py-2 bg-[#7000ff] text-lg text-white">
+                        Оформить заказ
+                    </button>
+                    <span class='text-sm opacity-60 leading-5'>
+                        Размещая заказ, вы соглашаетесь на обработку персональных
+                        данных в соответствии с
+                        <span class="underline">
+                            Соглашением
+                            о конфиденциальности
+                        </span>
+                        и
+                        <span class="underline">
+                            Пользовательским соглашением
+                        </span> Uzum.
+                    </span>
+                </div>
+            </div>
+        </div>
+        <footer>
+
+        </footer>
+    </section>
+
+    <script type="module" src="./script.js"></script>
+    <script type="module" src="/header.js"></script>
+</body>
+
+</html>

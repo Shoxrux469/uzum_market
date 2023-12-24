@@ -12,22 +12,25 @@ let favorites_btn = document.querySelector(".favorites_btn");
 let log_in_btn = document.querySelector(".log_in_btn");
 let log_in_modal = document.querySelector(".log_in_modal");
 let log_in_box = document.querySelector(".log_in_box");
+let footer_ul = document.querySelectorAll(".footer_ul");
 
 logo.onclick = () => {
   location.assign("/");
 };
+if (bag_main_btn) {
+  bag_main_btn.onclick = (e) => {
+    console.log(e.target);
+    if (e.target.classList[0] == "bag_btn") {
+      location.assign("/pages/bag_page/");
+    }
+  };
+}
 
-bag_main_btn.onclick = (e) => {
-  console.log(e.target);
-  if (e.target.classList[0] == "bag_btn") {
-    location.assign("/pages/bag_page/");
-  }
-};
-
-favorites_btn.onclick = () => {
-  location.assign("/pages/favorites_page/");
-};
-
+if (favorites_btn) {
+  favorites_btn.onclick = () => {
+    location.assign("/pages/favorites_page/");
+  };
+}
 bag_main_btn.onmouseenter = () => {
   bag_main_modal.classList.remove("hidden");
   bag_main_modal.onmouseenter = () => {
@@ -51,7 +54,6 @@ getData("/bag").then((res) => {
           bag_arr.push(good);
         }
       }
-      // console.log(bag_arr);
       reload_bag_modal(bag_arr, bag_modal);
     });
   }
@@ -64,16 +66,13 @@ getData("/bag").then((res) => {
     prod_quantity.classList.remove("hidden");
     prod_quantity.innerHTML = res.data.length;
   }
-  // console.log(res.data.length);
 });
 
 searcher_inp.onkeydown = (e) => {
   if (e.key === "Enter") {
     localStorage.setItem(`searcher_value`, JSON.stringify(searcher_inp.value));
     location.assign("/pages/searcher_page/");
-    // searcher_inp.value
   }
-  // console.log(searcher_inp.value);
 };
 
 if (user.length !== 0) {
@@ -92,3 +91,29 @@ log_in_btn.onclick = () => {
     location.assign("/pages/profile/");
   }
 };
+
+footer_ul.forEach((res) => {
+  res.onclick = (e) => {
+    let opened = document.querySelectorAll(".opened");
+
+    for (let el of opened) {
+      el.classList.remove("opened");
+      el.parentElement.classList.remove("h-[60px]");
+      el.nextElementSibling.nextElementSibling.classList.add("hidden");
+      el.nextElementSibling.classList.add("hidden");
+      for (let child of el.children) {
+        child.classList.remove("rotate-180");
+      }
+    }
+
+    res.classList.add("opened");
+    e.target.parentElement.classList.add("duration-300");
+    e.target.parentElement.classList.add("h-[60px]");
+    e.target.nextElementSibling.nextElementSibling.classList.remove("hidden");
+    e.target.nextElementSibling.classList.remove("hidden");
+    for (let child of e.target.children) {
+      child.classList.add("duration-300");
+      child.classList.add("rotate-180");
+    }
+  };
+});

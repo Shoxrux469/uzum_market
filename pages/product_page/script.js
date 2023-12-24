@@ -1,5 +1,5 @@
 import { header, footer } from "/modules/ui";
-import { getData } from "/modules/https";
+import { getData, postData } from "/modules/https";
 import { reload_products } from "../../modules/ui";
 import { user } from "/modules/user";
 
@@ -8,12 +8,29 @@ footer();
 let similar_products = document.querySelector(".similar_products");
 
 let id = location.search.split("=").at(-1);
-// console.log(id);
 let product_imgs = document.querySelector(".product_imgs");
 let selected_img = document.querySelector(".selected_img");
+let add_to_bag = document.querySelectorAll(".add_to_bag");
+
+add_to_bag.forEach((btn) => {
+  btn.onclick = () => {
+    let bag_obj = {
+      prod_id: id,
+      num: 1,
+    };
+
+    postData("/bag", bag_obj).then((res) => {
+      setTimeout(() => {
+        location.reload();
+      }, 3000);
+    });
+  };
+});
 
 getData(`/goods/${id}`).then((res) => {
   let quantity = document.querySelector(".quantity");
+  document.querySelector(".prod_price").innerHTML =
+    res.data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
   document.querySelector(".title").innerHTML = res.data.title;
   document.querySelector(".prod_type").innerHTML = res.data.type + "/";
   quantity.innerHTML = 1;
@@ -26,9 +43,15 @@ getData(`/goods/${id}`).then((res) => {
   document.querySelector(".price").innerHTML =
     res.data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
   document.querySelector(".prod_name").innerHTML = res.data.title;
+  document.querySelector(".modal_price").innerHTML =
+    "от " +
+    res.data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") +
+    " руб/ед";
+
   for (let color of res.data.colors) {
     document.querySelector(".color_img").innerHTML = color;
   }
+
   let plus = document.querySelector(".plus");
   let minus = document.querySelector(".minus");
   if (quantity.innerHTML <= 5) {
@@ -45,9 +68,8 @@ getData(`/goods/${id}`).then((res) => {
   };
 
   getData("/goods").then((elem) => {
-    // console.log(res.data);
     let similars = [];
-    // console.log(similars);
+
     for (let item of elem.data) {
       if (item.type == res.data.type) {
         similars.push(item);
@@ -57,22 +79,24 @@ getData(`/goods/${id}`).then((res) => {
   });
 
   let img_src = [];
-  // console.log(res.data);
+
   let first_img = document.createElement("img");
   first_img.src = res.data.media[0];
   selected_img.append(first_img);
+
   for (let img of res.data.media) {
     let img_card = document.createElement("img");
     img_card.src = img;
-    // console.log(img_card);
     product_imgs.append(img_card);
     img_card.onclick = (e) => {
       selected_img.innerHTML = "";
       let chosen = document.querySelectorAll(".chosen");
+
       chosen.forEach((res) => {
         res.classList.remove("chosen");
         res.classList.remove("border");
       });
+
       e.target.classList.add("border");
       e.target.classList.add("chosen");
       img_src.length = 0;
@@ -83,5 +107,4 @@ getData(`/goods/${id}`).then((res) => {
       selected_img.append(main_img);
     };
   }
-  // console.log(img_src);
 });
