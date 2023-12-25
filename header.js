@@ -5,17 +5,28 @@ import { user } from "/modules/user";
 let bag_modal = document.querySelector(".bag_modal");
 let bag_main_modal = document.querySelector(".bag_main_modal");
 let bag_main_btn = document.querySelector(".bag_main_btn");
-let prod_quantity = document.querySelector(".prod_quantity");
+let prod_quantity = document.querySelectorAll(".prod_quantity");
 let logo = document.querySelector(".logo");
 let searcher_inp = document.querySelector(".searcher_inp");
 let favorites_btn = document.querySelector(".favorites_btn");
 let log_in_btn = document.querySelector(".log_in_btn");
 let log_in_modal = document.querySelector(".log_in_modal");
 let log_in_box = document.querySelector(".log_in_box");
+let modal_favorites = document.querySelector(".modal_favorites");
+let main_page = document.querySelector(".main_page");
+let profile = document.querySelector(".profile");
+let modal_bag = document.querySelector(".modal_bag");
 let footer_ul = document.querySelectorAll(".footer_ul");
 
 logo.onclick = () => {
   location.assign("/");
+};
+main_page.onclick = () => {
+  location.assign("/");
+};
+
+profile.onclick = () => {
+  location.assign("/pages/profile/");
 };
 if (bag_main_btn) {
   bag_main_btn.onclick = (e) => {
@@ -25,12 +36,19 @@ if (bag_main_btn) {
     }
   };
 }
+modal_bag.onclick = () => {
+  location.assign("/pages/bag_page/");
+};
 
 if (favorites_btn) {
   favorites_btn.onclick = () => {
     location.assign("/pages/favorites_page/");
   };
 }
+modal_favorites.onclick = () => {
+  location.assign("/pages/favorites_page/");
+};
+
 bag_main_btn.onmouseenter = () => {
   bag_main_modal.classList.remove("hidden");
   bag_main_modal.onmouseenter = () => {
@@ -60,12 +78,14 @@ getData("/bag").then((res) => {
 });
 
 getData("/bag").then((res) => {
-  if (res.data.length === 0) {
-    prod_quantity.classList.add("hidden");
-  } else {
-    prod_quantity.classList.remove("hidden");
-    prod_quantity.innerHTML = res.data.length;
-  }
+  prod_quantity.forEach((prod) => {
+    if (res.data.length === 0) {
+      prod.classList.add("hidden");
+    } else {
+      prod.classList.remove("hidden");
+      prod.innerHTML = res.data.length;
+    }
+  });
 });
 
 searcher_inp.onkeydown = (e) => {

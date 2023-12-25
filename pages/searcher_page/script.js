@@ -1,10 +1,11 @@
 import { header, footer } from "/modules/ui";
 import { getData } from "/modules/https";
-import { reload_products } from "../../modules/ui";
+import { modal_container, reload_products } from "../../modules/ui";
 import { user } from "/modules/user";
 
 header();
 footer();
+modal_container()
 
 let product_content = document.querySelector(".product_content");
 let searcher_inp = document.querySelector(".searcher_inp");

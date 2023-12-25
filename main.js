@@ -1,9 +1,10 @@
 import { getData, postData } from "./modules/https";
-import { loader, header, footer, reload_products } from "./modules/ui";
+import { loader, header, footer, reload_products, modal_container } from "./modules/ui";
 import { user } from "/modules/user";
 
 header();
 footer();
+modal_container() 
 
 let show_all_btn = document.querySelector(".show_all_btn");
 let furniture_content = document.querySelector(".furniture_content");
@@ -22,9 +23,13 @@ function openArrow() {
     arrow_top.classList.remove("bottom-[-55px]");
     arrow_top.classList.add("ease-in-out");
     arrow_top.classList.add("duration-200");
-    arrow_top.classList.add("bottom-8");
+    arrow_top.classList.add("lg:bottom-8");
+    arrow_top.classList.add("md:bottom-28");
+    arrow_top.classList.add("sm:bottom-20");
   } else {
-    arrow_top.classList.remove("bottom-8");
+    arrow_top.classList.remove("lg:bottom-8");
+    arrow_top.classList.remove("md:bottom-28");
+    arrow_top.classList.remove("sm:bottom-20");
     arrow_top.classList.add("bottom-[-55px]");
   }
 }

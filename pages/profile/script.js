@@ -1,9 +1,11 @@
-import { header, footer } from "/modules/ui";
+import { header, footer, modal_container } from "/modules/ui";
 import { getData, postData, editData } from "/modules/https";
 import { user } from "/modules/user";
 
 header();
 footer();
+modal_container()
+
 
 let profile_info = document.forms.profile_info;
 document.querySelector(".surname").value = user.surname || [];

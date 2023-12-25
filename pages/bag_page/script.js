@@ -1,10 +1,11 @@
-import { header, footer } from "/modules/ui";
+import { header, footer, modal_container } from "/modules/ui";
 import { reload_bag_prods, reload_favorites } from "../../modules/ui";
 import { getData, postData } from "/modules/https";
 import { user } from "/modules/user";
 
 header();
 footer();
+modal_container();
 
 let main_page_btn = document.querySelector(".main_page_btn");
 let swiper_wrapper = document.querySelector(".swiper-wrapper");
@@ -15,7 +16,7 @@ let prod_content = document.querySelector(".prod_content");
 let delivery_date = document.querySelectorAll(".delivery_date");
 let prod_number = document.querySelector(".prod_number");
 let general_sum = document.querySelector(".general_sum");
-let real_sum = document.querySelector(".real_sum");
+let real_sum = document.querySelectorAll(".real_sum");
 let prod_num = document.querySelector(".prod_num");
 let saved_money = document.querySelector(".saved_money");
 let checkout_btn = document.querySelector(".checkout_btn");
@@ -24,8 +25,8 @@ let bag_arr = [];
 const currentDate = new Date();
 
 checkout_btn.onclick = () => {
-  location.assign('/pages/order_prod/')
-}
+  location.assign("/pages/order_prod/");
+};
 
 const tomorrowDate = new Date();
 tomorrowDate.setDate(currentDate.getDate() + 1);
@@ -72,7 +73,7 @@ getData("/bag").then((bag) => {
     } else {
       prod_num.innerHTML = bag_arr.length + " товаров";
     }
-    
+
     let realtotalSum = real_price.reduce((sum, priceString) => {
       // Remove spaces from the string and convert to a number
       let price = parseFloat(priceString.replace(/\s/g, ""));
@@ -81,8 +82,10 @@ getData("/bag").then((bag) => {
       return sum + price;
     }, 0);
 
-    real_sum.innerHTML =
-      realtotalSum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
+    real_sum.forEach((sum) => {
+      sum.innerHTML =
+        realtotalSum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
+    });
 
     saved_money.innerHTML =
       (totalSum - realtotalSum)

@@ -1,9 +1,10 @@
 import { getData } from "../../modules/https";
 import { reload_bag_modal, reload_bag_prods } from "../../modules/ui";
 import { user } from "/modules/user";
-import { footer } from "/modules/ui";
+import { footer, modal_container } from "/modules/ui";
 
 footer();
+modal_container()
 
 let user_name = document.querySelector(".user_name");
 let bag_prods = document.querySelector(".bag_prods");
@@ -11,6 +12,7 @@ let switcher = document.querySelector(".switcher");
 let arrow_bottom = document.querySelector(".arrow_bottom");
 let prods_num = document.querySelector(".prods_num");
 let go_to_bag = document.querySelector(".go_to_bag");
+let prod_quantity = document.querySelector(".prod_quantity");
 let prod_sum = document.querySelectorAll(".prod_sum");
 let bag_arr = [];
 let real_price = [];
@@ -18,6 +20,8 @@ let real_price = [];
 go_to_bag.onclick = () => {
     location.assign('/pages/bag_page/')
 }
+
+prod_quantity.classList.add('hidden')
 
 user_name.innerHTML = user.name.slice(0, 1) + ". " + user.surname;
 

@@ -1,10 +1,11 @@
-import { header, footer } from "/modules/ui";
+import { header, footer, modal_container } from "/modules/ui";
 import { getData, postData } from "/modules/https";
 import { reload_products } from "../../modules/ui";
 import { user } from "/modules/user";
 
 header();
 footer();
+modal_container()
 let similar_products = document.querySelector(".similar_products");
 
 let id = location.search.split("=").at(-1);

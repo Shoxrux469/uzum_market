@@ -36,7 +36,7 @@
 .log_in_modal {
   z-index: 2147483640;
 }
-.arrow_top{
+.arrow_top {
   z-index: 2147483641;
   border: 0;
 }
@@ -56,7 +56,7 @@
   position: relative;
   border-radius: 20px;
 }
-.bag_modal{
+.bag_modal {
   position: absolute;
   z-index: 2147483641;
   box-shadow: 0px 5px 15px -6px black;
@@ -64,8 +64,8 @@
 .fake_header {
   box-shadow: 0px 0px 13px -8px black;
 }
-.checkbox:checked{
-  background-color: #7000FF;
+.checkbox:checked {
+  background-color: #7000ff;
 }
 
 .pop_up_modal {
@@ -82,9 +82,6 @@
   transition: 0.3s ease;
   box-shadow: -1px 5px 16px -13px rgb(143, 141, 141);
 }
-
-
-
 
 .loader_box {
   position: fixed;
@@ -104,7 +101,7 @@
     transform: translate(-50%, -50%);
     animation: spin 1s ease-out infinite;
   }
-  .inner_loader{
+  .inner_loader {
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -115,7 +112,12 @@
     animation: innerspin 1s ease-out infinite;
   }
 }
-
+.order_div {
+  z-index: 2147483641;
+}
+.menu {
+  z-index: 2147483641;
+}
 @keyframes innerspin {
   0% {
     width: 20px;

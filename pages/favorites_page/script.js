@@ -2,10 +2,11 @@ import {
   reload_favorites,
 } from "../../modules/ui";
 import { getData, postData } from "/modules/https";
-import { header, footer } from "/modules/ui";
+import { header, footer, modal_container } from "/modules/ui";
 
 header();
 footer();
+modal_container()
 
 let logo = document.querySelector(".logo");
 let swiper_wrapper = document.querySelector(".swiper-wrapper");
