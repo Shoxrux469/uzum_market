@@ -13,9 +13,16 @@ let arrow_bottom = document.querySelector(".arrow_bottom");
 let prods_num = document.querySelector(".prods_num");
 let go_to_bag = document.querySelector(".go_to_bag");
 let prod_quantity = document.querySelector(".prod_quantity");
+let surname = document.querySelector(".surname");
+let name = document.querySelector(".name");
+let phone_num = document.querySelector(".phone_num");
 let prod_sum = document.querySelectorAll(".prod_sum");
 let bag_arr = [];
 let real_price = [];
+
+surname.value = user.surname
+name.value = user.name
+phone_num.value = user.phone_num
 
 go_to_bag.onclick = () => {
     location.assign('/pages/bag_page/')

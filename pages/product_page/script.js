@@ -5,7 +5,7 @@ import { user } from "/modules/user";
 
 header();
 footer();
-modal_container()
+modal_container();
 let similar_products = document.querySelector(".similar_products");
 
 let id = location.search.split("=").at(-1);
@@ -19,6 +19,7 @@ add_to_bag.forEach((btn) => {
       prod_id: id,
       num: 1,
     };
+    btn.innerHTML = "Добавлено в карзину";
 
     postData("/bag", bag_obj).then((res) => {
       setTimeout(() => {
@@ -55,19 +56,20 @@ getData(`/goods/${id}`).then((res) => {
 
   let plus = document.querySelector(".plus");
   let minus = document.querySelector(".minus");
-  if (quantity.innerHTML <= 5) {
-    plus.classList.add("text-gray-400");
-  }
-  plus.onclick = () => {
-    quantity.innerHTML += 1;
-  };
-  if (quantity.innerHTML >= 1) {
-    minus.classList.add("text-gray-400");
-  }
   minus.onclick = () => {
-    quantity.innerHTML -= 1;
+    if (quantity.innerHTML > 1) {
+      quantity.innerHTML -= 1;
+    } else {
+      minus.classList.add("text-gray-400");
+    }
   };
-
+  plus.onclick = () => {
+    if (quantity.innerHTML >= 5) {
+      plus.classList.add("text-gray-400");
+    } else {
+      quantity.innerHTML += 1;
+    }
+  };
   getData("/goods").then((elem) => {
     let similars = [];
 

@@ -30,7 +30,7 @@ export function header() {
   </div>
 </div>
 <div class="header my-4 mb-[10px] flex justify-between w-11/12 mx-auto">
-  <svg class="logo hidden cursor-pointer xl:w-2/12 lg:w-3/12 lg:block" data-v-aa1700bc=""
+  <svg class="logo hidden mr-4 cursor-pointer xl:w-2/12 lg:w-3/12 lg:block" data-v-aa1700bc=""
       viewBox="0 0 215 32" fill="none" xmlns="http://www.w3.org/2000/svg" alt="Uzum"
       class="ui-icon  logo">
       <rect width="31.9764" height="31.9764" rx="15.9882" fill="#FFFF00"></rect>
@@ -106,6 +106,8 @@ export function header() {
               type="text" placeholder="Искать товары и категории">
           <img class="hidden lg:block bg-gray-100 px-6 py-2 rounded-r" src="/public/searcher_icon.svg"
               alt="">
+              <div class="searcher_modal py-4 flex flex-col gap-4 hidden rounded-lg absolute bg-white w-full top-[40px]">
+              </div>
       </div>
   </div>
   <div class="header_right lg:ml-4 hidden lg:flex items-center xl:gap-3">
@@ -306,15 +308,15 @@ export function modal_container() {
                       d="M14.5 3C11.4624 3 9 5.46243 9 8.5C9 11.5376 11.4624 14 14.5 14C17.5376 14 20 11.5376 20 8.5C20 5.46243 17.5376 3 14.5 3ZM10.5 8.5C10.5 6.29086 12.2909 4.5 14.5 4.5C16.7091 4.5 18.5 6.29086 18.5 8.5C18.5 10.7091 16.7091 12.5 14.5 12.5C12.2909 12.5 10.5 10.7091 10.5 8.5Z"
                       fill="#8B8E99"></path>
                   <path
-                      d="M14.5025 15C9.16883 15 4.5 19.0011 4.5 24C4.5 25.1046 5.39543 26 6.5 26H22.5C23.6046 26 24.5 25.1046 24.5 24C24.5 19.0057 19.8369 15 14.5025 15ZM6 24C6 19.9911 9.82583 16.5 14.5025 16.5C19.1783 16.5 23 19.9943 23 24C23 24.2761 22.7761 24.5 22.5 24.5H6.5C6.22386 24.5 6 24.2761 6 24Z"
-                      fill="#8B8E99"></path>
-              </g>
-          </g>
-      </svg>
-      <p class="profile text-xs md:text-base">Кабинет</p>
-  </li>
-</ul>
-  `;
+                  d="M14.5025 15C9.16883 15 4.5 19.0011 4.5 24C4.5 25.1046 5.39543 26 6.5 26H22.5C23.6046 26 24.5 25.1046 24.5 24C24.5 19.0057 19.8369 15 14.5025 15ZM6 24C6 19.9911 9.82583 16.5 14.5025 16.5C19.1783 16.5 23 19.9943 23 24C23 24.2761 22.7761 24.5 22.5 24.5H6.5C6.22386 24.5 6 24.2761 6 24Z"
+                  fill="#8B8E99"></path>
+                  </g>
+                  </g>
+                  </svg>
+                  <p class="profile text-xs md:text-base">Кабинет</p>
+                  </li>
+                  </ul>
+                  `;
 }
 
 export function reload_products(arr, place) {
@@ -384,7 +386,6 @@ export function reload_products(arr, place) {
     salePrice.classList.add("text-sm");
     bag_img.classList.add("bag_img");
     bag_img.classList.add("cursor-pointer");
-    // console.log(item);
 
     img.src = item.media[0];
     like.src = "/public/like_icon.svg";
@@ -392,28 +393,37 @@ export function reload_products(arr, place) {
       let liked_arr = {
         prod_id: item.id,
       };
-      like.src = "/public/purple_heart.svg";
-      like.classList.add("liked_product");
-      like.classList.add("scale-125");
-      like.classList.add("duration-200");
-      postData("/liked", liked_arr).then((res) => {
-        if (res.status !== 200 && res.status !== 201) return;
-      });
-
-      setTimeout(() => {
-        like.classList.remove("scale-125");
-        like.classList.add("duration-200");
-      }, 300);
-
-      let liked_product = document.querySelector(".liked_product");
-      //   console.log(liked_product);
-
-      liked_product.onclick = () => {
-        liked_product.src = "/public/like_icon.svg";
+      if (item.status === 1) {
+        like.src = "/public/like_icon.svg";
         like.classList.remove("liked_product");
-      };
-    };
+        editData("/goods/" + item.id, { status: 0 }).then((res) => {
+          if (res.status !== 200 && res.status !== 201) return;
+          console.log(res.data);
+        });
+      } else {
+        like.src = "/public/purple_heart.svg";
+        like.classList.add("scale-125");
+        like.classList.add("duration-200");
+        editData("/goods/" + item.id, { status: 1 }).then((res) => {
+          if (res.status !== 200 && res.status !== 201) return;
+          console.log(res.data);
+        });
 
+        postData("/liked", liked_arr).then((res) => {
+          if (res.status !== 200 && res.status !== 201) return;
+        });
+
+        setTimeout(() => {
+          like.classList.remove("scale-125");
+          like.classList.add("duration-200");
+        }, 300);
+      }
+    };
+    if (item.status === 1) {
+      like.src = "/public/purple_heart.svg";
+    } else {
+      like.src = "/public/like_icon.svg";
+    }
     title.innerHTML = item.title.slice(0, 48) + "..";
     // console.log(title.innerHTML.);
     // console.log(item);
@@ -632,9 +642,10 @@ export function reload_favorites(arr, place) {
         for (let elem of res.data) {
           if (elem.prod_id === item.id) {
             deleteData(`/liked/${elem.id}`).then((res) => {
+              swiper_slide.remove();
               console.log(res.data);
             });
-            location.reload();
+            // location.reload();
           }
         }
       });
@@ -757,8 +768,9 @@ export function reload_bag_modal(arr, place) {
           if (elem.prod_id === item.id) {
             deleteData(`/bag/${elem.id}`).then((res) => {
               console.log(res.data);
+              prod_card.remove();
             });
-            location.reload();
+            // location.reload();
           }
         }
       });
@@ -861,8 +873,10 @@ export function reload_bag_prods(arr, place) {
     } else {
       real_sum.innerHTML =
         item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
-      quantity2_sum.innerHTML = item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб/ед";
-      quantity_sum.innerHTML = item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб/ед";
+      quantity2_sum.innerHTML =
+        item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб/ед";
+      quantity_sum.innerHTML =
+        item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб/ед";
     }
     fake_sum.innerHTML =
       item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
@@ -896,9 +910,10 @@ export function reload_bag_prods(arr, place) {
         for (let elem of res.data) {
           if (elem.prod_id === item.id) {
             deleteData(`/bag/${elem.id}`).then((res) => {
+              prod_card.remove();
               console.log(res.data);
             });
-            location.reload();
+            // location.reload();
           }
         }
       });
@@ -1011,10 +1026,10 @@ export function reload_bag_prods(arr, place) {
     fake_sum.classList.add("opacity-60");
 
     place.append(prod_card, bottom_div);
-    bottom_div.append(quantity2_main_div, delete2_div)
-    delete2_div.append(delete2_img, delete2_text)
-    quantity2_main_div.append(quantity2_div, quantity2_sum)
-    quantity2_div.append(quantity2_minus, quantity2_num, quantity2_plus)
+    bottom_div.append(quantity2_main_div, delete2_div);
+    delete2_div.append(delete2_img, delete2_text);
+    quantity2_main_div.append(quantity2_div, quantity2_sum);
+    quantity2_div.append(quantity2_minus, quantity2_num, quantity2_plus);
     prod_card.append(left, right);
     left.append(input, prod_img);
     right.append(top_div, down_div);

@@ -46,6 +46,7 @@ getData("/bag").then((bag) => {
       for (let good of goods.data) {
         if (item.prod_id === good.id) {
           bag_arr.push(good);
+          // console.log(bag_arr);
         }
       }
     }

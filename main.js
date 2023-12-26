@@ -1,10 +1,16 @@
-import { getData, postData } from "./modules/https";
-import { loader, header, footer, reload_products, modal_container } from "./modules/ui";
+import { getData, postData, editData, deleteData } from "./modules/https";
+import {
+  loader,
+  header,
+  footer,
+  reload_products,
+  modal_container,
+} from "./modules/ui";
 import { user } from "/modules/user";
 
 header();
 footer();
-modal_container() 
+modal_container();
 
 let show_all_btn = document.querySelector(".show_all_btn");
 let furniture_content = document.querySelector(".furniture_content");
@@ -162,6 +168,31 @@ log_in_form.onsubmit = (e) => {
     // console.log(res.data);
   });
 };
+
+
+getData("/goods").then((arr) => {
+  getData("/liked").then((res) => {
+    for (let item of arr.data) {
+      for (let elem of res.data) {
+        editData("/goods/" + item.id, { status: 0 }).then((res) => {
+          if (res.status !== 200 && res.status !== 201) return;
+          console.log(res.data);
+        });
+        if (elem.prod_id === item.id) {
+          editData("/goods/" + item.id, { status: 1 }).then((res) => {
+            if (res.status !== 200 && res.status !== 201) return;
+            console.log(res.data);
+          });
+        } else {
+          editData("/goods/" + item.id, { status: 0 }).then((res) => {
+            if (res.status !== 200 && res.status !== 201) return;
+            console.log(res.data);
+          });
+        }
+      }
+    }
+  });
+});
 
 sign_in_form.onsubmit = (e) => {
   e.preventDefault();

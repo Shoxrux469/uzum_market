@@ -83,6 +83,12 @@
   box-shadow: -1px 5px 16px -13px rgb(143, 141, 141);
 }
 
+.searcher_modal {
+  z-index: 2147483641;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .loader_box {
   position: fixed;
   transition: 0.3s;

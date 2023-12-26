@@ -13,54 +13,44 @@
       "id": 5
     },
     {
-      "prod_id": 2,
-      "id": 6
-    },
-    {
       "prod_id": 16,
       "id": 7
+    },
+    {
+      "prod_id": 4,
+      "id": 8
+    },
+    {
+      "prod_id": 12,
+      "id": 9
+    },
+    {
+      "prod_id": 11,
+      "id": 10
+    },
+    {
+      "prod_id": 12,
+      "id": 11
+    },
+    {
+      "prod_id": 31,
+      "id": 12
+    },
+    {
+      "prod_id": 12,
+      "id": 13
     }
   ],
   "bag": [
     {
       "prod_id": 16,
-      "num": 6,
-      "id": 10
-    },
-    {
-      "prod_id": 12,
-      "num": 3,
-      "id": 11
-    },
-    {
-      "prod_id": 33,
       "num": 1,
-      "id": 12
+      "id": 1
     },
     {
-      "prod_id": "16",
+      "prod_id": 18,
       "num": 1,
-      "id": 13
-    },
-    {
-      "prod_id": "16",
-      "num": 1,
-      "id": 14
-    },
-    {
-      "prod_id": "16",
-      "num": 1,
-      "id": 15
-    },
-    {
-      "prod_id": "16",
-      "num": 1,
-      "id": 16
-    },
-    {
-      "prod_id": "16",
-      "num": 1,
-      "id": 17
+      "id": 2
     }
   ],
   "users": [
@@ -100,7 +90,8 @@
       "media": [
         "https://img.mvideo.ru/Big/50138276bb.jpg"
       ],
-      "type": "furniture"
+      "type": "furniture",
+      "status": 0
     },
     {
       "id": 2,
@@ -116,7 +107,8 @@
       "media": [
         "https://img.mvideo.ru/Big/50110498bb.jpg"
       ],
-      "type": "furniture"
+      "type": "furniture",
+      "status": 0
     },
     {
       "id": 3,
@@ -132,7 +124,8 @@
       "media": [
         "https://img.mvideo.ru/Big/50110498bb.jpg"
       ],
-      "type": "furniture"
+      "type": "furniture",
+      "status": 0
     },
     {
       "id": 4,
@@ -149,7 +142,8 @@
       "media": [
         "https://img.mvideo.ru/Big/50143597bb.jpg"
       ],
-      "type": "furniture"
+      "type": "furniture",
+      "status": 0
     },
     {
       "id": 5,
@@ -166,7 +160,8 @@
       "media": [
         "https://img.mvideo.ru/Big/50143056bb1.jpg"
       ],
-      "type": "furniture"
+      "type": "furniture",
+      "status": 0
     },
     {
       "id": 6,
@@ -183,7 +178,8 @@
       "media": [
         "https://img.mvideo.ru/Pdb/50046768b.jpg"
       ],
-      "type": "furniture"
+      "type": "furniture",
+      "status": 0
     },
     {
       "id": 7,
@@ -199,7 +195,8 @@
       "media": [
         "https://img.mvideo.ru/Big/50136546bb1.jpg"
       ],
-      "type": "furniture"
+      "type": "furniture",
+      "status": 0
     },
     {
       "id": 8,
@@ -216,7 +213,8 @@
       "media": [
         "https://img.mvideo.ru/Big/50136541bb1.jpg"
       ],
-      "type": "furniture"
+      "type": "furniture",
+      "status": 0
     },
     {
       "id": 9,
@@ -233,7 +231,8 @@
       "media": [
         "https://img.mvideo.ru/Big/40072385bb1.jpg"
       ],
-      "type": "furniture"
+      "type": "furniture",
+      "status": 0
     },
     {
       "id": 10,
@@ -267,7 +266,8 @@
         "https://img.mvideo.ru/Big/30058106bb1.jpg",
         "https://img.mvideo.ru/Big/30058106bb3.jpg"
       ],
-      "type": "PC"
+      "type": "PC",
+      "status": 1
     },
     {
       "id": 12,
@@ -285,7 +285,8 @@
         "https://img.mvideo.ru/Big/30065113bb1.jpg",
         "https://img.mvideo.ru/Big/30065113bb2.jpg"
       ],
-      "type": "PC"
+      "type": "PC",
+      "status": 1
     },
     {
       "id": 13,
@@ -355,7 +356,8 @@
         "https://img.mvideo.ru/Big/30057855bb5.jpg",
         "https://img.mvideo.ru/Big/30057855bb4.jpg"
       ],
-      "type": "PC"
+      "type": "PC",
+      "status": 1
     },
     {
       "id": 17,
@@ -391,7 +393,8 @@
         "https://img.mvideo.ru/Big/30063814bb1.jpg",
         "https://img.mvideo.ru/Big/30063814bb2.jpg"
       ],
-      "type": "PC"
+      "type": "PC",
+      "status": 1
     },
     {
       "id": 19,
@@ -891,7 +894,8 @@
         "https://img.mvideo.ru/Pdb/20040702b2.jpg",
         "https://img.mvideo.ru/Pdb/20040702b3.jpg"
       ],
-      "type": "kitchen"
+      "type": "kitchen",
+      "status": 1
     },
     {
       "id": 34,

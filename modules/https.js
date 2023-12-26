@@ -1,5 +1,5 @@
 import axios from "axios";
-let base_url = "http://localhost:8080";
+let base_url = "http://localhost:9090";
 
 export async function getData(path) {
   try {
