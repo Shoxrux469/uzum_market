@@ -248,7 +248,8 @@
       "media": [
         "https://img.mvideo.ru/Big/50132144bb.jpg"
       ],
-      "type": "furniture"
+      "type": "furniture",
+      "status": 0
     },
     {
       "id": 11,
@@ -267,7 +268,7 @@
         "https://img.mvideo.ru/Big/30058106bb3.jpg"
       ],
       "type": "PC",
-      "status": 1
+      "status": 0
     },
     {
       "id": 12,
@@ -302,7 +303,8 @@
       "media": [
         "https://img.mvideo.ru/Big/30062852bb.jpg"
       ],
-      "type": "PC"
+      "type": "PC",
+      "status": 0
     },
     {
       "id": 14,
@@ -357,7 +359,7 @@
         "https://img.mvideo.ru/Big/30057855bb4.jpg"
       ],
       "type": "PC",
-      "status": 1
+      "status": 0
     },
     {
       "id": 17,
@@ -375,7 +377,8 @@
         "https://img.mvideo.ru/Big/30043369bb1.jpg",
         "https://img.mvideo.ru/Big/30043369bb4.jpg"
       ],
-      "type": "PC"
+      "type": "PC",
+      "status": 0
     },
     {
       "id": 18,
