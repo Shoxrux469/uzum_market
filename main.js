@@ -168,32 +168,6 @@ log_in_form.onsubmit = (e) => {
     // console.log(res.data);
   });
 };
-
-
-getData("/goods").then((arr) => {
-  getData("/liked").then((res) => {
-    for (let item of arr.data) {
-      for (let elem of res.data) {
-        editData("/goods/" + item.id, { status: 0 }).then((res) => {
-          if (res.status !== 200 && res.status !== 201) return;
-          console.log(res.data);
-        });
-        if (elem.prod_id === item.id) {
-          editData("/goods/" + item.id, { status: 1 }).then((res) => {
-            if (res.status !== 200 && res.status !== 201) return;
-            console.log(res.data);
-          });
-        } else {
-          editData("/goods/" + item.id, { status: 0 }).then((res) => {
-            if (res.status !== 200 && res.status !== 201) return;
-            console.log(res.data);
-          });
-        }
-      }
-    }
-  });
-});
-
 sign_in_form.onsubmit = (e) => {
   e.preventDefault();
 

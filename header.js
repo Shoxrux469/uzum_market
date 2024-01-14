@@ -81,8 +81,7 @@ getData("/bag").then((res) => {
   }
 });
 
-getData("/bag")
-.then((res) => {
+getData("/bag").then((res) => {
   prod_quantity.forEach((prod) => {
     if (res.data.length === 0) {
       prod.classList.add("hidden");
@@ -94,44 +93,46 @@ getData("/bag")
 });
 
 searcher_inp.onkeyup = (e) => {
+  searcher_modal.innerHTML = ""
   if (e.target.value.trim().length >= 2) {
-    searcher_modal.classList.remove('hidden')
+    searcher_modal.classList.remove("hidden");
     getData("/goods").then((res) => {
-      console.log(res);
+      // console.log(res);
       let result = res.data.filter((item) =>
         item.title.trim().toLowerCase().includes(e.target.value)
       );
+      let filtered_res = result.slice(0, 6);
+      console.log(filtered_res);
 
       if (res.data.length) {
-        for (let prod of result.slice(0, 6)) {
+        for (let prod of filtered_res) {
           let card = document.createElement("div");
           let card_icon = document.createElement("img");
           let card_p = document.createElement("p");
 
           card.onclick = () => {
-            location.assign(`/pages/product_page/?id=${prod.id}`)
-          }
-          
-          card_icon.src = "/public/searcher_icon.svg";
-          card_p.innerHTML = prod.title.slice(0, 55)
+            location.assign(`/pages/product_page/?id=${prod.id}`);
+          };
 
-          card.classList.add('flex')
-          card.classList.add('px-3')
-          card.classList.add('hover:bg-gray-200')
-          card.classList.add('py-2')
-          card.classList.add('gap-3')
-          card_p.classList.add('text-sm')
-          card_p.classList.add('opacity-70')
-          
-          searcher_modal.append(card)
-          card.append(card_icon, card_p)
+          card_icon.src = "/public/searcher_icon.svg";
+          card_p.innerHTML = prod.title.slice(0, 55);
+
+          card.classList.add("flex");
+          card.classList.add("px-3");
+          card.classList.add("hover:bg-gray-200");
+          card.classList.add("py-2");
+          card.classList.add("gap-3");
+          card_p.classList.add("text-sm");
+          card_p.classList.add("opacity-70");
+
+          searcher_modal.append(card);
+          card.append(card_icon, card_p);
         }
-        return
+        return;
       }
     });
   } else {
-    searcher_modal.classList.add('hidden')
-
+    searcher_modal.classList.add("hidden");
   }
   if (e.key === "Enter") {
     localStorage.setItem(
