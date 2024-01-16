@@ -389,7 +389,7 @@ export function reload_products(arr, place) {
 
     img.src = item.media[0];
     like.src = "/public/like_icon.svg";
-    like.onclick = (e) => {
+    like.onclick = () => {
       let liked_arr = {
         prod_id: item.id,
       };
@@ -637,19 +637,57 @@ export function reload_favorites(arr, place) {
 
     img.src = item.media[0];
     like.src = "/public/purple_heart.svg";
+
+    like.src = "/public/like_icon.svg";
     like.onclick = () => {
-      getData("/liked").then((res) => {
-        for (let elem of res.data) {
-          if (elem.prod_id === item.id) {
-            deleteData(`/liked/${elem.id}`).then((res) => {
-              swiper_slide.remove();
-              console.log(res.data);
-            });
-            // location.reload();
+      let liked_arr = {
+        prod_id: item.id,
+      };
+      if (item.status === 1) {
+        like.src = "/public/like_icon.svg";
+        like.classList.remove("liked_product");
+        console.log(product_card);
+        editData("/goods/" + item.id, { status: 0 }).then((res) => {
+          if (res.status !== 200 && res.status !== 201) return;
+          console.log(res.data);
+          product_card.remove();
+        });
+
+        getData("/liked").then((res) => {
+          for (let elem of res.data) {
+            if (elem.prod_id === item.id) {
+              deleteData(`/liked/${elem.id}`).then((res) => {
+                swiper_slide.remove();
+                console.log(res.data);
+              });
+            } else {
+            }
           }
-        }
-      });
+        });
+      } else {
+        like.src = "/public/purple_heart.svg";
+        like.classList.add("scale-125");
+        like.classList.add("duration-200");
+        editData("/goods/" + item.id, { status: 1 }).then((res) => {
+          if (res.status !== 200 && res.status !== 201) return;
+          console.log(res.data);
+        });
+
+        postData("/liked", liked_arr).then((res) => {
+          if (res.status !== 200 && res.status !== 201) return;
+        });
+
+        setTimeout(() => {
+          like.classList.remove("scale-125");
+          like.classList.add("duration-200");
+        }, 300);
+      }
     };
+    if (item.status === 1) {
+      like.src = "/public/purple_heart.svg";
+    } else {
+      like.src = "/public/like_icon.svg";
+    }
 
     title.innerHTML = item.title.slice(0, 48) + "..";
     // console.log(title.innerHTML.);
@@ -681,17 +719,18 @@ export function reload_favorites(arr, place) {
         console.log(item);
       }
     };
+
     product_card.onclick = (e) => {
       // console.log(e.target.classList);
       if (
-        e.target.classList[4] !== "like_btn" ||
+        e.target.classList[4] !== "like_btn" &&
         e.target.classList[0] !== "bag_img"
       ) {
         setTimeout(() => {
           loader();
         }, 200);
         setTimeout(() => {
-          console.log(e.target);
+          console.log(e.target.classList[4]);
           location.assign(`/pages/product_page/?id=${item.id}`);
         }, 1000);
       }
@@ -777,7 +816,12 @@ export function reload_bag_modal(arr, place) {
     };
     prod_card.onclick = (e) => {
       if (e.target.classList[0] === "prod_text") {
-        location.assign(`/pages/product_page/?id=${item.id}`);
+        setTimeout(() => {
+          loader();
+        }, 200);
+        setTimeout(() => {
+          location.assign(`/pages/product_page/?id=${item.id}`);
+        }, 1000);
       }
     };
 

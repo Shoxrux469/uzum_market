@@ -1,12 +1,10 @@
-import {
-  reload_favorites,
-} from "../../modules/ui";
+import { reload_favorites } from "../../modules/ui";
 import { getData, postData } from "/modules/https";
 import { header, footer, modal_container } from "/modules/ui";
 
 header();
 footer();
-modal_container()
+modal_container();
 
 let logo = document.querySelector(".logo");
 let swiper_wrapper = document.querySelector(".swiper-wrapper");
@@ -27,27 +25,21 @@ logo.onclick = () => {
   location.assign("/");
 };
 
-getData("/liked").then((res) => {
-  let liked_arr = [];
-  // console.log(res.data);
-  if (res.data.length === 0) {
-    container.classList.remove("hidden");
-  } else {
-    container.classList.add("hidden");
-    for (let liked of res.data) {
-      getData("/goods").then((res) => {
-        for (let good of res.data) {
-          if (good.id === liked.prod_id) {
-            // reload_favorites()
-            liked_arr.push(good);
-            reload_favorites(liked_arr, prod_container);
-          }
-        }
-      });
+let liked_arr = [];
+getData("/goods").then((res) => {
+  for (let good of res.data) {
+    if (good) {
+      container.classList.add("hidden");
+      if (good.status === 1) {
+        liked_arr.push(good);
+        console.log(liked_arr);
+        reload_favorites(liked_arr, prod_container);
+      }
+    } else {
+      container.classList.remove("hidden");
     }
   }
 });
-
 
 let furniture_box = [];
 getData("/goods").then((res) => {

@@ -1,64 +1,22 @@
 {
-  "liked": [
+  "bag": [
     {
-      "prod_id": 12,
+      "prod_id": 20,
+      "num": 1,
       "id": 1
     },
     {
       "prod_id": 18,
+      "num": 1,
       "id": 2
     },
     {
       "prod_id": 33,
-      "id": 5
-    },
-    {
-      "prod_id": 16,
-      "id": 7
-    },
-    {
-      "prod_id": 4,
-      "id": 8
-    },
-    {
-      "prod_id": 12,
-      "id": 9
-    },
-    {
-      "prod_id": 11,
-      "id": 10
-    },
-    {
-      "prod_id": 12,
-      "id": 11
-    },
-    {
-      "prod_id": 31,
-      "id": 12
-    },
-    {
-      "prod_id": 12,
-      "id": 13
-    }
-  ],
-  "bag": [
-    {
-      "prod_id": 16,
-      "num": 1,
-      "id": 1
-    },
-    {
-      "prod_id": 18,
-      "num": 1,
-      "id": 2
-    },
-    {
-      "prod_id": "16",
       "num": 1,
       "id": 3
     },
     {
-      "prod_id": "16",
+      "prod_id": 31,
       "num": 1,
       "id": 4
     }
@@ -135,7 +93,7 @@
         "https://img.mvideo.ru/Big/50110498bb.jpg"
       ],
       "type": "furniture",
-      "status": 0
+      "status": 1
     },
     {
       "id": 4,
@@ -297,7 +255,7 @@
         "https://img.mvideo.ru/Big/30065113bb2.jpg"
       ],
       "type": "PC",
-      "status": 1
+      "status": 0
     },
     {
       "id": 13,
@@ -332,7 +290,8 @@
         "https://img.mvideo.ru/Big/30065111bb1.jpg",
         "https://img.mvideo.ru/Big/30065111bb2.jpg"
       ],
-      "type": "PC"
+      "type": "PC",
+      "status": 0
     },
     {
       "id": 15,
@@ -350,7 +309,8 @@
         "https://img.mvideo.ru/Big/30058010bb1.jpg",
         "https://img.mvideo.ru/Big/30058010bb2.jpg"
       ],
-      "type": "PC"
+      "type": "PC",
+      "status": 0
     },
     {
       "id": 16,
@@ -369,7 +329,7 @@
         "https://img.mvideo.ru/Big/30057855bb4.jpg"
       ],
       "type": "PC",
-      "status": 0
+      "status": 1
     },
     {
       "id": 17,
@@ -407,7 +367,7 @@
         "https://img.mvideo.ru/Big/30063814bb2.jpg"
       ],
       "type": "PC",
-      "status": 1
+      "status": 0
     },
     {
       "id": 19,
@@ -425,7 +385,8 @@
         "https://img.mvideo.ru/Big/30026741bb1.jpg",
         "https://img.mvideo.ru/Big/30026741bb7.jpg"
       ],
-      "type": "PC"
+      "type": "PC",
+      "status": 0
     },
     {
       "id": 20,
@@ -442,7 +403,8 @@
         "https://img.mvideo.ru/Pdb/30064600b.jpg",
         "https://img.mvideo.ru/Pdb/30064600b1.jpg"
       ],
-      "type": "PC"
+      "type": "PC",
+      "status": 0
     },
     {
       "id": 21,
@@ -458,7 +420,8 @@
       "media": [
         "https://img.mvideo.ru/Big/50159382bb.jpg"
       ],
-      "type": "audio"
+      "type": "audio",
+      "status": 0
     },
     {
       "id": 22,
@@ -476,7 +439,8 @@
         "https://img.mvideo.ru/Big/50152746bb.jpg",
         "https://img.mvideo.ru/Big/50152745bb.jpg"
       ],
-      "type": "audio"
+      "type": "audio",
+      "status": 0
     },
     {
       "id": 23,
@@ -493,7 +457,8 @@
         "https://img.mvideo.ru/Big/10019053bb.jpg",
         "https://img.mvideo.ru/Big/10019053bb1.jpg"
       ],
-      "type": "audio"
+      "type": "audio",
+      "status": 0
     },
     {
       "id": 24,
@@ -510,7 +475,8 @@
         "https://img.mvideo.ru/Big/10028518bb.jpg",
         "https://img.mvideo.ru/Big/10028518bb1.jpg"
       ],
-      "type": "audio"
+      "type": "audio",
+      "status": 0
     },
     {
       "id": 25,
@@ -527,7 +493,8 @@
         "https://img.mvideo.ru/Pdb/10012693b.jpg",
         "https://img.mvideo.ru/Pdb/10012693b1.jpg"
       ],
-      "type": "audio"
+      "type": "audio",
+      "status": 0
     },
     {
       "id": 26,
@@ -544,7 +511,8 @@
         "https://img.mvideo.ru/Big/10022400bb.jpg",
         "https://img.mvideo.ru/Big/10022400bb2.jpg"
       ],
-      "type": "audio"
+      "type": "audio",
+      "status": 0
     },
     {
       "id": 27,
@@ -560,7 +528,8 @@
       "media": [
         "https://img.mvideo.ru/Big/10028676bb.jpg"
       ],
-      "type": "audio"
+      "type": "audio",
+      "status": 0
     },
     {
       "id": 28,
@@ -577,7 +546,8 @@
         "https://img.mvideo.ru/Big/10028852bb.jpg",
         "https://img.mvideo.ru/Big/10028852bb3.jpg"
       ],
-      "type": "audio"
+      "type": "audio",
+      "status": 0
     },
     {
       "id": 29,
@@ -595,7 +565,8 @@
         "https://img.mvideo.ru/Pdb/50052461b.jpg",
         "https://img.mvideo.ru/Pdb/50052460b.jpg"
       ],
-      "type": "audio"
+      "type": "audio",
+      "status": 0
     },
     {
       "id": 30,
@@ -613,7 +584,8 @@
         "https://img.mvideo.ru/Big/50131395bb.jpg",
         "https://img.mvideo.ru/Big/50173058bb.jpg"
       ],
-      "type": "audio"
+      "type": "audio",
+      "status": 0
     },
     {
       "id": 0.011139933448344408,
@@ -636,7 +608,8 @@
         "https://img.mvideo.ru/Big/small_pic/65/10030407bb1.jpg",
         "https://img.mvideo.ru/Big/small_pic/65/10030407bb3.jpg"
       ],
-      "type": "TV"
+      "type": "TV",
+      "status": 0
     },
     {
       "id": 0.14070230267720274,
@@ -662,7 +635,8 @@
         "https://img.mvideo.ru/Big/small_pic/65/10025791bb1.jpg",
         "https://img.mvideo.ru/Big/small_pic/65/10025791bb2.jpg"
       ],
-      "type": "TV"
+      "type": "TV",
+      "status": 0
     },
     {
       "id": 0.58006116125388,
@@ -688,7 +662,8 @@
         "https://img.mvideo.ru/Big/small_pic/65/10030411bb1.jpg",
         "https://img.mvideo.ru/Big/small_pic/65/10030411bb2.jpg"
       ],
-      "type": "TV"
+      "type": "TV",
+      "status": 1
     },
     {
       "id": 0.8474365959595023,
@@ -713,7 +688,8 @@
         "https://img.mvideo.ru/Big/small_pic/65/10030234bb1.jpg",
         "https://img.mvideo.ru/Big/small_pic/65/10030234bb2.jpg"
       ],
-      "type": "TV"
+      "type": "TV",
+      "status": 0
     },
     {
       "id": 0.8934953995981414,
@@ -738,7 +714,8 @@
         "https://img.mvideo.ru/Big/small_pic/65/10026500bb1.jpg",
         "https://img.mvideo.ru/Big/small_pic/65/10026500bb2.jpg"
       ],
-      "type": "TV"
+      "type": "TV",
+      "status": 0
     },
     {
       "id": 0.1452291405255206,
@@ -760,7 +737,8 @@
         "https://img.mvideo.ru/Pdb/small_pic/65/10030424b1.jpg",
         "https://img.mvideo.ru/Pdb/small_pic/65/10030424b2.jpg"
       ],
-      "type": "TV"
+      "type": "TV",
+      "status": 0
     },
     {
       "id": 0.30766659663183327,
@@ -783,7 +761,8 @@
         "https://img.mvideo.ru/Big/small_pic/65/10031232bb1.jpg",
         "https://img.mvideo.ru/Big/small_pic/65/10031232bb2.jpg"
       ],
-      "type": "TV"
+      "type": "TV",
+      "status": 0
     },
     {
       "id": 0.8031328499576555,
@@ -804,7 +783,8 @@
         "https://img.mvideo.ru/Big/small_pic/65/10031758bb1.jpg",
         "https://img.mvideo.ru/Big/small_pic/65/10031758bb2.jpg"
       ],
-      "type": "TV"
+      "type": "TV",
+      "status": 0
     },
     {
       "id": 0.060016578071321325,
@@ -826,7 +806,8 @@
         "https://img.mvideo.ru/Big/small_pic/65/10031348bb1.jpg",
         "https://img.mvideo.ru/Big/small_pic/65/10031348bb2.jpg"
       ],
-      "type": "TV"
+      "type": "TV",
+      "status": 0
     },
     {
       "id": 0.8673838511087768,
@@ -850,7 +831,8 @@
         "https://img.mvideo.ru/Big/small_pic/65/10029729bb1.jpg",
         "https://img.mvideo.ru/Big/small_pic/65/10029729bb2.jpg"
       ],
-      "type": "TV"
+      "type": "TV",
+      "status": 0
     },
     {
       "id": 31,
@@ -870,7 +852,8 @@
         "https://img.mvideo.ru/Big/20080442bb5.jpg",
         "https://www.mvideo.ru/products/holodilnik-gorenje-nrk6191ps4-20080442"
       ],
-      "type": "kitchen"
+      "type": "kitchen",
+      "status": 0
     },
     {
       "id": 32,
@@ -890,7 +873,8 @@
         "https://img.mvideo.ru/Big/20064638bb2.jpg",
         "https://img.mvideo.ru/Big/20064638bb3.jpg"
       ],
-      "type": "kitchen"
+      "type": "kitchen",
+      "status": 0
     },
     {
       "id": 33,
@@ -908,7 +892,7 @@
         "https://img.mvideo.ru/Pdb/20040702b3.jpg"
       ],
       "type": "kitchen",
-      "status": 1
+      "status": 0
     },
     {
       "id": 34,
@@ -925,7 +909,8 @@
         "https://img.mvideo.ru/Big/20066196bb2.jpg",
         "https://img.mvideo.ru/Big/20066196bb3.jpg"
       ],
-      "type": "kitchen"
+      "type": "kitchen",
+      "status": 1
     },
     {
       "id": 35,
@@ -946,7 +931,8 @@
         "https://img.mvideo.ru/Big/small_pic/80/20044905bb3.jpg",
         "https://img.mvideo.ru/Big/20044905bb3.jpg"
       ],
-      "type": "kitchen"
+      "type": "kitchen",
+      "status": 0
     },
     {
       "id": 36,
@@ -967,7 +953,8 @@
         "https://img.mvideo.ru/Big/20071642bb3.jpg",
         "https://img.mvideo.ru/Big/20071642bb4.jpg"
       ],
-      "type": "kitchen"
+      "type": "kitchen",
+      "status": 0
     },
     {
       "id": 37,
@@ -984,7 +971,8 @@
         "https://img.mvideo.ru/Big/20078660bb2.jpg",
         "https://img.mvideo.ru/Big/20078660bb3.jpg"
       ],
-      "type": "kitchen"
+      "type": "kitchen",
+      "status": 0
     },
     {
       "id": 38,
@@ -1001,7 +989,8 @@
         "https://img.mvideo.ru/Pdb/400032920b2.jpg",
         "https://img.mvideo.ru/Pdb/400032920b3.jpg"
       ],
-      "type": "kitchen"
+      "type": "kitchen",
+      "status": 0
     },
     {
       "id": 39,
@@ -1019,7 +1008,8 @@
         "https://img.mvideo.ru/Pdb/20056837b3.jpg",
         "https://img.mvideo.ru/Pdb/20056837b4.jpg"
       ],
-      "type": "kitchen"
+      "type": "kitchen",
+      "status": 0
     },
     {
       "id": 40,
@@ -1042,7 +1032,8 @@
         "https://img.mvideo.ru/Big/20063431bb10.jpg",
         "https://img.mvideo.ru/Big/20063431bb12.jpg"
       ],
-      "type": "kitchen"
+      "type": "kitchen",
+      "status": 0
     }
   ]
 }

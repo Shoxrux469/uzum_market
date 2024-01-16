@@ -58,7 +58,7 @@ getData(`/goods/${id}`).then((res) => {
   let minus = document.querySelector(".minus");
   minus.onclick = () => {
     if (quantity.innerHTML > 1) {
-      quantity.innerHTML -= 1;
+      quantity.innerHTML--;
     } else {
       minus.classList.add("text-gray-400");
     }
@@ -67,7 +67,7 @@ getData(`/goods/${id}`).then((res) => {
     if (quantity.innerHTML >= 5) {
       plus.classList.add("text-gray-400");
     } else {
-      quantity.innerHTML += 1;
+      quantity.innerHTML++;
     }
   };
   getData("/goods").then((elem) => {

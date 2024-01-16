@@ -246,7 +246,6 @@ getData("/goods").then((res) => {
     }
   }
 });
-
 let audio_box = [];
 getData("/goods").then((res) => {
   for (let item of res.data) {

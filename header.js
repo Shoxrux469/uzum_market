@@ -65,7 +65,6 @@ bag_main_modal.onmouseleave = () => {
 
 getData("/bag").then((res) => {
   let bag_arr = [];
-  console.log(res);
   for (let item of res.data) {
     // console.log(item);
     getData("/goods").then((res) => {
