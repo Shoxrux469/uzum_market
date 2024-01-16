@@ -74,7 +74,7 @@ getData(`/goods/${id}`).then((res) => {
     let similars = [];
 
     for (let item of elem.data) {
-      if (item.type == res.data.type) {
+      if (item.type == res.data.type && res.data.id !== item.id) {
         similars.push(item);
       }
     }
