@@ -113,7 +113,7 @@ searcher_inp.onkeyup = (e) => {
             location.assign(`/pages/product_page/?id=${prod.id}`);
           };
 
-          card_icon.src = "/public/searcher_icon.svg";
+          card_icon.src = "/searcher_icon.svg";
           card_p.innerHTML = prod.title.slice(0, 55);
 
           card.classList.add("flex");
