@@ -901,29 +901,40 @@ export function reload_bag_prods(arr, place) {
         if (elem.prod_id === item.id) {
           quantity2_num.innerHTML = elem.num;
           quantity_num.innerHTML = elem.num;
+
+          if (item.salePercentage > 0) {
+            real_sum.innerHTML =
+              (
+                (item.price -
+                  Math.floor((item.price * item.salePercentage) / 100)) *
+                elem.num
+              )
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
+            quantity_sum.innerHTML =
+              (
+                (item.price -
+                  Math.floor((item.price * item.salePercentage) / 100)) *
+                elem.num
+              )
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб/ед";
+          } else {
+            real_sum.innerHTML =
+              (item.price * elem.num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") +
+              " руб";
+            quantity2_sum.innerHTML =
+              (item.price * elem.num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") +
+              " руб/ед";
+            quantity_sum.innerHTML =
+              (item.price * elem.num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") +
+              " руб/ед";
+          }
+          fake_sum.innerHTML =
+            (item.price * elem.num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
         }
       }
     });
-
-    if (item.salePercentage > 0) {
-      real_sum.innerHTML =
-        (item.price - Math.floor((item.price * item.salePercentage) / 100))
-          .toString()
-          .replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
-      quantity_sum.innerHTML =
-        (item.price - Math.floor((item.price * item.salePercentage) / 100))
-          .toString()
-          .replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб/ед";
-    } else {
-      real_sum.innerHTML =
-        item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
-      quantity2_sum.innerHTML =
-        item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб/ед";
-      quantity_sum.innerHTML =
-        item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб/ед";
-    }
-    fake_sum.innerHTML =
-      item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
     quantity2_minus.innerHTML = "-";
     quantity_minus.innerHTML = "-";
     quantity2_plus.innerHTML = "+";

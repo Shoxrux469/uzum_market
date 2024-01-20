@@ -1,5 +1,5 @@
 import { header, footer, modal_container } from "/modules/ui";
-import { getData, postData } from "/modules/https";
+import { getData, postData, editData } from "/modules/https";
 import { reload_products } from "../../modules/ui";
 import { user } from "/modules/user";
 
@@ -20,18 +20,37 @@ add_to_bag.forEach((btn) => {
       num: 1,
     };
     btn.innerHTML = "Добавлено в карзину";
-
-    postData("/bag", bag_obj).then((res) => {
-      setTimeout(() => {
-        location.reload();
-      }, 3000);
+    getData("/bag").then((res) => {
+      // console.log(res.data);
+      let doesExist = res.data.filter((el) => +el.prod_id === +id);
+      console.log(doesExist.length);
+      for (let item of res.data) {
+        if (doesExist.length === 1) {
+          let new_item = (item.num += 1);
+          editData("/bag/" + item.id, { num: new_item }).then((res) => {
+            if (res.status !== 200 && res.status !== 201) return;
+            console.log(res.data);
+          });
+        } else {
+          console.log(item.prod_id);
+          console.log(id);
+          postData("/bag", bag_obj).then((res) => {
+            setTimeout(() => {
+              location.reload();
+            }, 3000);
+          });
+        }
+      }
     });
   };
 });
 
+const prod_price = document.querySelector(".prod_price");
+const price = document.querySelector(".price");
+
 getData(`/goods/${id}`).then((res) => {
   let quantity = document.querySelector(".quantity");
-  document.querySelector(".prod_price").innerHTML =
+  prod_price.innerHTML =
     res.data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
   document.querySelector(".title").innerHTML = res.data.title;
   document.querySelector(".prod_type").innerHTML = res.data.type + "/";
@@ -42,7 +61,7 @@ getData(`/goods/${id}`).then((res) => {
       .toString()
       .replace(/\B(?=(\d{3})+(?!\d))/g, " ") +
     " руб/мес";
-  document.querySelector(".price").innerHTML =
+  price.innerHTML =
     res.data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
   document.querySelector(".prod_name").innerHTML = res.data.title;
   document.querySelector(".modal_price").innerHTML =
@@ -59,6 +78,11 @@ getData(`/goods/${id}`).then((res) => {
   minus.onclick = () => {
     if (quantity.innerHTML > 1) {
       quantity.innerHTML--;
+      price.innerHTML =
+        (res.data.price * quantity.innerHTML)
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, " ") + "руб";
+      // console.log(res.data.price);
     } else {
       minus.classList.add("text-gray-400");
     }
@@ -68,6 +92,10 @@ getData(`/goods/${id}`).then((res) => {
       plus.classList.add("text-gray-400");
     } else {
       quantity.innerHTML++;
+      price.innerHTML =
+        (res.data.price * quantity.innerHTML)
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, " ") + "руб";
     }
   };
   getData("/goods").then((elem) => {

@@ -1,24 +1,19 @@
 {
   "bag": [
     {
-      "prod_id": 20,
-      "num": 1,
+      "prod_id": 16,
+      "num": 6,
       "id": 1
     },
     {
       "prod_id": 18,
-      "num": 1,
+      "num": 9,
       "id": 2
     },
     {
-      "prod_id": 33,
-      "num": 1,
+      "prod_id": 0.1452291405255206,
+      "num": 3,
       "id": 3
-    },
-    {
-      "prod_id": 31,
-      "num": 1,
-      "id": 4
     }
   ],
   "users": [
@@ -31,15 +26,23 @@
       "id": 1
     },
     {
-      "name": "Шохрух",
+      "name": "Шохрухрорлиб",
       "surname": "Мамадсаидов",
       "phone_num": "901939993",
       "email": "mamadsaidovsohruh07@gmail.com",
       "password": "4444",
       "id": 2,
-      "gender": "Мужской",
+      "gender": "Женский",
       "middle_name": "Суръатович",
       "birthday": "26022006"
+    },
+    {
+      "name": "Kamran",
+      "surname": "Мамадсаидов",
+      "phone_num": "3123123123",
+      "email": "mamadsaidovsohruh07@gmail.com",
+      "password": "2133",
+      "id": 3
     }
   ],
   "goods": [
@@ -111,7 +114,7 @@
         "https://img.mvideo.ru/Big/50143597bb.jpg"
       ],
       "type": "furniture",
-      "status": 0
+      "status": 1
     },
     {
       "id": 5,
@@ -255,7 +258,7 @@
         "https://img.mvideo.ru/Big/30065113bb2.jpg"
       ],
       "type": "PC",
-      "status": 0
+      "status": 1
     },
     {
       "id": 13,
@@ -367,7 +370,7 @@
         "https://img.mvideo.ru/Big/30063814bb2.jpg"
       ],
       "type": "PC",
-      "status": 0
+      "status": 1
     },
     {
       "id": 19,
@@ -663,7 +666,7 @@
         "https://img.mvideo.ru/Big/small_pic/65/10030411bb2.jpg"
       ],
       "type": "TV",
-      "status": 1
+      "status": 0
     },
     {
       "id": 0.8474365959595023,
@@ -910,7 +913,7 @@
         "https://img.mvideo.ru/Big/20066196bb3.jpg"
       ],
       "type": "kitchen",
-      "status": 1
+      "status": 0
     },
     {
       "id": 35,

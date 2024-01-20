@@ -32,6 +32,7 @@ const tomorrowDate = new Date();
 tomorrowDate.setDate(currentDate.getDate() + 1);
 const tomorrowDateFormat = tomorrowDate.toDateString();
 let real_price = [];
+// console.log(real_price);
 
 getData("/bag").then((bag) => {
   getData("/goods").then((goods) => {
@@ -50,21 +51,21 @@ getData("/bag").then((bag) => {
         }
       }
     }
-    // console.log(bag_arr);
     for (let item of bag_arr) {
       delivery_date.forEach((date) => {
         date.innerHTML = "Доставка " + tomorrowDateFormat + " (Завтра)";
       });
       console.log(bag_arr);
       real_price.push(
-        (item.price - Math.floor((item.price * item.salePercentage) / 100))
+        ((item.price - Math.floor((item.price * item.salePercentage) / 100)) * bag.data[0].num)
           .toString()
           .replace(/\B(?=(\d{3})+(?!\d))/g, " ")
       );
     }
+    // console.log(bag_arr);
     let totalSum = bag_arr.reduce((sum, product) => sum + product.price, 0);
     general_sum.innerHTML =
-      totalSum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
+      (totalSum * bag.data[0].num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
     prod_number.innerHTML = `(${bag_arr.length}):`;
 
     if (bag_arr.length === 1) {
@@ -85,11 +86,11 @@ getData("/bag").then((bag) => {
 
     real_sum.forEach((sum) => {
       sum.innerHTML =
-        realtotalSum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
+        (realtotalSum).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
     });
-
+    console.log(realtotalSum);
     saved_money.innerHTML =
-      (totalSum - realtotalSum)
+      ((totalSum * bag.data[0].num) - realtotalSum)
         .toString()
         .replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " руб";
     reload_bag_prods(bag_arr, prod_content);
