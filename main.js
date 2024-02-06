@@ -269,7 +269,7 @@ getData("/goods").then((res) => {
 });
 let mySwiper = new Swiper(".swiper", {
   // Опции (по желанию)
-  slidesPerView: 1, // Количество видимых слайдов
+  slidesPerView: 1, // Количество вид имых слайдов
   spaceBetween: 10, // Расстояние между слайдами
   navigation: {
     nextEl: ".swiper-button-next",
